@@ -34,7 +34,8 @@ Plug 'vimwiki/vimwiki'
 
 " completion
 "Plug 'Valloric/YouCompleteMe'
-"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-jedi'
 
 " python
 Plug 'tell-k/vim-autopep8'
@@ -43,7 +44,6 @@ Plug 'hynek/vim-python-pep8-indent'
 Plug 'heavenshell/vim-pydocstring'
 Plug 'vim-scripts/pydoc.vim'
 Plug 'davidhalter/jedi-vim'
-"Plug 'zchee/deoplete-jedi'
 
 call plug#end()            " required
 filetype plugin indent on    " required
@@ -78,7 +78,7 @@ let g:ctrlp_cutom_ignore = { 'dir':  '\v[\/](\.git|\.hg|\.svn|__pycache__)$', 'f
 """
 " jedi-vim
 """
-let g:jedi#completions_enabled = 1
+let g:jedi#completions_enabled = 0
 let g:jedi#popup_on_dot = 0
 " autocmd FileType python setlocal completeopt-=preview
 
