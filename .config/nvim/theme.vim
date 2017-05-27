@@ -1,10 +1,12 @@
 """
 " fix for only 8 colors in screen
 ""
-if $TERM == "screen" && $COLORTERM == "truecolor"
+if $TERM == "screen"
     let $TERM="xterm"
 endif
-
+if $COLORTERM == "truecolor"
+    set termguicolors
+endif
 
 """
 " airline
