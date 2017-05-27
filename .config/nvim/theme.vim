@@ -1,7 +1,7 @@
 """
 " fix for only 8 colors in screen
 ""
-if $TERM == "screen"
+if $TERM == "screen" || $TERM == "linux"
     let $TERM="xterm"
 endif
 if $COLORTERM == "truecolor"
@@ -11,7 +11,7 @@ endif
 """
 " airline
 ""
-if ($COLORTERM == "truecolor" || has("termguicolors"))
+if $COLORTERM == "truecolor" || has("termguicolors")
     let g:airline_powerline_fonts = 1
 endif
 
