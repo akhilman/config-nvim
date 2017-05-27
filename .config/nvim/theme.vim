@@ -17,7 +17,8 @@ endif
 " Color scheme and gui options
 ""
 
-let g:airline_theme="understated"
+let g:airline_theme="minimalist"
+
 colorscheme torte
 highlight Pmenu ctermfg=white ctermbg=darkgray
 highlight PmenuSel ctermfg=white ctermbg=blue
