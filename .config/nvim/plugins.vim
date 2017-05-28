@@ -115,6 +115,7 @@ let g:session_autoload = 'yes'
 let g:session_autosave_periodic = 'yes'
 let g:session_persist_colors = 0
 let sessionoptions = 'buffers,curdir,folds,help,tabpages,winpos,winsize,resize'
+let g:session_directory = '~/.cache/nvim/sessions'
 
 """
 " VimWiki
