@@ -11,6 +11,22 @@ set modeline
 set backspace=2
 set scrolloff=10 " показывать всегда 10 строк до и после курсора
 
+
+" This is the persistent undo feature of vim :help undo-persistent
+if exists("+undofile")
+  " undofile - This allows you to use undos after exiting and restarting
+  " This, like swap and backups, uses .vim-undo first, then ~/.vim/undo
+  " :help undo-persistence
+  " This is only present in 7.3+
+  if isdirectory($HOME . '/.cache/nvim/undo') == 0
+    :silent !mkdir -p ~/.cache/nvim/undo > /dev/null 2>&1
+  endif
+  set undodir=./.vim-undo/
+  set undodir+=~/.cache/nvim/undo/
+  set undofile
+endif
+
+
 " setting shell to bash to make all work again when started from fish
 set shell=/bin/bash
 
