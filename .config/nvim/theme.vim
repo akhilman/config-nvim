@@ -22,9 +22,9 @@ let g:airline_theme="minimalist"
 " Color scheme and gui options
 ""
 colorscheme torte
-highlight Pmenu ctermfg=white ctermbg=darkgray
-highlight PmenuSel ctermfg=white ctermbg=blue
-highlight Visual term=reverse cterm=reverse guibg=Grey
+highlight Pmenu ctermfg=white ctermbg=darkgray guifg=#aaaaaa guibg=#222222
+highlight PmenuSel ctermfg=white ctermbg=blue guifg=white guibg=#194675
+highlight Visual term=reverse cterm=reverse guifg=#ffffff guibg=#194675
 
 set guifont=Mono\ Regular\ 12
 " seems line not work in nvim-qt
