@@ -30,7 +30,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'dag/vim-fish'
-Plug 'vimwiki/vimwiki'
+"Plug 'vimwiki/vimwiki'
 
 " completion
 "Plug 'Valloric/YouCompleteMe'
