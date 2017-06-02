@@ -10,9 +10,6 @@ set wrap nolist linebreak breakat=\
 set modeline
 set backspace=2
 set scrolloff=10 " показывать всегда 10 строк до и после курсора
-set shada="NONE"  " workaround ошибки в федоре по поводу битых ShaDa
-                  " с этой штукой вим не будет помнить предыдущее положение
-                  " курсора
 
 
 " This is the persistent undo feature of vim :help undo-persistent
