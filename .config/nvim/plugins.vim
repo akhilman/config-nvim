@@ -80,6 +80,7 @@ let g:ctrlp_cutom_ignore = { 'dir':  '\v[\/](\.git|\.hg|\.svn|__pycache__)$', 'f
 """
 let g:jedi#completions_enabled = 0
 let g:jedi#popup_on_dot = 0
+let g:jedi#force_py_version = 3
 " autocmd FileType python setlocal completeopt-=preview
 
 """
