@@ -93,19 +93,21 @@ inoremap <silent><expr> <C-Space> deoplete#mappings#manual_complete()
 "noremap <silent> <leader>G :YcmComplete GoToReferences <CR>
 
 
-
 """
 " airline
 ""
-"let g:airline_theme='powerlineish'
+if $COLORTERM == "truecolor" || has("termguicolors")
+    let g:airline_powerline_fonts = 1
+endif
+
+"let g:airline_theme="minimalist"
+let g:airline_theme='dark'
+
+let g:airline#extensions#tabline#enabled = 1
 "set noshowmode
 "set laststatus=2
-"let g:airline#extensions#tabline#enabled = 1
 "let g:airline#extensions#whitespace#enabled = 1
-""let g:airline#extensions#whitespace#symbol = '!'
-"if has("gui_running")
-"	let g:airline_powerline_fonts = 1
-"endif
+"let g:airline#extensions#whitespace#symbol = '!'
 
 
 """

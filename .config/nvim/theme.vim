@@ -9,16 +9,6 @@ if $COLORTERM == "truecolor"
 endif
 
 """
-" airline
-""
-if $COLORTERM == "truecolor" || has("termguicolors")
-    let g:airline_powerline_fonts = 1
-endif
-
-let g:airline_theme="minimalist"
-
-
-"""
 " Color scheme and gui options
 ""
 colorscheme torte
