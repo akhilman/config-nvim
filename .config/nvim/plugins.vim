@@ -102,7 +102,7 @@ endif
 
 "let g:airline_theme="minimalist"
 "let g:airline_theme='dark'
-let g:airline_theme="powerlinish"
+let g:airline_theme="powerlineish"
 
 let g:airline#extensions#tabline#enabled = 1
 "set noshowmode
