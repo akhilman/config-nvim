@@ -57,8 +57,8 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 let g:syntastic_check_on_wq = 0
 let g:syntastic_check_on_open = 1
-"let g:syntastic_python_python_exec = 'python3'
-"let g:syntastic_python_pyflakes_exe = 'pyflakes3'
+let g:syntastic_python_python_exec = 'python3'
+let g:syntastic_python_pyflakes_exe = 'pyflakes3'
 let g:syntastic_python_checkers=['python', 'pyflakes', 'flake8']
 
 """
