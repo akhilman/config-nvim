@@ -43,7 +43,7 @@ Plug 'fisadev/vim-isort'
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'heavenshell/vim-pydocstring'
 Plug 'vim-scripts/pydoc.vim'
-Plug 'davidhalter/jedi-vim'
+" Plug 'davidhalter/jedi-vim'
 
 call plug#end()            " required
 filetype plugin indent on    " required
@@ -79,7 +79,7 @@ let g:ctrlp_cutom_ignore = { 'dir':  '\v[\/](\.git|\.hg|\.svn|__pycache__)$', 'f
 """
 " jedi-vim
 """
-let g:jedi#completions_enabled = 0
+"let g:jedi#completions_enabled = 0
 let g:jedi#popup_on_dot = 0
 let g:jedi#force_py_version = 3
 " autocmd FileType python setlocal completeopt-=preview
@@ -91,7 +91,7 @@ let g:deoplete#enable_at_startup = 1
 let g:deoplete#sources#jedi#show_docstring = 1
 
 inoremap <silent><expr> <C-Space> deoplete#mappings#manual_complete()
-"noremap <silent> <leader>G :YcmComplete GoToReferences <CR>
+""noremap <silent> <leader>G :YcmComplete GoToReferences <CR>
 
 
 """
