@@ -42,7 +42,7 @@ inoremap # x<BS>#
 
 " highlight search
 set hlsearch
-nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
+nnoremap <silent> <Esc> :nohlsearch<Bar>:echo<CR>
 
 " highlight 80 column
 autocmd FileType c,cpp,python,ruby,java set colorcolumn=80
