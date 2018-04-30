@@ -89,6 +89,7 @@ let g:jedi#force_py_version = 3
 ""
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#sources#jedi#show_docstring = 1
+let g:deoplete#disable_auto_complete = 1
 
 inoremap <silent><expr> <C-Space> deoplete#mappings#manual_complete()
 ""noremap <silent> <leader>G :YcmComplete GoToReferences <CR>
