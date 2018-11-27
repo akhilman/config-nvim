@@ -35,7 +35,14 @@ vnoremap < <gv
 vnoremap > >gv
 
 " removing trailing spaces
-autocmd FileType c,cpp,python,ruby,java autocmd BufWritePre <buffer> :%s/\s\+$//e
+autocmd FileType c,cpp,python,ruby,java,lua autocmd BufWritePre <buffer> :%s/\s\+$//e
+
+" highlight 80 column
+autocmd FileType c,cpp,python,ruby,java,lua set colorcolumn=80
+
+" tab size 2
+autocmd FileType vim,lua set tabstop=2
+autocmd FileType vim,lua set shiftwidth=2
 
 "ставит х, убирает его, а потом ставит #, что бы вим не убирал таб перед #
 inoremap # x<BS>#
@@ -43,9 +50,6 @@ inoremap # x<BS>#
 " highlight search
 set hlsearch
 nnoremap <silent> <Esc> :nohlsearch<Bar>:echo<CR>
-
-" highlight 80 column
-autocmd FileType c,cpp,python,ruby,java set colorcolumn=80
 
 " paste from X clipboard
 set pastetoggle=<F2>
