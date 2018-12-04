@@ -1,12 +1,12 @@
 """
 " fix for only 8 colors in screen
 ""
-if $TERM == "screen" || $TERM == "linux"
-    let $TERM="xterm"
-endif
-if $COLORTERM == "truecolor"
-    set termguicolors
-endif
+"if $TERM == "screen" || $TERM == "linux"
+"    let $TERM="xterm"
+"endif
+"if $COLORTERM == "truecolor"
+"    set termguicolors
+"endif
 
 """
 " Color scheme and gui options
