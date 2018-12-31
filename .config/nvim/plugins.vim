@@ -152,6 +152,6 @@ noremap <silent> <leader>l <Plug>(Pydocstring)
 " stuff
 """
 autocmd FileType python setlocal foldmethod=indent
-autocmd FileType python setlocal makeprg=pylint\ %
+autocmd FileType python setlocal makeprg=(pylint\ --output-format=parseable\ %;\ mypy\ %)
 " закрывает окно документации при autocompletion
 " autocmd CompleteDone * pclose
