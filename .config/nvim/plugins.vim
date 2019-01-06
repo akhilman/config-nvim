@@ -31,6 +31,8 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'dag/vim-fish'
 "Plug 'vimwiki/vimwiki'
+Plug 'cstrahan/vim-capnp'
+Plug 'dcharbon/vim-flatbuffers'
 
 " completion
 "Plug 'Valloric/YouCompleteMe'
