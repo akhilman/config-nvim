@@ -44,6 +44,10 @@ autocmd FileType c,cpp,python,ruby,java,lua set colorcolumn=80
 autocmd FileType vim,lua set tabstop=2
 autocmd FileType vim,lua set shiftwidth=2
 
+" add yaml stuffs
+au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
 "ставит х, убирает его, а потом ставит #, что бы вим не убирал таб перед #
 inoremap # x<BS>#
 
