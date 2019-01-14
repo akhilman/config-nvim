@@ -63,6 +63,8 @@ let g:loaded_python_provider = 1
 " let g:syntastic_python_python_exec = 'python3'
 " let g:syntastic_python_pyflakes_exe = 'pyflakes3'
 let g:syntastic_python_checkers=['python', 'pyflakes', 'flake8']
+" let g:syntastic_cpp_compiler='clang++'
+let g:syntastic_cpp_compiler_options='-std=c++17'
 
 """
 " ctrlp
@@ -155,5 +157,6 @@ noremap <silent> <leader>l <Plug>(Pydocstring)
 """
 autocmd FileType python setlocal foldmethod=indent
 autocmd FileType python setlocal makeprg=(pylint\ --output-format=parseable\ %;\ mypy\ %)
+autocmd FileType c,cpp setlocal foldmethod=syntax
 " закрывает окно документации при autocompletion
 " autocmd CompleteDone * pclose
