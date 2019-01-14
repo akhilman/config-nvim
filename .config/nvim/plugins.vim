@@ -33,6 +33,7 @@ Plug 'dag/vim-fish'
 "Plug 'vimwiki/vimwiki'
 Plug 'cstrahan/vim-capnp'
 Plug 'dcharbon/vim-flatbuffers'
+Plug 'luochen1990/rainbow'
 
 " completion
 "Plug 'Valloric/YouCompleteMe'
@@ -136,6 +137,16 @@ let g:vimwiki_list = [{'path': '~/Documents/notes/', 'path_html': '~/Documents/n
 " Autopep8
 ""
 let g:autopep8_disable_show_diff=1
+
+
+"""
+" Rainbow
+"""
+let g:rainbow_active = 1
+let g:rainbow_conf = {
+  \ 'guifgs': ['royalblue1', 'darkorange3', 'seagreen3', 'firebrick'],
+  \ 'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta']
+  \ }
 
 
 """
