@@ -13,6 +13,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 " Plug 'gmarik/Vundle.vim'
 
 " stuff
+Plug 'LucHermitte/local_vimrc'
 Plug 'jiangmiao/auto-pairs'
 Plug 'kien/ctrlp.vim'
 Plug 'skwp/greplace.vim'
@@ -25,7 +26,9 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'xolox/vim-misc' " required for vim-session
 Plug 'xolox/vim-session'
-Plug 'scrooloose/syntastic'
+"Plug 'scrooloose/syntastic'
+"Plug 'neomake/neomake'
+Plug 'w0rp/ale'
 Plug 'scrooloose/nerdcommenter'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'michaeljsmith/vim-indent-object'
@@ -45,7 +48,6 @@ Plug 'tell-k/vim-autopep8'
 Plug 'fisadev/vim-isort'
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'heavenshell/vim-pydocstring'
-Plug 'vim-scripts/pydoc.vim'
 " Plug 'davidhalter/jedi-vim'
 
 call plug#end()            " required
@@ -55,17 +57,35 @@ filetype plugin indent on    " required
 """"
 "" syntastic
 """
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_check_on_wq = 0
-let g:syntastic_check_on_open = 1
-let g:loaded_python_provider = 1
-" let g:syntastic_python_python_exec = 'python3'
-" let g:syntastic_python_pyflakes_exe = 'pyflakes3'
-let g:syntastic_python_checkers=['python', 'pyflakes', 'flake8']
-" let g:syntastic_cpp_compiler='clang++'
-let g:syntastic_cpp_compiler_options='-std=c++17'
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+" let g:syntastic_check_on_wq = 0
+" let g:syntastic_check_on_open = 1
+" let g:loaded_python_provider = 1
+" " let g:syntastic_python_python_exec = 'python3'
+" " let g:syntastic_python_pyflakes_exe = 'pyflakes3'
+" let g:syntastic_python_checkers=['python', 'pyflakes', 'flake8']
+" " let g:syntastic_cpp_compiler='clang++'
+" let g:syntastic_cpp_compiler_options='-std=c++17'
+" let g:syntastic_cpp_config_file='.syntastic_cpp_config'
+
+"""
+" ALE
+"""
+let g:ale_linters = {
+\   'cpp': ['clangcheck'],
+\   'python': ['pyflakes', 'pylint', 'mypy'],
+\}
+
+let g:ale_fixers = {
+\ 'cpp': ['clang-format', 'remove_trailing_lines', 'trim_whitespace'],
+\ 'python': ['isort', 'autopep8', 'remove_trailing_lines', 'trim_whitespace'],
+\}
+
+let g:ale_cpp_clang_options = '-std=c++17 -Wall'
+let g:ale_cpp_clangcheck_executable = 'clang-check-7'
+let g:ale_fix_on_save = 1
 
 """
 " ctrlp
@@ -157,7 +177,8 @@ noremap <silent> <leader>t :TagbarToggle <CR>
 map <leader>f <Plug>(easymotion-s)
 autocmd FileType python map <buffer> <leader>b :w \| :call Autopep8()<CR>
 autocmd FileType python map <leader>s :w \| :Isort <CR>
-noremap <leader>e :SyntasticReset \| SyntasticCheck \| :Errors <CR>
+noremap <leader>e :lopen <CR>
+noremap <leader>E :ALEDetail <CR>
 noremap <silent> <leader>l <Plug>(Pydocstring)
 "noremap <silent> <leader>g :YcmComplete GoTo <CR>
 "noremap <silent> <leader>G :YcmComplete GoToReferences <CR>
@@ -166,8 +187,6 @@ noremap <silent> <leader>l <Plug>(Pydocstring)
 """
 " stuff
 """
-autocmd FileType python setlocal foldmethod=indent
-autocmd FileType python setlocal makeprg=(pylint\ --output-format=parseable\ %;\ mypy\ %)
-autocmd FileType c,cpp setlocal foldmethod=syntax
+noremap K :!zeal <cword><CR>
 " закрывает окно документации при autocompletion
 " autocmd CompleteDone * pclose
