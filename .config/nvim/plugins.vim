@@ -13,7 +13,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 " Plug 'gmarik/Vundle.vim'
 
 " stuff
-Plug 'LucHermitte/local_vimrc'
+"Plug 'LucHermitte/local_vimrc'
 Plug 'jiangmiao/auto-pairs'
 Plug 'kien/ctrlp.vim'
 Plug 'skwp/greplace.vim'
@@ -39,9 +39,17 @@ Plug 'dcharbon/vim-flatbuffers'
 Plug 'luochen1990/rainbow'
 
 " completion
-"Plug 'Valloric/YouCompleteMe'
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+" Optional for LanguageClient
+Plug 'junegunn/fzf'
+"Plug 'zchee/deoplete-jedi'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-jedi'
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
+"Plug 'Valloric/YouCompleteMe'
 
 " python
 Plug 'tell-k/vim-autopep8'
@@ -112,12 +120,41 @@ let g:jedi#force_py_version = 3
 """
 " Shougo/deoplete.nvim
 ""
+"let g:deoplete#sources={}
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources#jedi#show_docstring = 1
-let g:deoplete#disable_auto_complete = 1
+"let g:deoplete#disable_auto_complete = 1
+"let g:deoplete#sources#jedi#show_docstring = 1
+call deoplete#custom#source('sources', {
+      \ 'cpp': ['LanguageClient'],
+      \ 'python': ['LanguageClient'],
+      \ })
 
-inoremap <silent><expr> <C-Space> deoplete#mappings#manual_complete()
+inoremap <silent><expr> <C-n> deoplete#mappings#manual_complete()
 ""noremap <silent> <leader>G :YcmComplete GoToReferences <CR>
+
+"""
+" Shougo/neosnippet
+"""
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+
+"""
+" LanguageClient
+"""
+let g:LanguageClient_autoStart = 1
+let g:LanguageClient_serverCommands = {
+      \ 'cpp': ['clangd-7'],
+      \ 'python': ['pyls']
+      \ }
+
+nnoremap <silent> <F5> :call LanguageClient_contextMenu()<CR>
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> gr :call LanguageClient#textDocument_references()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 
 """
@@ -187,6 +224,6 @@ noremap <silent> <leader>l <Plug>(Pydocstring)
 """
 " stuff
 """
-noremap K :!zeal <cword><CR>
+"noremap K :!zeal <cword><CR>
 " закрывает окно документации при autocompletion
 " autocmd CompleteDone * pclose
