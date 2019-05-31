@@ -47,6 +47,7 @@ Plug 'autozimu/LanguageClient-neovim', {
 Plug 'junegunn/fzf'
 "Plug 'zchee/deoplete-jedi'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 "Plug 'Valloric/YouCompleteMe'
@@ -57,6 +58,9 @@ Plug 'fisadev/vim-isort'
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'heavenshell/vim-pydocstring'
 " Plug 'davidhalter/jedi-vim'
+
+" Rust
+"Plug 'rust-lang/rust.vim'
 
 call plug#end()            " required
 filetype plugin indent on    " required
@@ -89,6 +93,7 @@ let g:ale_linters = {
 let g:ale_fixers = {
 \ 'cpp': ['clang-format', 'remove_trailing_lines', 'trim_whitespace'],
 \ 'python': ['isort', 'autopep8', 'remove_trailing_lines', 'trim_whitespace'],
+\ 'rust': ['remove_trailing_lines', 'trim_whitespace', 'rustfmt']
 \}
 
 let g:ale_cpp_clang_options = '-std=c++17 -Wall'
@@ -127,6 +132,7 @@ let g:deoplete#enable_at_startup = 1
 call deoplete#custom#source('sources', {
       \ 'cpp': ['LanguageClient'],
       \ 'python': ['LanguageClient'],
+      \ 'rust': ['LanguageClient'],
       \ })
 
 inoremap <silent><expr> <C-n> deoplete#mappings#manual_complete()
@@ -147,7 +153,8 @@ xmap <C-k>     <Plug>(neosnippet_expand_target)
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_serverCommands = {
       \ 'cpp': ['clangd-7'],
-      \ 'python': ['pyls']
+      \ 'python': ['pyls'],
+      \ 'rust': ['rls'],
       \ }
 
 nnoremap <silent> <F5> :call LanguageClient_contextMenu()<CR>

@@ -41,8 +41,8 @@ autocmd FileType c,cpp,python,ruby,java,lua autocmd BufWritePre <buffer> :%s/\s\
 autocmd FileType c,cpp,python,ruby,java,lua set colorcolumn=81
 
 " tab size 2
-autocmd FileType vim,lua,cpp set tabstop=2
-autocmd FileType vim,lua,cpp set shiftwidth=2
+autocmd FileType vim,lua,cpp,cmake,json set tabstop=2
+autocmd FileType vim,lua,cpp,cmake,json set shiftwidth=2
 
 " add yaml stuffs
 au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
