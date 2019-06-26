@@ -87,7 +87,7 @@ filetype plugin indent on    " required
 """
 let g:ale_linters = {
 \   'cpp': ['clangcheck'],
-\   'python': ['pyflakes', 'pylint', 'mypy'],
+\   'python': ['flake8', 'pylint', 'mypy'],
 \}
 
 let g:ale_fixers = {
