@@ -50,7 +50,7 @@ autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 " folding
 autocmd FileType python setlocal foldmethod=indent
-autocmd FileType c,cpp,json setlocal foldmethod=syntax
+autocmd FileType rust,c,cpp,json setlocal foldmethod=syntax
 
 "ставит х, убирает его, а потом ставит #, что бы вим не убирал таб перед #
 inoremap # x<BS>#
