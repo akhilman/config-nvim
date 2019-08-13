@@ -37,6 +37,7 @@ Plug 'dag/vim-fish'
 Plug 'cstrahan/vim-capnp'
 Plug 'dcharbon/vim-flatbuffers'
 Plug 'luochen1990/rainbow'
+Plug 'cespare/vim-toml'
 
 " completion
 Plug 'autozimu/LanguageClient-neovim', {
