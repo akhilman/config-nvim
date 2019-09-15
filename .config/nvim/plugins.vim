@@ -163,6 +163,7 @@ function LC_maps()
     nnoremap <buffer> <silent> <F5> :call LanguageClient_contextMenu()<CR>
     nnoremap <buffer> <silent> K :call LanguageClient#textDocument_hover()<cr>
     nnoremap <buffer> <silent> gd :call LanguageClient#textDocument_definition()<CR>
+    nnoremap <buffer> <silent> gi :call LanguageClient#textDocument_implementation()<CR>
     nnoremap <buffer> <silent> gr :call LanguageClient#textDocument_references()<CR>
     nnoremap <buffer> <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
   endif
