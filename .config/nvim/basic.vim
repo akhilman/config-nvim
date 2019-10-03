@@ -10,6 +10,7 @@ set wrap nolist linebreak breakat=\
 set modeline
 set backspace=2
 set scrolloff=10 " показывать всегда 10 строк до и после курсора
+set relativenumber
 
 
 " This is the persistent undo feature of vim :help undo-persistent
