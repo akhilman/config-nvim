@@ -136,7 +136,7 @@ call deoplete#custom#source('sources', {
       \ 'rust': ['LanguageClient'],
       \ })
 
-inoremap <silent><expr> <C-n> deoplete#mappings#manual_complete()
+inoremap <silent><expr> <C-n> deoplete#manual_complete()
 ""noremap <silent> <leader>G :YcmComplete GoToReferences <CR>
 
 """
