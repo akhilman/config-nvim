@@ -38,6 +38,7 @@ Plug 'cstrahan/vim-capnp'
 Plug 'dcharbon/vim-flatbuffers'
 Plug 'luochen1990/rainbow'
 Plug 'cespare/vim-toml'
+Plug 'alvan/vim-closetag'
 
 " completion
 Plug 'autozimu/LanguageClient-neovim', {
@@ -49,6 +50,7 @@ Plug 'junegunn/fzf'
 "Plug 'zchee/deoplete-jedi'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
+Plug 'carlitux/deoplete-ternjs'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 "Plug 'Valloric/YouCompleteMe'
@@ -92,6 +94,10 @@ let g:ale_linters = {
 \}
 
 let g:ale_fixers = {
+\ 'html': ['prettier'],
+\ 'javascript': ['prettier', 'eslint'],
+\ 'json': ['prettier'],
+\ 'css': ['prettier', 'eslint'],
 \ 'cpp': ['clang-format', 'remove_trailing_lines', 'trim_whitespace'],
 \ 'python': ['isort', 'autopep8', 'remove_trailing_lines', 'trim_whitespace'],
 \ 'rust': ['remove_trailing_lines', 'trim_whitespace', 'rustfmt']
