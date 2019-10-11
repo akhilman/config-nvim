@@ -1,0 +1,15 @@
+{
+  "coc.preferences.hoverTarget": "preview",
+  "suggest.enablePreview": true,
+  "coc.preferences.previewAutoClose": false,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "python",
+    "rust",
+    "javascript",
+    "json",
+    "html",
+    "css",
+    "go"
+  ],
+  "tslint.jsEnable": true
+}
