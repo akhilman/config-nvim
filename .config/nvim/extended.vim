@@ -1,4 +1,4 @@
-let lsp_variant = "coc"
+let lsp_variant = "lc"
 
 ""
 " Vundle
@@ -20,7 +20,8 @@ Plug 'tpope/vim-fugitive'  " git integration
 Plug 'xolox/vim-misc'  " required for vim-session
 Plug 'xolox/vim-session'
 Plug 'luochen1990/rainbow'  " colorize brackets
-Plug 'scrooloose/nerdcommenter'
+" Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-commentary'
 Plug 'ntpeters/vim-better-whitespace'  " highlight trailing whitespaces
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'alvan/vim-closetag'  " close html tag
@@ -33,6 +34,8 @@ Plug 'cespare/vim-toml'
 
 if lsp_variant == 'ale'
   source ~/.config/nvim/extended-ale-plug.vim
+elseif lsp_variant == 'lc'
+  source ~/.config/nvim/extended-lc-plug.vim
 elseif lsp_variant == 'coc'
   source ~/.config/nvim/extended-coc-plug.vim
 endif
@@ -101,6 +104,8 @@ noremap <leader>e :lopen <CR>
 ""
 if lsp_variant == 'ale'
   source ~/.config/nvim/extended-ale-cfg.vim
+elseif lsp_variant == 'lc'
+  source ~/.config/nvim/extended-lc-cfg.vim
 elseif lsp_variant == 'coc'
   source ~/.config/nvim/extended-coc-cfg.vim
 endif

@@ -5,7 +5,7 @@
 let g:ale_linters = {
 \ 'cpp': ['clangd', 'clangcheck'],
 \ 'javascript': ['tsserver'],
-\ 'python': ['lsp', 'flake8', 'pylint', 'mypy'],
+\ 'python': ['pyls', 'flake8', 'pylint', 'mypy'],
 \ 'rust': ['rls'],
 \}
 
