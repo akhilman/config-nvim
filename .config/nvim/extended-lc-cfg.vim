@@ -12,7 +12,7 @@ let g:ale_fixers = {
       \ 'html': common_fixers + ['prettier'],
       \ 'javascript': common_fixers + ['eslint'],
       \ 'json': common_fixers + ['prettier'],
-      \ 'css': common_fixers + ['eslint'],
+      \ 'css': common_fixers + ['prettier'],
       \ 'cpp': common_fixers + ['clang-format',],
       \ 'python': common_fixers + ['isort', 'autopep8'],
       \ 'rust': common_fixers + ['rustfmt']
