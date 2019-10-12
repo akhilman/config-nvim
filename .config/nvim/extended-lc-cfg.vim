@@ -2,18 +2,18 @@
 " ALE
 """
 let g:ale_linters = {
-      \ 'javascript': ['eslint'],
       \ 'cpp': ['clangcheck'],
+      \ 'javascript': ['tsserver', 'eslint'],
       \ 'python': ['flake8', 'pylint', 'mypy'],
       \}
 
 let common_fixers = ['remove_trailing_lines', 'trim_whitespace']
 let g:ale_fixers = {
+      \ 'cpp': common_fixers + ['clang-format',],
+      \ 'css': common_fixers + ['prettier'],
       \ 'html': common_fixers + ['prettier'],
       \ 'javascript': common_fixers + ['eslint'],
       \ 'json': common_fixers + ['prettier'],
-      \ 'css': common_fixers + ['prettier'],
-      \ 'cpp': common_fixers + ['clang-format',],
       \ 'python': common_fixers + ['isort', 'autopep8'],
       \ 'rust': common_fixers + ['rustfmt']
       \}
@@ -21,7 +21,19 @@ let g:ale_fixers = {
 let g:ale_cpp_clang_options = '-std=c++17 -Wall'
 let g:ale_cpp_clangcheck_executable = 'clang-check-7'
 let g:ale_fix_on_save = 1
-noremap <leader>E :ALEDetail <CR>
+let g:ale_hover_to_preview = 0
+
+function ALE_maps()
+  if (index(['vim','help'], &filetype) == -1)
+    nnoremap <silent> K :ALEHover <CR>
+    nnoremap <silent> gd :ALEGoToDefinition <CR>
+    nnoremap <silent> gr :ALEFindReferences <CR>
+  endif
+endfunction
+
+autocmd FileType javascript call ALE_maps()
+
+nnoremap <leader>E :ALEDetail <CR>
 
 
 """
@@ -67,6 +79,7 @@ let g:LanguageClient_rootMarkers = {
       \ 'rust': ['Cargo.toml', '.git'],
       \ 'cpp': ['CMakeLists.txt', '.git'],
       \ }
+
 function LC_maps()
   if has_key(g:LanguageClient_serverCommands, &filetype)
     nnoremap <buffer> <silent> <F5> :call LanguageClient_contextMenu()<CR>
@@ -78,7 +91,9 @@ function LC_maps()
   endif
 endfunction
 
-autocmd FileType * call LC_maps()
+autocmd FileType cpp call LC_maps()
+autocmd FileType python call LC_maps()
+autocmd FileType rust call LC_maps()
 
 
 """

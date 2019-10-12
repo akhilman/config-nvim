@@ -12,5 +12,5 @@ Plug 'junegunn/fzf'
 
 Plug 'w0rp/ale'
 
-Plug 'carlitux/deoplete-ternjs'
+" Plug 'carlitux/deoplete-ternjs'
 " Plug 'deoplete-plugins/deoplete-jedi'

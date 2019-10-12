@@ -3,38 +3,38 @@
 " ALE
 """
 let g:ale_linters = {
-\ 'cpp': ['clangd', 'clangcheck'],
-\ 'javascript': ['tsserver'],
-\ 'python': ['pyls', 'flake8', 'pylint', 'mypy'],
-\ 'rust': ['rls'],
-\}
+      \ 'cpp': ['clangd', 'clangcheck'],
+      \ 'javascript': ['tsserver', 'eslint'],
+      \ 'python': ['pyls', 'flake8', 'pylint', 'mypy'],
+      \ 'rust': ['rls'],
+      \}
 
+let common_fixers = ['remove_trailing_lines', 'trim_whitespace']
 let g:ale_fixers = {
-\ 'cpp': ['remove_trailing_lines', 'trim_whitespace', 'clang-format',],
-\ 'css': [ 'remove_trailing_lines', 'trim_whitespace', 'prettier', 'eslint'],
-\ 'html': ['remove_trailing_lines', 'trim_whitespace', 'prettier'],
-\ 'javascript': ['remove_trailing_lines', 'trim_whitespace', 'prettier', 'eslint'],
-\ 'json': ['remove_trailing_lines', 'trim_whitespace'],
-\ 'python': ['remove_trailing_lines', 'trim_whitespace', 'isort', 'autopep8'],
-\ 'rust': ['remove_trailing_lines', 'trim_whitespace', 'rustfmt']
+      \ 'cpp': common_fixers + ['clang-format',],
+      \ 'css': common_fixers + ['prettier'],
+      \ 'html': common_fixers + ['prettier'],
+      \ 'javascript': common_fixers + ['eslint'],
+      \ 'json': common_fixers + ['prettier'],
+      \ 'python': common_fixers + ['isort', 'autopep8'],
+      \ 'rust': common_fixers + ['rustfmt']
 \}
 
 let g:ale_cpp_clang_options = '-std=c++17 -Wall'
 let g:ale_cpp_clangcheck_executable = 'clang-check-7'
 let g:ale_fix_on_save = 1
+let g:ale_hover_to_preview = 1
 
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call ALEHover
+function ALE_maps()
+  if (index(['vim','help'], &filetype) == -1)
+    nnoremap <silent> K :ALEHover <CR>
+    nnoremap <silent> gd :ALEGoToDefinition <CR>
+    nnoremap <silent> gr :ALEFindReferences <CR>
+    nnoremap <leader>E :ALEDetail <CR>
   endif
 endfunction
 
-noremap <leader>E :ALEDetail <CR>
-
-nmap <silent> gd :ALEGoToDefinition <CR>
-nmap <silent> gr :ALEFindReferences <CR>
+autocmd FileType * call ALE_maps()
 
 
 """
