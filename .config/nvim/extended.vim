@@ -33,11 +33,11 @@ Plug 'dcharbon/vim-flatbuffers'
 Plug 'cespare/vim-toml'
 
 if lsp_variant == 'ale'
-  source ~/.config/nvim/extended-ale-plug.vim
+  source ~/.config/nvim/extended/ale-plug.vim
 elseif lsp_variant == 'lc'
-  source ~/.config/nvim/extended-lc-plug.vim
+  source ~/.config/nvim/extended/lc-plug.vim
 elseif lsp_variant == 'coc'
-  source ~/.config/nvim/extended-coc-plug.vim
+  source ~/.config/nvim/extended/coc-plug.vim
 endif
 
 call plug#end()            " required
@@ -103,9 +103,9 @@ noremap <leader>e :lopen <CR>
 " LSP
 ""
 if lsp_variant == 'ale'
-  source ~/.config/nvim/extended-ale-cfg.vim
+  source ~/.config/nvim/extended/ale-cfg.vim
 elseif lsp_variant == 'lc'
-  source ~/.config/nvim/extended-lc-cfg.vim
+  source ~/.config/nvim/extended/lc-cfg.vim
 elseif lsp_variant == 'coc'
-  source ~/.config/nvim/extended-coc-cfg.vim
+  source ~/.config/nvim/extended/coc-cfg.vim
 endif
