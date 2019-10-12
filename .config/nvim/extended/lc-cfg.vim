@@ -3,7 +3,7 @@
 """
 let g:ale_linters = {
       \ 'cpp': ['clangcheck'],
-      \ 'javascript': ['tsserver', 'eslint'],
+      \ 'javascript': ['eslint'],
       \ 'python': ['flake8', 'pylint', 'mypy'],
       \}
 
@@ -22,16 +22,6 @@ let g:ale_cpp_clang_options = '-std=c++17 -Wall'
 let g:ale_cpp_clangcheck_executable = 'clang-check-7'
 let g:ale_fix_on_save = 1
 let g:ale_hover_to_preview = 0
-
-function ALE_maps()
-  if (index(['vim','help'], &filetype) == -1)
-    nnoremap <silent> K :ALEHover <CR>
-    nnoremap <silent> gd :ALEGoToDefinition <CR>
-    nnoremap <silent> gr :ALEFindReferences <CR>
-  endif
-endfunction
-
-autocmd FileType javascript call ALE_maps()
 
 nnoremap <leader>E :ALEDetail <CR>
 
@@ -64,14 +54,23 @@ xmap <C-k>     <Plug>(neosnippet_expand_target)
 " LanguageClient
 """
 
+"
+" Nice list of LSP servers
+" https://lsp.readthedocs.io/en/latest/
+"
+
 let g:LanguageClient_hoverPreview = "Always"
 
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_serverCommands = {
       \ 'cpp': ['clangd-7'],
+      \ 'javascript': ['typescript-language-server', '--stdio'],
+      \ 'javascript.jsx': ['typescript-language-server', '--stdio'],
       \ 'python': ['pyls'],
       \ 'rust': ['rls'],
+      \ 'typescript': ['typescript-language-server', '--stdio'],
       \ }
+      "\ 'javascript': ['javascript-typescript-stdio'],
 
 let g:LanguageClient_rootMarkers = {
       \ 'javascript': ['project.json', '.git'],
@@ -91,16 +90,14 @@ function LC_maps()
   endif
 endfunction
 
-autocmd FileType cpp call LC_maps()
-autocmd FileType python call LC_maps()
-autocmd FileType rust call LC_maps()
+autocmd FileType * call LC_maps()
 
 
-"""
-" ternjs
-""
-let g:deoplete#sources#ternjs#types = 1
-let g:deoplete#sources#ternjs#docs = 1
+" """
+" " ternjs
+" ""
+" let g:deoplete#sources#ternjs#types = 1
+" let g:deoplete#sources#ternjs#docs = 1
 
 " """
 " " jedi-vim
