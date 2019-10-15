@@ -63,7 +63,7 @@ let g:LanguageClient_hoverPreview = "Always"
 
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_serverCommands = {
-      \ 'cpp': ['clangd-7'],
+      \ 'cpp': ['clangd'],
       \ 'javascript': ['typescript-language-server', '--stdio'],
       \ 'javascript.jsx': ['typescript-language-server', '--stdio'],
       \ 'python': ['pyls'],
