@@ -20,6 +20,7 @@ Plug 'tpope/vim-fugitive'  " git integration
 Plug 'xolox/vim-misc'  " required for vim-session
 Plug 'xolox/vim-session'
 Plug 'luochen1990/rainbow'  " colorize brackets
+Plug 'ap/vim-css-color'
 " Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-commentary'
 Plug 'ntpeters/vim-better-whitespace'  " highlight trailing whitespaces
