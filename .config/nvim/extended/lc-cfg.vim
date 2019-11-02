@@ -77,7 +77,7 @@ let g:LanguageClient_serverCommands = {
 let g:LanguageClient_rootMarkers = {
       \ 'cpp': ['CMakeLists.txt', '.git'],
       \ 'elm': ['elm.json', '.git'],
-      \ 'javascript': ['project.json', '.git'],
+      \ 'javascript': ['package.json', '.git'],
       \ 'python': ['setup.py', 'setup.ini', '.git'],
       \ 'rust': ['Cargo.toml', '.git'],
       \ }
