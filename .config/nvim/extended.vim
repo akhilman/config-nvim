@@ -33,6 +33,9 @@ Plug 'cespare/vim-toml'
 Plug 'cstrahan/vim-capnp'
 Plug 'dag/vim-fish'
 Plug 'dcharbon/vim-flatbuffers'
+Plug 'jonsmithers/vim-html-template-literals'
+Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
 
 if lsp_variant == 'ale'
   source ~/.config/nvim/extended/ale-plug.vim
@@ -90,6 +93,18 @@ let g:rainbow_conf = {
   \ 'guifgs': ['royalblue1', 'darkorange3', 'seagreen3', 'firebrick'],
   \ 'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta']
   \ }
+
+
+"""
+" Closetag
+""
+let g:closetag_filetypes = 'html,xhtml,phtml,javascript,typescript'
+let g:closetag_regions = {
+      \ 'typescript.tsx': 'jsxRegion,tsxRegion,litHtmlRegion',
+      \ 'javascript.jsx': 'jsxRegion,litHtmlRegion',
+      \ 'javascript':     'litHtmlRegion',
+      \ 'typescript':     'litHtmlRegion',
+      \ }
 
 
 """
