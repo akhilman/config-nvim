@@ -66,13 +66,13 @@ let g:LanguageClient_autoStart = 1
 let g:LanguageClient_serverCommands = {
       \ 'cpp': ['clangd'],
       \ 'elm': ['elm-language-server'],
-      \ 'javascript': ['typescript-language-server', '--stdio'],
-      \ 'javascript.jsx': ['typescript-language-server', '--stdio'],
+      \ 'javascript': ['javascript-typescript-stdio'],
+      \ 'javascript.jsx': ['javascript-typescript-stdio'],
       \ 'python': ['pyls'],
       \ 'rust': ['rls'],
-      \ 'typescript': ['typescript-language-server', '--stdio'],
+      \ 'typescript': ['javascript-typescript-stdio'],
       \ }
-      "\ 'javascript': ['javascript-typescript-stdio'],
+      "\ 'javascript': ['typescript-language-server', '--stdio'],
 
 let g:LanguageClient_rootMarkers = {
       \ 'cpp': ['CMakeLists.txt', '.git'],
