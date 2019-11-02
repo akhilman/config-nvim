@@ -10,6 +10,7 @@ let g:ale_linters = {
 let common_fixers = ['remove_trailing_lines', 'trim_whitespace']
 let g:ale_fixers = {
       \ 'cpp': common_fixers + ['clang-format',],
+      \ 'elm': common_fixers + ['elm-format',],
       \ 'css': common_fixers + ['prettier'],
       \ 'html': common_fixers + ['prettier'],
       \ 'javascript': common_fixers + ['eslint'],
@@ -64,6 +65,7 @@ let g:LanguageClient_hoverPreview = "Always"
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_serverCommands = {
       \ 'cpp': ['clangd'],
+      \ 'elm': ['elm-language-server'],
       \ 'javascript': ['typescript-language-server', '--stdio'],
       \ 'javascript.jsx': ['typescript-language-server', '--stdio'],
       \ 'python': ['pyls'],
@@ -73,10 +75,11 @@ let g:LanguageClient_serverCommands = {
       "\ 'javascript': ['javascript-typescript-stdio'],
 
 let g:LanguageClient_rootMarkers = {
+      \ 'cpp': ['CMakeLists.txt', '.git'],
+      \ 'elm': ['elm.json', '.git'],
       \ 'javascript': ['project.json', '.git'],
       \ 'python': ['setup.py', 'setup.ini', '.git'],
       \ 'rust': ['Cargo.toml', '.git'],
-      \ 'cpp': ['CMakeLists.txt', '.git'],
       \ }
 
 function LC_maps()
@@ -91,6 +94,9 @@ function LC_maps()
 endfunction
 
 autocmd FileType * call LC_maps()
+
+" let g:LanguageClient_loggingFile = '/tmp/nvim-language-client.log'
+" let g:LanguageClient_serverStderr = '/tmp/nvim-language-server-stderr.log'
 
 
 " """
