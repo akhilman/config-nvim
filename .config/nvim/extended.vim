@@ -28,10 +28,11 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'alvan/vim-closetag'  " close html tag
 
 " syntax
-Plug 'dag/vim-fish'
-Plug 'cstrahan/vim-capnp'
-Plug 'dcharbon/vim-flatbuffers'
+Plug 'andys8/vim-elm-syntax', { 'for': ['elm'] }
 Plug 'cespare/vim-toml'
+Plug 'cstrahan/vim-capnp'
+Plug 'dag/vim-fish'
+Plug 'dcharbon/vim-flatbuffers'
 
 if lsp_variant == 'ale'
   source ~/.config/nvim/extended/ale-plug.vim
