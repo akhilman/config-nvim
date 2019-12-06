@@ -61,6 +61,7 @@ xmap <C-k>     <Plug>(neosnippet_expand_target)
 "
 
 let g:LanguageClient_hoverPreview = "Always"
+let g:LanguageClient_useFloatingHover = 0
 
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_serverCommands = {
