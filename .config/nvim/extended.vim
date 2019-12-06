@@ -106,14 +106,22 @@ let g:closetag_regions = {
       \ 'typescript':     'litHtmlRegion',
       \ }
 
+"""
+" NERDTree
+""
+noremap <silent> <C-\> :NERDTreeToggle <CR>
+let NERDTreeIgnore = [
+      \ '^node_modules$'
+      \ ]
 
 """
 " Other
 ""
-noremap <silent> <C-\> :NERDTreeToggle <CR>
+
 noremap <silent> <leader>t :TagbarToggle <CR>
 map <leader>f <Plug>(easymotion-s)
 noremap <leader>e :lopen <CR>
+
 
 
 """
