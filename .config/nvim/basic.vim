@@ -42,8 +42,8 @@ autocmd FileType c,cpp,python,ruby,java,lua autocmd BufWritePre <buffer> :%s/\s\
 autocmd FileType c,cpp,python,ruby,java,lua set colorcolumn=81
 
 " tab size 2
-autocmd FileType vim,lua,cpp,cmake,json,javascript,css,html set tabstop=2
-autocmd FileType vim,lua,cpp,cmake,json,javascript,css,html set shiftwidth=2
+autocmd FileType vim,lua,cpp,cmake,json,javascript,css,html,svg set tabstop=2
+autocmd FileType vim,lua,cpp,cmake,json,javascript,css,html,svg set shiftwidth=2
 
 " add yaml stuffs
 au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
@@ -51,7 +51,7 @@ autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 " folding
 autocmd FileType python setlocal foldmethod=indent
-autocmd FileType rust,c,cpp,json,javascript,css setlocal foldmethod=syntax
+autocmd FileType rust,c,cpp,json,javascript,css,html,svg setlocal foldmethod=syntax
 
 "ставит х, убирает его, а потом ставит #, что бы вим не убирал таб перед #
 inoremap # x<BS>#
