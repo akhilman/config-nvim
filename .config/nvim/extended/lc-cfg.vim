@@ -66,13 +66,15 @@ let g:LanguageClient_autoStart = 1
 let g:LanguageClient_serverCommands = {
       \ 'cpp': ['clangd'],
       \ 'elm': ['elm-language-server'],
-      \ 'javascript': ['javascript-typescript-stdio'],
-      \ 'javascript.jsx': ['javascript-typescript-stdio'],
+      \ 'javascript': ['typescript-language-server', '--stdio'],
+      \ 'javascript.jsx': ['typescript-language-server', '--stdio'],
       \ 'python': ['pyls'],
       \ 'rust': ['rls'],
       \ 'typescript': ['javascript-typescript-stdio'],
       \ }
+      "\ 'javascript': ['flow', 'lsp'],
       "\ 'javascript': ['typescript-language-server', '--stdio'],
+      "\ 'javascript': ['javascript-typescript-stdio'],
 
 let g:LanguageClient_rootMarkers = {
       \ 'cpp': ['CMakeLists.txt', '.git'],
@@ -81,6 +83,7 @@ let g:LanguageClient_rootMarkers = {
       \ 'python': ['setup.py', 'setup.ini', '.git'],
       \ 'rust': ['Cargo.toml', '.git'],
       \ }
+      "\ 'javascript': ['package.json', '.git'],
 
 function LC_maps()
   if has_key(g:LanguageClient_serverCommands, &filetype)
