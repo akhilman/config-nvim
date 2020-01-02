@@ -26,6 +26,7 @@ Plug 'tpope/vim-commentary'
 Plug 'ntpeters/vim-better-whitespace'  " highlight trailing whitespaces
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'alvan/vim-closetag'  " close html tag
+Plug 'euclio/vim-markdown-composer'
 
 " syntax
 Plug 'andys8/vim-elm-syntax', { 'for': ['elm'] }
