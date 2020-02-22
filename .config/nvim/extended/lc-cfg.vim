@@ -5,6 +5,7 @@ let g:ale_linters = {
       \ 'cpp': ['clangcheck'],
       \ 'javascript': ['eslint'],
       \ 'python': ['flake8', 'pylint', 'mypy'],
+      \ 'rust': [],
       \}
 
 let common_fixers = ['remove_trailing_lines', 'trim_whitespace']
@@ -16,11 +17,14 @@ let g:ale_fixers = {
       \ 'javascript': common_fixers + ['eslint'],
       \ 'json': common_fixers + ['prettier'],
       \ 'python': common_fixers + ['isort', 'autopep8'],
-      \ 'rust': common_fixers + ['rustfmt']
+      \ 'rust': [],
       \}
+      " 'rust': common_fixers + ['rustfmt']
 
 let g:ale_cpp_clang_options = '-std=c++17 -Wall'
 let g:ale_cpp_clangcheck_executable = 'clang-check-7'
+let g:ale_rust_cargo_use_clippy = executable('cargo-clippy')
+let g:ale_rust_cargo_clippy_options = '--deny warnings --deny clippy::pedantic --deny clippy::nursery'
 let g:ale_fix_on_save = 1
 let g:ale_hover_to_preview = 0
 
@@ -94,10 +98,16 @@ function LC_maps()
     nnoremap <buffer> <silent> gi :call LanguageClient#textDocument_implementation()<CR>
     nnoremap <buffer> <silent> gr :call LanguageClient#textDocument_references()<CR>
     nnoremap <buffer> <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+
+    if &filetype == 'rust'
+      setlocal formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
+    endif
   endif
 endfunction
 
 autocmd FileType * call LC_maps()
+autocmd BufWritePre *.rs :call LanguageClient#textDocument_formatting()
+
 
 " let g:LanguageClient_loggingFile = '/tmp/nvim-language-client.log'
 " let g:LanguageClient_serverStderr = '/tmp/nvim-language-server-stderr.log'

@@ -121,7 +121,7 @@ let NERDTreeIgnore = [
 
 noremap <silent> <leader>t :TagbarToggle <CR>
 map <leader>f <Plug>(easymotion-s)
-noremap <leader>e :lopen <CR>
+noremap <leader>e :copen <CR>
 
 
 
