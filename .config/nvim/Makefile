@@ -1,7 +1,9 @@
 default: install
 
-site = $(HOME)/.local/share/nvim/site
+share = $(HOME)/.local/share/nvim
+site = $(share)/site
 autoload = $(site)/autoload
+plugged = $(share)/plugged
 
 $(autoload)/plug.vim:
 	curl -fLo $(autoload)/plug.vim --create-dirs \
@@ -17,3 +19,7 @@ update: plug.vim
 
 clean: plug.vim
 	nvim +PlugClean +qall
+
+uninstall: $(plugged) $(autoload)/plug.vim
+	rm -rf $(plugged)
+	rm $(autoload)/plug.vim*
