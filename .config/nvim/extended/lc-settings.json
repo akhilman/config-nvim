@@ -1,0 +1,7 @@
+{
+  "pyls.plugins.pylint.enabled": true,
+  "pyls.plugins.pyflakes.enabled": false,
+  "pyls.plugins.pyls_mypy.enabled": true,
+  "pyls.plugins.pyls_mypy.live_mode": false,
+  "rust.clippy_preference": "on"
+}
