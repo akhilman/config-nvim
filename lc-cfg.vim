@@ -9,7 +9,7 @@
 "
 
 let g:LanguageClient_autoStart = 1
-let g:LanguageClient_settingsPath = expand('<sfile>:p:h') . "/lc-settings.json"
+let g:LanguageClient_settingsPath = $NVIM_RC_DIR . "/lc-settings.json"
 
 let g:LanguageClient_hoverPreview = "Always"
 let g:LanguageClient_useFloatingHover = 0

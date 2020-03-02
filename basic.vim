@@ -21,17 +21,16 @@ if exists("+undofile")
   " This, like swap and backups, uses .vim-undo first, then ~/.vim/undo
   " :help undo-persistence
   " This is only present in 7.3+
-  if isdirectory($HOME . '/.cache/nvim/undo') == 0
-    :silent !mkdir -p ~/.cache/nvim/undo > /dev/null 2>&1
+  if isdirectory($NVIM_CACHE_DIR . '/undo') == 0
+    exec ":silent !mkdir -p " . $NVIM_CACHE_DIR  "/undo > /dev/null 2>&1"
   endif
-  set undodir=./.vim-undo/
-  set undodir+=~/.cache/nvim/undo/
+  set undodir=$NVIM_CACHE_DIR/undo/
   set undofile
 endif
 
 
 " setting shell to bash to make all work again when started from fish
-set shell=/bin/bash
+"set shell=/bin/bash
 
 " moving indentation
 vnoremap < <gv

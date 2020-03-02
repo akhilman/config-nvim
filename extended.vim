@@ -1,12 +1,13 @@
 let lsp_variant = "lc"
 
+
 ""
 " Vundle
 ""
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-call plug#begin('~/.local/share/nvim/plugged')
+call plug#begin($NVIM_SHARE_DIR . '/plugged')
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -39,11 +40,11 @@ Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 
 if lsp_variant == 'ale'
-  source ~/.config/nvim/extended/ale-plug.vim
+  execute "source " . $NVIM_RC_DIR . "/ale-plug.vim"
 elseif lsp_variant == 'lc'
-  source ~/.config/nvim/extended/lc-plug.vim
+  execute "source " . $NVIM_RC_DIR . "/lc-plug.vim"
 elseif lsp_variant == 'coc'
-  source ~/.config/nvim/extended/coc-plug.vim
+  execute "source " . $NVIM_RC_DIR . "/coc-plug.vim"
 endif
 
 call plug#end()            " required
@@ -83,7 +84,7 @@ let g:session_autoload = 'yes'
 let g:session_autosave_periodic = 'yes'
 let g:session_persist_colors = 0
 let sessionoptions = 'buffers,curdir,folds,help,tabpages,winpos,winsize,resize'
-let g:session_directory = '~/.cache/nvim/sessions'
+let g:session_directory = $NVIM_CACHE_DIR . '/sessions'
 
 
 """
@@ -129,9 +130,9 @@ noremap <leader>e :copen <CR>
 " LSP
 ""
 if lsp_variant == 'ale'
-  source ~/.config/nvim/extended/ale-cfg.vim
+  execute "source " . $NVIM_RC_DIR . "/ale-cfg.vim"
 elseif lsp_variant == 'lc'
-  source ~/.config/nvim/extended/lc-cfg.vim
+  execute "source " . $NVIM_RC_DIR . "/lc-cfg.vim"
 elseif lsp_variant == 'coc'
-  source ~/.config/nvim/extended/coc-cfg.vim
+  execute "source " . $NVIM_RC_DIR . "/coc-cfg.vim"
 endif

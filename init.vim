@@ -1,9 +1,13 @@
+let $NVIM_RC_DIR = expand('<sfile>:p:h')
+let $NVIM_SHARE_DIR = $HOME . '/.local/share/nvim'
+let $NVIM_CACHE_DIR = $HOME . '/.cache/nvim'
+
 let g:python3_host_prog = '/usr/bin/python3'
 
-source ~/.config/nvim/basic.vim
-source ~/.config/nvim/ruskeyremap.vim
+execute "source " . $NVIM_RC_DIR . "/basic.vim"
+execute "source " . $NVIM_RC_DIR . "/ruskeyremap.vim"
 if $NVIM_NOT_EXTENDED == '' 
-\ && filereadable($HOME . "/.local/share/nvim/site/autoload/plug.vim")
-    source ~/.config/nvim/extended.vim
+\ && filereadable($NVIM_SHARE_DIR . "/site/autoload/plug.vim")
+    execute "source " . $NVIM_RC_DIR . "/extended.vim"
 endif
-source ~/.config/nvim/theme.vim
+execute "source " . $NVIM_RC_DIR . "/theme.vim"
