@@ -1,109 +1,3 @@
-"""
-" ALE
-"""
-" let g:ale_linters = {
-"       \ 'cpp': ['clangcheck'],
-"       \ 'javascript': ['eslint'],
-"       \ 'python': ['flake8', 'pylint', 'mypy'],
-"       \ 'rust': [],
-"       \}
-
-" let common_fixers = ['remove_trailing_lines', 'trim_whitespace']
-" let g:ale_fixers = {
-"       \ 'cpp': common_fixers + ['clang-format',],
-"       \ 'elm': common_fixers + ['elm-format',],
-"       \ 'css': common_fixers + ['prettier'],
-"       \ 'html': common_fixers + ['prettier'],
-"       \ 'javascript': common_fixers + ['eslint'],
-"       \ 'json': common_fixers + ['prettier'],
-"       \ 'python': common_fixers + ['isort', 'autopep8'],
-"       \ 'rust': [],
-"       \}
-"       " 'rust': common_fixers + ['rustfmt']
-
-" let g:ale_cpp_clang_options = '-std=c++17 -Wall'
-" let g:ale_cpp_clangcheck_executable = 'clang-check-7'
-" let g:ale_rust_cargo_use_clippy = executable('cargo-clippy')
-" let g:ale_rust_cargo_clippy_options = '--deny warnings --deny clippy::pedantic --deny clippy::nursery'
-" let g:ale_fix_on_save = 1
-" let g:ale_hover_to_preview = 0
-
-"nnoremap <leader>E :ALEDetail <CR>
-
-
-"""
-" Shougo/deoplete.nvim
-""
-"let g:deoplete#sources={}
-"let g:deoplete#enable_at_startup = 1
-"let g:deoplete#disable_auto_complete = 1
-"let g:deoplete#sources#jedi#show_docstring = 1
-"call deoplete#custom#source('sources', {
-"      \ 'cpp': ['LanguageClient'],
-"      \ 'python': ['LanguageClient'],
-"      \ 'rust': ['LanguageClient'],
-"      \ })
-
-" inoremap <silent><expr> <C-n> deoplete#manual_complete()
-
-"""
-" Shougo/neosnippet
-"""
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-
-"""
-" ncm2
-"""
-" enable ncm2 for all buffers
-autocmd BufEnter * call ncm2#enable_for_buffer()
-
-" IMPORTANT: :help Ncm2PopupOpen for more information
-set completeopt=noinsert,menuone,noselect
-
-" suppress the annoying 'match x of y', 'The only match' and 'Pattern not
-" found' messages
-set shortmess+=c
-
-" CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
-inoremap <c-c> <ESC>
-
-" When the <Enter> key is pressed while the popup menu is visible, it only
-" hides the menu. Use this mapping to close the menu and also start a new
-" line.
-"inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
-
-" Use <TAB> to select the popup menu:
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-" wrap existing omnifunc
-" Note that omnifunc does not run in background and may probably block the
-" editor. If you don't want to be blocked by omnifunc too often, you could
-" add 180ms delay before the omni wrapper:
-"  'on_complete': ['ncm2#on_complete#delay', 180,
-"               \ 'ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
-au User Ncm2Plugin call ncm2#register_source({
-        \ 'name' : 'css',
-        \ 'priority': 9,
-        \ 'subscope_enable': 1,
-        \ 'scope': ['css','scss'],
-        \ 'mark': 'css',
-        \ 'word_pattern': '[\w\-]+',
-        \ 'complete_pattern': ':\s*',
-        \ 'on_complete': ['ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
-        \ })
-
-" Press enter key to trigger snippet expansion
-" The parameters are the same as `:help feedkeys()`
-"inoremap <silent> <expr> <C-k> ncm2_neosnippet#expand_or("\<CR>", 'n')
-"imap <expr><C-l>
-"        \ neosnippet#expandable_or_jumpable() ?
-"        \ "\<Plug>(neosnippet_expand_or_jump)" : "\<C-n>"
-
 
 """
 " LanguageClient
@@ -114,10 +8,11 @@ au User Ncm2Plugin call ncm2#register_source({
 " https://lsp.readthedocs.io/en/latest/
 "
 
+let g:LanguageClient_autoStart = 1
+
 let g:LanguageClient_hoverPreview = "Always"
 let g:LanguageClient_useFloatingHover = 0
 
-let g:LanguageClient_autoStart = 1
 let g:LanguageClient_serverCommands = {
       \ 'cpp': ['clangd'],
       \ 'elm': ['elm-language-server'],
@@ -182,16 +77,61 @@ nnoremap <buffer> <silent> gQ :call LC_FormatDocument()<CR>
 " let g:LanguageClient_serverStderr = '/tmp/nvim-language-server-stderr.log'
 
 
-" """
-" " ternjs
-" ""
-" let g:deoplete#sources#ternjs#types = 1
-" let g:deoplete#sources#ternjs#docs = 1
+"""
+" Shougo/neosnippet
+"""
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
 
-" """
-" " jedi-vim
-" """
-" "let g:jedi#completions_enabled = 0
-" let g:jedi#popup_on_dot = 0
-" let g:jedi#force_py_version = 3
-" " autocmd FileType python setlocal completeopt-=preview
+
+"""
+" ncm2
+"""
+" enable ncm2 for all buffers
+autocmd BufEnter * call ncm2#enable_for_buffer()
+
+" IMPORTANT: :help Ncm2PopupOpen for more information
+set completeopt=noinsert,menuone,noselect
+
+" suppress the annoying 'match x of y', 'The only match' and 'Pattern not
+" found' messages
+set shortmess+=c
+
+" CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
+inoremap <c-c> <ESC>
+
+" When the <Enter> key is pressed while the popup menu is visible, it only
+" hides the menu. Use this mapping to close the menu and also start a new
+" line.
+"inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+
+" Use <TAB> to select the popup menu:
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" wrap existing omnifunc
+" Note that omnifunc does not run in background and may probably block the
+" editor. If you don't want to be blocked by omnifunc too often, you could
+" add 180ms delay before the omni wrapper:
+"  'on_complete': ['ncm2#on_complete#delay', 180,
+"               \ 'ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
+au User Ncm2Plugin call ncm2#register_source({
+        \ 'name' : 'css',
+        \ 'priority': 9,
+        \ 'subscope_enable': 1,
+        \ 'scope': ['css','scss'],
+        \ 'mark': 'css',
+        \ 'word_pattern': '[\w\-]+',
+        \ 'complete_pattern': ':\s*',
+        \ 'on_complete': ['ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
+        \ })
+
+" Press enter key to trigger snippet expansion
+" The parameters are the same as `:help feedkeys()`
+"inoremap <silent> <expr> <C-k> ncm2_neosnippet#expand_or("\<CR>", 'n')
+"imap <expr><C-l>
+"        \ neosnippet#expandable_or_jumpable() ?
+"        \ "\<Plug>(neosnippet_expand_or_jump)" : "\<C-n>"
+
