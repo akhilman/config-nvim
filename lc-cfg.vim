@@ -44,15 +44,19 @@ function LC_maps()
     nnoremap <buffer> <silent> gd :call LanguageClient#textDocument_definition()<CR>
     nnoremap <buffer> <silent> gi :call LanguageClient#textDocument_implementation()<CR>
     nnoremap <buffer> <silent> gr :call LanguageClient#textDocument_references()<CR>
-
-    setlocal formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
   endif
 endfunction
 
 autocmd FileType * call LC_maps()
 
+" let g:LanguageClient_loggingFile = '/tmp/nvim-language-client.log'
+" let g:LanguageClient_serverStderr = '/tmp/nvim-language-server-stderr.log'
 
-function LC_FormatDocument()
+
+"""
+" Formatting
+"""
+function SetFormatPrg()
   if index([
         \ "flow",
         \ "typescript",
@@ -65,18 +69,27 @@ function LC_FormatDocument()
         \ "yaml",
         \ "html",
         \], &filetype) >= 0
-    execute '%! prettier --parser ' . &filetype . ' --stdin'
+    exec 'setlocal formatprg=prettier\ --parser\ ' . &filetype . '\ --stdin'
+  elseif &filetype == "toml"
+    setlocal formatprg=toml-fmt
   elseif has_key(g:LanguageClient_serverCommands, &filetype)
-    call LanguageClient#textDocument_formatting()
+    setlocal formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
   endif
 endfunction
 
-nnoremap <buffer> <silent> gQ :call LC_FormatDocument()<CR>
-" autocmd InsertLeave <buffer> :call LC_FormatDocument()
+autocmd FileType * call SetFormatPrg()
+" autocmd InsertLeave <buffer> :call Format()
 
-" let g:LanguageClient_loggingFile = '/tmp/nvim-language-client.log'
-" let g:LanguageClient_serverStderr = '/tmp/nvim-language-server-stderr.log'
-
+function FormatAllByFormatPrg()
+  if &formatexpr =~ "LanguageClient"
+    call LanguageClient#textDocument_formatting()
+  else
+    let currentpos=getpos('.')
+    normal gggqG
+    call setpos('.', currentpos)
+  endif
+endfunction
+command Format call FormatAllByFormatPrg()
 
 """
 " Shougo/neosnippet
