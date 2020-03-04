@@ -78,7 +78,6 @@ function SetFormatPrg()
 endfunction
 
 autocmd FileType * call SetFormatPrg()
-" autocmd InsertLeave <buffer> :call Format()
 
 function FormatAllByFormatPrg()
   if &formatexpr =~ "LanguageClient"
@@ -89,7 +88,9 @@ function FormatAllByFormatPrg()
     call setpos('.', currentpos)
   endif
 endfunction
+
 command Format call FormatAllByFormatPrg()
+" autocmd InsertLeave <buffer> :call Format()
 
 """
 " Shougo/neosnippet
