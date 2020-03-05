@@ -5,14 +5,11 @@ set nocompatible
 syntax on
 filetype plugin indent on
 let c_minlines=500  " number of lines that vim goes backwards for syntax highlight
-set tabstop=4 " show existing tab with 4 spaces width
-set shiftwidth=4 " when indenting with '>', use 4 spaces width
-set expandtab " On pressing tab, insert 4 spaces
-set wrap nolist linebreak breakat=\ 
-set modeline
-set backspace=2
+set wrap nolist linebreak breakat=\s " wrap long lines
+set modeline " check vim configuration in file
+" set backspace=2 " WUT?
 set scrolloff=10 " показывать всегда 10 строк до и после курсора
-set relativenumber
+set relativenumber  " relative line number at the left view edge
 
 
 " This is the persistent undo feature of vim :help undo-persistent
@@ -37,21 +34,17 @@ vnoremap < <gv
 vnoremap > >gv
 
 " removing trailing spaces
-autocmd FileType c,cpp,python,ruby,java,lua autocmd BufWritePre <buffer> :%s/\s\+$//e
+autocmd FileType c,cpp,python,ruby,java,lua,vim,cmake,json,javascript,typescript,css,html,svg autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 " highlight 80 column
-autocmd FileType c,cpp,python,ruby,java,lua set colorcolumn=81
+autocmd FileType c,cpp,python,ruby,java,lua setlocal colorcolumn=81
 
-" tab size 2
-autocmd FileType vim,lua,cpp,cmake,json,javascript,typescript,css,html,svg set tabstop=2
-autocmd FileType vim,lua,cpp,cmake,json,javascript,typescript,css,html,svg set shiftwidth=2
-
-" add yaml stuffs
-au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+" tab size
+autocmd FileType vim,lua,cpp,cmake,json,yaml,javascript,typescript,css,html,svg setlocal shiftwidth=2 tabstop=2 expandtab
+autocmd FileType rust,python,dockerfile,toml setlocal shiftwidth=4 tabstop=4 expandtab
 
 " folding
-autocmd FileType python setlocal foldmethod=indent
+autocmd FileType python,yaml setlocal foldmethod=indent
 autocmd FileType rust,c,cpp,json,javascript,css,html,svg setlocal foldmethod=syntax
 
 "ставит х, убирает его, а потом ставит #, что бы вим не убирал таб перед #
