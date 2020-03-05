@@ -61,19 +61,19 @@ let g:ctrlp_cutom_ignore = { 'dir':  '\v[\/](\.git|\.hg|\.svn|__pycache__)$', 'f
 """
 " airline
 ""
-if $COLORTERM == "truecolor" || has("termguicolors")
-    let g:airline_powerline_fonts = 1
+if $COLORTERM == "truecolor" || $TERM =~ "256color" || has("termguicolors")
+  let g:airline_powerline_fonts = 1
+  "let g:airline_theme="minimalist"
+  "let g:airline_theme='dark'
+  let g:airline_theme="powerlineish"
+
+  let g:airline#extensions#tabline#enabled = 1
+  "set noshowmode
+  "set laststatus=2
+  "let g:airline#extensions#whitespace#enabled = 1
+  "let g:airline#extensions#whitespace#symbol = '!'
 endif
 
-"let g:airline_theme="minimalist"
-"let g:airline_theme='dark'
-let g:airline_theme="powerlineish"
-
-let g:airline#extensions#tabline#enabled = 1
-"set noshowmode
-"set laststatus=2
-"let g:airline#extensions#whitespace#enabled = 1
-"let g:airline#extensions#whitespace#symbol = '!'
 
 
 """
