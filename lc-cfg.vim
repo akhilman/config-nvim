@@ -106,17 +106,33 @@ let g:deoplete#sources#jedi#show_docstring = 0
 "      \ 'rust': ['LanguageClient'],
 "      \ })
 
+call deoplete#custom#option({
+    \ 'auto_complete_delay': 200,
+    \ 'smart_case': v:true,
+    \ })
+
 inoremap <silent><expr> <C-n> deoplete#manual_complete()
+imap <expr> <C-k> pumvisible() ? deoplete#close_popup() :
+		\ neosnippet#expandable_or_jumpable() ?
+		\ "\<Plug>(neosnippet_expand_or_jump)" : "\<C-k>"
+
+" <CR>: close popup and save indent.
+"inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+"function! s:my_cr_function() abort
+"  return deoplete#close_popup()
+"endfunction
 
 
 """
 " Shougo/neosnippet
 """
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+"imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
+
+let g:neosnippet#enable_complete_done = 1  " for LanguageClient and Rust snippets
