@@ -92,3 +92,6 @@ nnoremap - <C-x>
 
 " autoformatting
 set formatoptions=jcrqln2  " was jcroql
+
+" enable mouse
+set mouse=nv
