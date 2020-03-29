@@ -55,7 +55,10 @@ filetype plugin indent on    " required
 " ctrlp
 ""
 let g:ctrlp_working_path_mode = 'wa'
-let g:ctrlp_cutom_ignore = { 'dir':  '\v[\/](\.git|\.hg|\.svn|__pycache__|target|node_modules)$', 'file': '\v\.(exe|so|dll)$' }
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v[\/](\.git|\.hg|\.svn|__pycache__|target|node_modules)$',
+    \ 'file': '\v\.(exe|so|dll)$'
+    \ }
 
 
 """
