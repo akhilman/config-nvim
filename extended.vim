@@ -1,4 +1,4 @@
-let lsp_variant = "lc"
+let lsp_variant = "coc"
 
 
 ""
@@ -125,8 +125,6 @@ let NERDTreeIgnore = [
 
 noremap <silent> <leader>t :TagbarToggle <CR>
 map <leader>f <Plug>(easymotion-s)
-noremap <leader>e :copen <CR>
-
 
 
 """

@@ -2,7 +2,7 @@
 " Coc
 ""
 
-let g:extension_root = '~/.local/share/nvim/coc'
+let g:extension_root = $NVIM_SHARE_DIR . '/coc'
 let g:coc_global_extensions = [
       \ 'coc-marketplace',
       \ 'coc-snippets'
@@ -45,11 +45,11 @@ set signcolumn=yes
 " " Use <c-space> to trigger completion.
 " inoremap <silent><expr> <c-space> coc#refresh()
 
-" " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-" " Coc only does snippet and additional edit on confirm.
-" inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-" " Or use `complete_info` if your vim support it, like:
-" " inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" Or use `complete_info` if your vim support it, like:
+" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -138,3 +138,8 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+"""
+" More key bindings
+""
+noremap <leader>e :copen <CR>

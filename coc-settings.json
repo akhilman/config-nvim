@@ -3,13 +3,20 @@
   "suggest.enablePreview": true,
   "coc.preferences.previewAutoClose": false,
   "coc.preferences.formatOnSaveFiletypes": [
-    "python",
-    "rust",
+    "cpp",
+    "css",
+    "go",
+    "html",
     "javascript",
     "json",
-    "html",
-    "css",
-    "go"
+    "python",
+    "rust",
+    "svg"
   ],
-  "tslint.jsEnable": true
+  "tslint.jsEnable": true,
+  "rust-analyzer.cargo.allFeatures": true,
+  "rust-analyzer.cargo.loadOutDirsFromCheck": true,
+  "rust-analyzer.checkOnSave.enable": true,
+  "rust-analyzer.checkOnSave.command": "check",
+  "rust.clippy_preference": "on",
 }

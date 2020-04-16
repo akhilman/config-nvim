@@ -14,18 +14,25 @@ let g:LanguageClient_settingsPath = $NVIM_RC_DIR . "/lc-settings.json"
 let g:LanguageClient_hoverPreview = "Always"
 let g:LanguageClient_useFloatingHover = 0
 
+
 let g:LanguageClient_serverCommands = {
       \ 'cpp': ['clangd'],
       \ 'elm': ['elm-language-server'],
       \ 'javascript': ['typescript-language-server', '--stdio'],
       \ 'javascript.jsx': ['typescript-language-server', '--stdio'],
       \ 'python': ['pyls'],
-      \ 'rust': ['rls'],
       \ 'typescript': ['typescript-language-server', '--stdio'],
       \ }
       "\ 'javascript': ['flow', 'lsp'],
       "\ 'javascript': ['typescript-language-server', '--stdio'],
       "\ 'javascript': ['javascript-typescript-stdio'],
+
+if executable("rust-analyzer")
+  let g:LanguageClient_serverCommands.rust = ["rust-analyzer"]
+else
+  let g:LanguageClient_serverCommands.rust = ["rls"]
+endif
+
 
 let g:LanguageClient_rootMarkers = {
       \ 'cpp': ['CMakeLists.txt', '.git'],
@@ -136,3 +143,9 @@ if has('conceal')
 endif
 
 let g:neosnippet#enable_complete_done = 1  " for LanguageClient and Rust snippets
+
+
+"""
+" More key bindings
+""
+noremap <leader>e :copen <CR>
