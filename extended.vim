@@ -67,7 +67,6 @@ let g:ctrlp_custom_ignore = {
 if $COLORTERM == "truecolor" || $TERM =~ "256color" || has("termguicolors")
   let g:airline_powerline_fonts = 1
   "let g:airline_theme="minimalist"
-  "let g:airline_theme='dark'
   let g:airline_theme="powerlineish"
 
   let g:airline#extensions#tabline#enabled = 1
