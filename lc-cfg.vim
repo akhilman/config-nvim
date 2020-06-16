@@ -21,27 +21,21 @@ let g:LanguageClient_serverCommands = {
       \ 'javascript': ['typescript-language-server', '--stdio'],
       \ 'javascript.jsx': ['typescript-language-server', '--stdio'],
       \ 'python': ['pyls'],
+      \ 'rust': ["rust-analyzer"],
       \ 'typescript': ['typescript-language-server', '--stdio'],
       \ }
-      "\ 'javascript': ['flow', 'lsp'],
       "\ 'javascript': ['typescript-language-server', '--stdio'],
       "\ 'javascript': ['javascript-typescript-stdio'],
-
-if executable("rust-analyzer")
-  let g:LanguageClient_serverCommands.rust = ["rust-analyzer"]
-else
-  let g:LanguageClient_serverCommands.rust = ["rls"]
-endif
 
 
 let g:LanguageClient_rootMarkers = {
       \ 'cpp': ['CMakeLists.txt', '.git'],
       \ 'elm': ['elm.json', '.git'],
       \ 'javascript': ['package.json', '.git'],
+      \ 'typescript': ['package.json', '.git'],
       \ 'python': ['setup.py', 'setup.ini', '.git'],
       \ 'rust': ['Cargo.toml', '.git'],
       \ }
-      "\ 'javascript': ['package.json', '.git'],
 
 function LC_maps()
   if has_key(g:LanguageClient_serverCommands, &filetype)
@@ -119,9 +113,9 @@ call deoplete#custom#option({
     \ })
 
 inoremap <silent><expr> <C-n> deoplete#manual_complete()
-imap <expr> <C-k> pumvisible() ? deoplete#close_popup() :
-		\ neosnippet#expandable_or_jumpable() ?
-		\ "\<Plug>(neosnippet_expand_or_jump)" : "\<C-k>"
+"imap <expr> <C-k> pumvisible() ? deoplete#close_popup() :
+"		\ neosnippet#expandable_or_jumpable() ?
+"		\ "\<Plug>(neosnippet_expand_or_jump)" : "\<C-k>"
 
 " <CR>: close popup and save indent.
 "inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
@@ -134,7 +128,7 @@ imap <expr> <C-k> pumvisible() ? deoplete#close_popup() :
 " Shougo/neosnippet
 """
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-"imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
 
@@ -143,6 +137,7 @@ if has('conceal')
 endif
 
 let g:neosnippet#enable_complete_done = 1  " for LanguageClient and Rust snippets
+let g:neosnippet#enable_snipmate_compatibility = 1
 
 
 """
