@@ -5,7 +5,21 @@
 let g:extension_root = $NVIM_SHARE_DIR . '/coc'
 let g:coc_global_extensions = [
       \ 'coc-marketplace',
-      \ 'coc-snippets'
+      \ 'coc-snippets',
+      \ 'coc-rust-analyzer',
+      \ 'coc-python',
+      \ 'coc-css',
+      \ 'coc-html',
+      \ 'coc-svg',
+      \ 'coc-json',
+      \ 'coc-tsserver',
+      \ 'coc-prettier',
+      \ 'coc-deno',
+      \ 'coc-clangd',
+      \ 'coc-sql',
+      \ 'coc-lua',
+      \ 'coc-yaml',
+      \ 'coc-fish'
       \]
 
 " set statusline^=%{coc#status()}
@@ -106,8 +120,8 @@ omap if <Plug>(coc-funcobj-i)
 omap af <Plug>(coc-funcobj-a)
 
 " Use <C-d> for select selections ranges, needs server support, like: coc-tsserver, coc-python
-nmap <silent> <C-d> <Plug>(coc-range-select)
-xmap <silent> <C-d> <Plug>(coc-range-select)
+"nmap <silent> <C-d> <Plug>(coc-range-select)
+"xmap <silent> <C-d> <Plug>(coc-range-select)
 
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
