@@ -6,7 +6,7 @@ let g:ale_linters = {
       \ 'cpp': ['clangd', 'clangcheck'],
       \ 'javascript': ['tsserver', 'eslint'],
       \ 'python': ['pyls', 'flake8', 'pylint', 'mypy'],
-      \ 'rust': ['rls'],
+      \ 'rust': ['analyzer'],
       \}
 
 let common_fixers = ['remove_trailing_lines', 'trim_whitespace']
