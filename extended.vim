@@ -92,7 +92,8 @@ let g:session_directory = $NVIM_CACHE_DIR . '/sessions'
 """
 " Rainbow
 ""
-let g:rainbow_active = 1
+let g:rainbow_active = 0
+autocmd FileType rust,c,cpp,json,javascript,css,scss,sass,python,lua call rainbow_main#load()
 let g:rainbow_conf = {
   \ 'guifgs': ['royalblue1', 'darkorange3', 'seagreen3', 'firebrick'],
   \ 'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta']
