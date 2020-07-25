@@ -38,6 +38,7 @@ Plug 'dcharbon/vim-flatbuffers'
 Plug 'jonsmithers/vim-html-template-literals'
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
+Plug 'teal-language/vim-teal'
 
 if lsp_variant == 'ale'
   execute "source " . $NVIM_RC_DIR . "/ale-plug.vim"
