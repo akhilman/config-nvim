@@ -34,18 +34,18 @@ vnoremap < <gv
 vnoremap > >gv
 
 " removing trailing spaces
-autocmd FileType c,cpp,python,ruby,java,lua,vim,cmake,json,javascript,typescript,css,html,svg autocmd BufWritePre <buffer> :%s/\s\+$//e
+autocmd FileType c,cpp,python,ruby,java,lua,vim,cmake,json,javascript,typescript,css,scss,sass,html,svg autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 " highlight 80 column
 autocmd FileType c,cpp,python,ruby,java,lua setlocal colorcolumn=81
 
 " tab size
-autocmd FileType vim,lua,cpp,cmake,json,yaml,javascript,typescript,css,html,svg setlocal shiftwidth=2 tabstop=2 expandtab
+autocmd FileType vim,lua,cpp,cmake,json,yaml,javascript,typescript,css,scss,sass,html,svg setlocal shiftwidth=2 tabstop=2 expandtab
 autocmd FileType bash,dot,fish,sh,rust,python,dockerfile,sql,toml setlocal shiftwidth=4 tabstop=4 expandtab
 
 " folding
 autocmd FileType python,yaml setlocal foldmethod=indent
-autocmd FileType rust,c,cpp,json,javascript,css,html,svg setlocal foldmethod=syntax
+autocmd FileType rust,c,cpp,json,javascript,css,scss,sass,html,svg setlocal foldmethod=syntax
 
 "ставит х, убирает его, а потом ставит #, что бы вим не убирал таб перед #
 inoremap # x<BS>#
