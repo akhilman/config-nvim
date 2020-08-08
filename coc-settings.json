@@ -13,10 +13,12 @@
     "rust",
     "svg"
   ],
-  "tslint.jsEnable": true,
+  "python.formatting.provider": "yapf",
+  "python.linting.enabled": true,
+  "python.linting.pylintPath": "pylint",
+  "python.linting.pylintUseMinimalCheckers": false,
   "rust-analyzer.cargo.allFeatures": true,
   "rust-analyzer.cargo.loadOutDirsFromCheck": true,
-  "rust-analyzer.checkOnSave.enable": true,
   "rust-analyzer.checkOnSave.command": "check",
-  "rust.clippy_preference": "on",
+  "rust-analyzer.checkOnSave.enable": true
 }
