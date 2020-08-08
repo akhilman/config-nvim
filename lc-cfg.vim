@@ -92,7 +92,16 @@ endfunction
 
 command Format call FormatAllByFormatPrg()
 noremap <leader>b :call FormatAllByFormatPrg()<CR>
-" autocmd BufWritePre <buffer> :call Format()
+
+" auto format
+
+function DoAutoFormat()
+  if get(b:, 'auto_format', 0) == 1 || get(g:, 'auto_format', 0) == 1
+    call FormatAllByFormatPrg()
+  endif
+endfunction
+
+autocmd InsertLeave <buffer> :call DoAutoFormat()
 
 
 """
