@@ -13,6 +13,7 @@ let g:LanguageClient_settingsPath = $NVIM_RC_DIR . "/lc-settings.json"
 
 let g:LanguageClient_hoverPreview = "Always"
 let g:LanguageClient_useFloatingHover = 0
+let g:LanguageClient_useVirtualText = "All"
 
 
 let g:LanguageClient_serverCommands = {
