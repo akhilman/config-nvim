@@ -9,7 +9,7 @@ set wrap nolist linebreak breakat=\s " wrap long lines
 set modeline " check vim configuration in file
 " set backspace=2 " WUT?
 set scrolloff=10 " показывать всегда 10 строк до и после курсора
-set relativenumber  " relative line number at the left view edge
+" set relativenumber  " relative line number at the left view edge
 
 
 " This is the persistent undo feature of vim :help undo-persistent
