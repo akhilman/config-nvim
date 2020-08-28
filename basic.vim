@@ -37,7 +37,7 @@ vnoremap > >gv
 autocmd FileType c,cpp,python,ruby,java,lua,vim,cmake,json,javascript,typescript,css,scss,sass,html,svg autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 " highlight 80 column
-autocmd FileType c,cpp,python,ruby,java,lua setlocal colorcolumn=81
+" autocmd FileType c,cpp,python,ruby,java,lua setlocal colorcolumn=81
 
 " tab size
 autocmd FileType vim,lua,cpp,cmake,json,yaml,javascript,typescript,css,scss,sass,html,svg setlocal shiftwidth=2 tabstop=2 expandtab
