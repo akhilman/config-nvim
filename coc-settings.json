@@ -13,7 +13,7 @@
     "rust",
     "svg"
   ],
-  "python.formatting.provider": "yapf",
+  "python.formatting.provider": "black",
   "python.linting.enabled": true,
   "python.linting.pylintPath": "pylint",
   "python.linting.pylintUseMinimalCheckers": false,
