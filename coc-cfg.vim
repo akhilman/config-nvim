@@ -95,12 +95,14 @@ nmap <leader>rn <Plug>(coc-rename)
 "xmap <leader>f  <Plug>(coc-format-selected)
 "nmap <leader>f  <Plug>(coc-format-selected)
 
-augroup mygroup
+augroup coc_cfg_autogroup
   autocmd!
   " Setup formatexpr specified filetype(s).
   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
   " Update signature help on jump placeholder
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+  " Sort python imports
+  "autocmd BufWritePre *.py :call CocAction('runCommand', 'python.sortImports')
 augroup end
 
 " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
