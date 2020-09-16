@@ -11,7 +11,8 @@
     "json",
     "python",
     "rust",
-    "svg"
+    "svg",
+    "typescript"
   ],
   "python.formatting.provider": "black",
   "python.linting.enabled": true,
