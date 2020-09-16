@@ -6,4 +6,4 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
-Plug 'junegunn/fzf'  " Optional for LanguageClient
+"Plug 'junegunn/fzf'  " Optional for LanguageClient

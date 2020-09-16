@@ -13,6 +13,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'jiangmiao/auto-pairs'
 Plug 'kien/ctrlp.vim'  " ctrl+p file opener
+Plug 'junegunn/fzf'  " Optional for LanguageClient and ctrlp
 Plug 'skwp/greplace.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'Lokaltog/vim-easymotion'
