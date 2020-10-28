@@ -29,7 +29,7 @@ let g:LanguageClient_serverCommands = {
       \ 'javascript': ['typescript-language-server', '--stdio'],
       \ 'javascript.jsx': ['typescript-language-server', '--stdio'],
       \ 'python': ['pyls'],
-      \ 'rust': ["rust-analyzer"],
+      \ 'rust': ["rustup", "run", "nightly", "rust-analyzer"],
       \ 'typescript': ['typescript-language-server', '--stdio'],
       \ }
       "\ 'javascript': ['typescript-language-server', '--stdio'],
