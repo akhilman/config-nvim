@@ -1,4 +1,7 @@
-let lsp_variant = "coc"
+let language_client = "lc"
+if $NVIM_LANGUAGE_CLIENT != ""
+  let language_client = $NVIM_LANGUAGE_CLIENT
+endif
 
 
 ""
@@ -41,12 +44,8 @@ Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'teal-language/vim-teal'
 
-if lsp_variant == 'ale'
-  execute "source " . $NVIM_RC_DIR . "/ale-plug.vim"
-elseif lsp_variant == 'lc'
-  execute "source " . $NVIM_RC_DIR . "/lc-plug.vim"
-elseif lsp_variant == 'coc'
-  execute "source " . $NVIM_RC_DIR . "/coc-plug.vim"
+if language_client != ""
+  execute "source " . $NVIM_RC_DIR . "/" . language_client . "-plug.vim"
 endif
 
 call plug#end()            " required
@@ -132,10 +131,6 @@ map <leader>f <Plug>(easymotion-s)
 """
 " LSP
 ""
-if lsp_variant == 'ale'
-  execute "source " . $NVIM_RC_DIR . "/ale-cfg.vim"
-elseif lsp_variant == 'lc'
-  execute "source " . $NVIM_RC_DIR . "/lc-cfg.vim"
-elseif lsp_variant == 'coc'
-  execute "source " . $NVIM_RC_DIR . "/coc-cfg.vim"
+if language_client != ""
+  execute "source " . $NVIM_RC_DIR . "/" . language_client . "-cfg.vim"
 endif
