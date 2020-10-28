@@ -9,11 +9,18 @@
 "
 
 let g:LanguageClient_autoStart = 1
-let g:LanguageClient_settingsPath = $NVIM_RC_DIR . "/lc-settings.json"
+let g:LanguageClient_settingsPath = [
+      \ ($NVIM_RC_DIR . "/lc-settings.json"),
+      \ ".vim/settings.json"
+      \ ]
 
 let g:LanguageClient_hoverPreview = "Always"
 let g:LanguageClient_useFloatingHover = 0
 let g:LanguageClient_useVirtualText = "All"
+
+" let g:LanguageClient_devel = 1 " Use rust debug build
+" let g:LanguageClient_loggingLevel = 'DEBUG' " Use highest logging level
+" let g:LanguageClient_loggingFile = "/tmp/LanguageClient.log"
 
 
 let g:LanguageClient_serverCommands = {
