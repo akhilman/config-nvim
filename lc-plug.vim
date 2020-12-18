@@ -4,6 +4,6 @@ Plug 'Shougo/neosnippet-snippets'
 
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
+    \ 'do': 'make release',
     \ }
 "Plug 'junegunn/fzf'  " Optional for LanguageClient
