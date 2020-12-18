@@ -130,31 +130,35 @@ call deoplete#custom#option({
     \ })
 
 inoremap <silent><expr> <C-n> deoplete#manual_complete()
-"imap <expr> <C-k> pumvisible() ? deoplete#close_popup() :
-"		\ neosnippet#expandable_or_jumpable() ?
-"		\ "\<Plug>(neosnippet_expand_or_jump)" : "\<C-k>"
-
-" <CR>: close popup and save indent.
-"inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-"function! s:my_cr_function() abort
-"  return deoplete#close_popup()
-"endfunction
 
 
 """
 " Shougo/neosnippet
 """
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
+"imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+"smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+"xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+imap <expr> <C-k> pumvisible() ? deoplete#close_popup() :
+		\ neosnippet#expandable_or_jumpable() ?
+		\ "\<Plug>(neosnippet_expand_or_jump)" : "\<C-k>"
+smap <expr> <C-k> pumvisible() ? deoplete#close_popup() :
+		\ neosnippet#expandable_or_jumpable() ?
+		\ "\<Plug>(neosnippet_expand_or_jump)" : "\<C-k>"
+xmap <expr> <C-k> pumvisible() ? deoplete#close_popup() :
+		\ neosnippet#expandable_or_jumpable() ?
+		\ "\<Plug>(neosnippet_expand_target)" : "\<C-k>"
 
 " if has('conceal')
 "   set conceallevel=2 concealcursor=niv
 " endif
 
-let g:neosnippet#enable_complete_done = 1  " for LanguageClient and Rust snippets
-let g:neosnippet#enable_snipmate_compatibility = 1
+" expand parameters
+let g:neosnippet#enable_complete_snippet = 1
+let g:neosnippet#enable_complete_done = 1
+
+"let g:neosnippet#enable_snipmate_compatibility = 1
 
 
 """
