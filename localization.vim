@@ -1,3 +1,4 @@
+set spell spelllang=en_gb,ru_yo
 set keymap=russian-jcukenwin
 set iminsert=0
 set imsearch=0
