@@ -29,7 +29,15 @@ let g:LanguageClient_serverCommands = {
       \ 'javascript': ['typescript-language-server', '--stdio'],
       \ 'javascript.jsx': ['typescript-language-server', '--stdio'],
       \ 'python': ['pyls'],
-      \ 'rust': ["rustup", "run", "nightly", "rust-analyzer"],
+      \ 'rust': {
+      \   'name': 'rust-analyzer',
+      \   'command': ["rustup", "run", "nightly", "rust-analyzer"],
+      \     'initializationOptions' : {
+      \       'inlayHints': {
+      \         'enable': v:true
+      \       }
+      \     }
+      \   },
       \ 'typescript': ['typescript-language-server', '--stdio'],
       \ }
       "\ 'javascript': ['typescript-language-server', '--stdio'],
