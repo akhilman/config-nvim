@@ -39,9 +39,10 @@ Plug 'cespare/vim-toml'
 Plug 'cstrahan/vim-capnp'
 Plug 'dag/vim-fish'
 Plug 'dcharbon/vim-flatbuffers'
+Plug 'djpohly/vim-execline'
 Plug 'jonsmithers/vim-html-template-literals'
-Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
+Plug 'pangloss/vim-javascript'
 Plug 'teal-language/vim-teal'
 
 if language_client != ""
