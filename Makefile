@@ -12,10 +12,10 @@ $(autoload)/plug.vim:
 plug.vim: $(autoload)/plug.vim
 
 install: plug.vim
-	nvim +PlugInstall +qall
+	nvim +PlugInstall +UpdateRemotePlugins +qall
 
 update: plug.vim
-	nvim +PlugUpgrade +PlugUpdate +qall
+	nvim +PlugUpgrade +PlugUpdate +UpdateRemotePlugins +qall
 
 clean: plug.vim
 	nvim +PlugClean +qall
