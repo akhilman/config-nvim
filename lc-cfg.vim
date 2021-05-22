@@ -74,7 +74,7 @@ autocmd FileType * call LC_maps()
 " Formatting
 """
 function SetFormatPrg()
-  if index([
+  if executable("prettier") && index([
         \ "flow",
         \ "typescript",
         \ "css",
