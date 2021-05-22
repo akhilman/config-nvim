@@ -26,9 +26,9 @@ let g:LanguageClient_useVirtualText = "All"
 let g:LanguageClient_serverCommands = {
       \ 'cpp': ['clangd'],
       \ 'elm': ['elm-language-server'],
-      \ 'python': ['pyls'],
       \ 'javascript': ['npx', 'typescript-language-server', '--stdio'],
       \ 'javascript.jsx': ['npx', 'typescript-language-server', '--stdio'],
+      \ 'python': ['pylsp'],
       \ 'rust': {
       \   'name': 'rust-analyzer',
       \   'command': ["rustup", "run", "nightly", "rust-analyzer"],
