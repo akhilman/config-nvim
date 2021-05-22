@@ -86,7 +86,7 @@ function SetFormatPrg()
         \ "yaml",
         \ "html",
         \], &filetype) >= 0
-    exec 'setlocal formatprg=prettier\ --parser\ ' . &filetype . '\ --stdin'
+    exec 'setlocal formatprg=prettier\ --parser\ ' . &filetype
   elseif &filetype == "toml"
     setlocal formatprg=toml-fmt
   elseif has_key(g:LanguageClient_serverCommands, &filetype)
