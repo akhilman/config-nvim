@@ -174,3 +174,7 @@ let g:neosnippet#enable_complete_done = 1
 " More key bindings
 ""
 noremap <leader>e :copen <CR>
+
+
+" Better display for messages
+set cmdheight=2
