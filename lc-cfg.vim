@@ -26,6 +26,7 @@ let g:LanguageClient_useVirtualText = "All"
 let g:LanguageClient_serverCommands = {
       \ 'cpp': ['clangd'],
       \ 'elm': ['elm-language-server'],
+      \ 'gluon': ['gluon_language-server'],
       \ 'javascript': ['npx', 'typescript-language-server', '--stdio'],
       \ 'javascript.jsx': ['npx', 'typescript-language-server', '--stdio'],
       \ 'python': ['pylsp'],
