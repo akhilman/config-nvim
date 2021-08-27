@@ -24,6 +24,7 @@ let g:LanguageClient_useVirtualText = "All"
 
 
 let g:LanguageClient_serverCommands = {
+      \ 'c': ['clangd'],
       \ 'cpp': ['clangd'],
       \ 'elm': ['elm-language-server'],
       \ 'gluon': ['gluon_language-server'],
@@ -46,6 +47,7 @@ let g:LanguageClient_serverCommands = {
 
 
 let g:LanguageClient_rootMarkers = {
+      \ 'c': ['.git'],
       \ 'cpp': ['CMakeLists.txt', '.git'],
       \ 'elm': ['elm.json', '.git'],
       \ 'javascript': ['package.json', '.git'],
