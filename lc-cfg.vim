@@ -64,6 +64,7 @@ function LC_maps()
     nnoremap <buffer> <silent> gd :call LanguageClient#textDocument_definition()<CR>
     nnoremap <buffer> <silent> gi :call LanguageClient#textDocument_implementation()<CR>
     nnoremap <buffer> <silent> gr :call LanguageClient#textDocument_references()<CR>
+    nnoremap <buffer> <silent> <leader>s :call LanguageClient#workspace_symbol()<CR>
   endif
 endfunction
 
