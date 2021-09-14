@@ -22,7 +22,12 @@ let g:LanguageClient_useVirtualText = "All"
 " let g:LanguageClient_loggingLevel = 'DEBUG' " Use highest logging level
 " let g:LanguageClient_loggingFile = "/tmp/LanguageClient.log"
 
-
+let RustAnalyzerBinary = substitute(
+      \ system('rustup which --toolchain nightly rust-analyzer'),
+      \ '^\s*\(.\{-\}\)[ \t\n]*$',
+      \ '\1',
+      \ ""
+      \ )
 let g:LanguageClient_serverCommands = {
       \ 'c': ['clangd'],
       \ 'cpp': ['clangd'],
@@ -33,7 +38,7 @@ let g:LanguageClient_serverCommands = {
       \ 'python': ['pylsp'],
       \ 'rust': {
       \   'name': 'rust-analyzer',
-      \   'command': ["rustup", "run", "nightly", "rust-analyzer"],
+      \   'command': [RustAnalyzerBinary],
       \     'initializationOptions' : {
       \       'inlayHints': {
       \         'enable': v:true
