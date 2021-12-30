@@ -31,7 +31,12 @@ Plug 'tpope/vim-commentary'
 Plug 'ntpeters/vim-better-whitespace'  " highlight trailing whitespaces
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'alvan/vim-closetag'  " close html tag
-Plug 'euclio/vim-markdown-composer'
+
+if executable('cargo')
+  Plug 'euclio/vim-markdown-composer', {
+      \ 'do': 'cargo build --release --locked'
+      \ }
+endif
 
 " syntax
 Plug 'andys8/vim-elm-syntax', { 'for': ['elm'] }
