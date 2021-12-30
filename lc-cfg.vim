@@ -22,12 +22,17 @@ let g:LanguageClient_useVirtualText = "All"
 " let g:LanguageClient_loggingLevel = 'DEBUG' " Use highest logging level
 " let g:LanguageClient_loggingFile = "/tmp/LanguageClient.log"
 
-let RustAnalyzerBinary = substitute(
-      \ system('rustup which --toolchain nightly rust-analyzer'),
-      \ '^\s*\(.\{-\}\)[ \t\n]*$',
-      \ '\1',
-      \ ""
-      \ )
+if executable('rustup')
+  let RustAnalyzerBinary = substitute(
+        \ system('rustup which --toolchain nightly rust-analyzer'),
+        \ '^\s*\(.\{-\}\)[ \t\n]*$',
+        \ '\1',
+        \ ""
+        \ )
+else
+  let RustAnalyzerBinary = "rust-analyzer"
+endif
+
 let g:LanguageClient_serverCommands = {
       \ 'c': ['clangd'],
       \ 'cpp': ['clangd'],
