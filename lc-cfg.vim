@@ -38,8 +38,8 @@ let g:LanguageClient_serverCommands = {
       \ 'cpp': ['clangd'],
       \ 'elm': ['elm-language-server'],
       \ 'gluon': ['gluon_language-server'],
-      \ 'javascript': ['npx', 'typescript-language-server', '--stdio'],
-      \ 'javascript.jsx': ['npx', 'typescript-language-server', '--stdio'],
+      \ 'javascript': ['sh', $NVIM_RC_DIR . '/lc-deno-or-node.sh'],
+      \ 'javascript.jsx': ['sh', $NVIM_RC_DIR . '/lc-deno-or-node.sh'],
       \ 'python': ['pylsp'],
       \ 'rust': {
       \   'name': 'rust-analyzer',
@@ -50,10 +50,8 @@ let g:LanguageClient_serverCommands = {
       \       }
       \     }
       \   },
-      \ 'typescript': ['npx', 'typescript-language-server', '--stdio'],
+      \ 'typescript': ['sh', $NVIM_RC_DIR . '/lc-deno-or-node.sh'],
       \ }
-      "\ 'javascript': ['typescript-language-server', '--stdio'],
-      "\ 'javascript': ['javascript-typescript-stdio'],
 
 
 let g:LanguageClient_rootMarkers = {
