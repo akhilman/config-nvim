@@ -1,12 +1,16 @@
 {
-  "pylsp.plugins.pylint.enabled": true,
-  "pylsp.plugins.pyflakes.enabled": false,
-  "pylsp.plugins.pyls_mypy.enabled": true,
-  "pylsp.plugins.pyls_mypy.live_mode": false,
-  "pylsp.plugins.isort.enabled": true,
   "deno": {
     "enable": true,
     "lint": true
+  },
+  "pylsp": {
+    "plugins": {
+      "pylint.enabled": true,
+      "pyflakes.enabled": false,
+      "pyls_mypy.enabled": true,
+      "pyls_mypy.live_mode": false,
+      "isort.enabled": true
+    }
   },
   "rust.clippy_preference": true,
   "rust-analyzer": {
