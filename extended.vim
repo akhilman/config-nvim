@@ -22,8 +22,8 @@ Plug 'scrooloose/nerdtree'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-fugitive'  " git integration
-Plug 'xolox/vim-misc'  " required for vim-session
-Plug 'xolox/vim-session'
+" Plug 'xolox/vim-misc'  " required for vim-session
+" Plug 'xolox/vim-session'
 Plug 'luochen1990/rainbow'  " colorize brackets
 Plug 'ap/vim-css-color'
 " Plug 'scrooloose/nerdcommenter'
