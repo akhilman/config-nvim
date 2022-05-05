@@ -18,6 +18,7 @@ highlight PmenuSel ctermfg=white ctermbg=blue guifg=white guibg=#194675
 highlight Visual term=reverse cterm=reverse ctermbg=black guifg=#ffffff guibg=#194675
 highlight Folded guibg=gray30 guifg=cyan
 highlight FoldColumn guibg=darkgrey guifg=white
+highlight SpellBad ctermfg=darkred
 
 set guifont=Mono\ Regular\ 12
 " seems line not work in nvim-qt
