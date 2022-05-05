@@ -86,7 +86,9 @@ autocmd FileType * call LC_maps()
 " Formatting
 """
 function SetFormatPrg()
-  if executable("prettier") && index([
+  if has_key(g:LanguageClient_serverCommands, &filetype)
+    setlocal formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
+  elseif executable("prettier") && index([
         \ "flow",
         \ "typescript",
         \ "css",
@@ -101,8 +103,6 @@ function SetFormatPrg()
     exec 'setlocal formatprg=prettier\ --parser\ ' . &filetype
   elseif &filetype == "toml"
     setlocal formatprg=toml-fmt
-  elseif has_key(g:LanguageClient_serverCommands, &filetype)
-    setlocal formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
   endif
 endfunction
 
