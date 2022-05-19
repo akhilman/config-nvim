@@ -141,3 +141,12 @@ map <leader>f <Plug>(easymotion-s)
 if language_client != ""
   execute "source " . $NVIM_RC_DIR . "/" . language_client . "-cfg.vim"
 endif
+
+
+"""
+" Debugger
+"""
+packadd termdebug
+autocmd FileType rust setlocal termdebugger="rust-dbg"
+autocmd FileType python setlocal termdebugger="ipdb"
+
