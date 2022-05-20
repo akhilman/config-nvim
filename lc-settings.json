@@ -14,6 +14,11 @@
   },
   "rust.clippy_preference": true,
   "rust-analyzer": {
-    "cargo.features": null
+    "cargo.features": null,
+    "checkOnSave": {
+      "enabled": true,
+      "command": "clippy",
+      "features": null
+    }
   }
 }
