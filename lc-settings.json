@@ -14,12 +14,6 @@
   },
   "rust.clippy_preference": true,
   "rust-analyzer": {
-    "cargo.features": "default",
-    "inlineHints": {
-      "enable": true,
-      "chainingHints": true,
-      "typeHints": true,
-      "parameterHints": true
-    }
+    "cargo.features": null
   }
 }
