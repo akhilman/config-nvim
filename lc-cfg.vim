@@ -18,6 +18,10 @@ let g:LanguageClient_hoverPreview = "Always"
 let g:LanguageClient_useFloatingHover = 0
 let g:LanguageClient_useVirtualText = "All"
 
+" Disable preview window triggered by deoplete
+" https://github.com/Shougo/deoplete.nvim/issues/298
+set completeopt-=preview
+
 " let g:LanguageClient_devel = 1 " Use rust debug build
 " let g:LanguageClient_loggingLevel = 'DEBUG' " Use highest logging level
 " let g:LanguageClient_loggingFile = "/tmp/LanguageClient.log"
