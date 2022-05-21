@@ -15,7 +15,7 @@ let g:LanguageClient_settingsPath = [
       \ ]
 
 let g:LanguageClient_hoverPreview = "Always"
-let g:LanguageClient_useFloatingHover = 0
+let g:LanguageClient_useFloatingHover = 1
 let g:LanguageClient_useVirtualText = "All"
 
 " Disable preview window triggered by deoplete
