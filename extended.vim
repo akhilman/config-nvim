@@ -1,4 +1,4 @@
-let language_client = "lsp"
+let language_client = "lc"
 if $NVIM_LANGUAGE_CLIENT != ""
   let language_client = $NVIM_LANGUAGE_CLIENT
 endif
