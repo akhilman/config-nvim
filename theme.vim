@@ -19,6 +19,7 @@ highlight Visual term=reverse cterm=reverse ctermbg=black guifg=#ffffff guibg=#1
 highlight Folded guibg=gray30 guifg=cyan
 highlight FoldColumn guibg=darkgrey guifg=white
 highlight SpellBad ctermfg=darkred
+highlight VertSplit term=bold cterm=bold gui=bold ctermbg=darkgray guifg=Gray30 guibg=Gray10
 
 set guifont=Mono\ Regular\ 12
 " seems line not work in nvim-qt
