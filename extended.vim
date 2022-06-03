@@ -147,6 +147,6 @@ endif
 " Debugger
 """
 packadd termdebug
-autocmd FileType rust let termdebugger="rust-dbg"
+autocmd FileType rust let termdebugger="rust-gdb"
 autocmd FileType python let termdebugger="ipdb"
 
