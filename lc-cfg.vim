@@ -44,6 +44,7 @@ let g:LanguageClient_serverCommands = {
       \ 'gluon': ['gluon_language-server'],
       \ 'javascript': ['sh', $NVIM_RC_DIR . '/lc-deno-or-node.sh'],
       \ 'javascript.jsx': ['sh', $NVIM_RC_DIR . '/lc-deno-or-node.sh'],
+      \ 'lua': ['lua-language-server'],
       \ 'python': ['pylsp'],
       \ 'rust': {
       \   'name': 'rust-analyzer',
