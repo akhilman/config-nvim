@@ -1,25 +1,22 @@
 default: install
 
-share = $(HOME)/.local/share/nvim
-site = $(share)/site
-autoload = $(site)/autoload
-plugged = $(share)/plugged
+share_path = $(HOME)/.local/share/nvim
+site_path = $(share_path)/site
 
-$(autoload)/plug.vim:
-	curl -fLo $(autoload)/plug.vim --create-dirs \
-		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+packer_path = $(site_path)/pack/packer/start/packer.nvim
+packer_url = https://github.com/wbthomason/packer.nvim
 
-plug.vim: $(autoload)/plug.vim
+$(packer_path):
+	git clone --depth 1 $(packer_url) $(packer_path)
 
-install: plug.vim
-	nvim +PlugInstall +UpdateRemotePlugins +qall
+packer: $(packer_path)
 
-update: plug.vim
-	nvim +PlugUpgrade +PlugUpdate +UpdateRemotePlugins +qall
+install: packer
+	nvim -c 'autocmd User PackerComplete quitall' -c 'PackerInstall'
 
-clean: plug.vim
-	nvim +PlugClean +qall
+update: packer
+	nvim -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
-uninstall: $(plugged) $(autoload)/plug.vim
-	rm -rf $(plugged)
-	rm $(autoload)/plug.vim*
+uninstall:
+	rm -rf plugin
+	rm -rf $(packer_path)
