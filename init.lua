@@ -24,7 +24,7 @@ local plugins = {
   'plug-packer',
   'plug-syntax',
   'plug-telescope',
-  -- 'plug-treesitter',
+  'plug-treesitter',
 }
 
 -- Only required if you have packer configured as `opt`
