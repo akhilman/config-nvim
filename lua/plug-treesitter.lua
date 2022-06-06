@@ -90,7 +90,7 @@ function M.setup()
 
   vim.api.nvim_create_autocmd(
     { "BufReadPost" },
-    { callback = function() vim.defer_fn(buffer_setup, 1000) end }
+    { callback = function() vim.defer_fn(buffer_setup, 100) end }
   )
 
 end
