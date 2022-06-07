@@ -1,16 +1,20 @@
 -- Fancier statusline
+
 local M = {}
 
-function M.startup(use)
-  use 'nvim-lualine/lualine.nvim'
-end
-
-function M.setup()
+local function setup()
   --Set statusbar
   require('lualine').setup {
     options = {
       theme = 'ayu_dark',
     },
+  }
+end
+
+function M.packer_startup(use)
+  use {
+    'nvim-lualine/lualine.nvim',
+    config = setup,
   }
 end
 

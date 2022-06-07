@@ -1,6 +1,6 @@
 local M = {}
 
-function M.startup(use)
+function M.packer_startup(use)
 
   if vim.fn.executable('cargo') then
     use {

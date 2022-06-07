@@ -1,6 +1,6 @@
 local M = {}
 
-function M.setup()
+local function setup()
   require("indent_blankline").setup {
     --   -- for example, context is off by default, use this to turn it on
     --   show_current_context = true,
@@ -22,8 +22,11 @@ function M.setup()
   vim.cmd [[highlight IndentBlanklineIndent6 guifg=#C678DD gui=nocombine]]
 end
 
-function M.startup(use)
-  use 'lukas-reineke/indent-blankline.nvim'
+function M.packer_startup(use)
+  use {
+    'lukas-reineke/indent-blankline.nvim',
+    config = setup
+  }
 end
 
 ---@diagnostic disable-next-line unused-local
@@ -46,4 +49,3 @@ local test = {
 }
 
 return M
-

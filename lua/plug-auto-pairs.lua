@@ -4,8 +4,7 @@
 
 local M = {}
 
-function M.startup(use)
-
+function M.packer_startup(use)
   use 'jiangmiao/auto-pairs'
 end
 

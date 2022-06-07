@@ -4,7 +4,7 @@
 
 local M = {}
 
-function M.setup()
+local function setup()
 
   vim.g.closetag_filetypes = 'html,xhtml,phtml,svg,javascript,typescript'
   vim.g.closetag_regions = {
@@ -15,8 +15,8 @@ function M.setup()
   }
 end
 
-function M.startup(use)
-  use 'alvan/vim-closetag'
+function M.packer_startup(use)
+  use { 'alvan/vim-closetag', config = setup }
 end
 
 return M

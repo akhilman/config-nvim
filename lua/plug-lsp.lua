@@ -1,4 +1,59 @@
-local function setup_lsp()
+local M = {}
+
+-- Find rust analyzer
+
+local function find_rust_analyzer()
+  if vim.fn.executable('rustup') then
+    local cmd = vim.fn.system('rustup which --toolchain nightly rust-analyzer')
+        :match('^%s*(.-rust--analyzer)%s*$')
+    if cmd then return { cmd } end
+  end
+  if vim.fn.executalbe('rust-analyzer') then return { 'rust-analyzer' } end
+  return nil
+end
+
+-- Server settings
+
+local server_settings = {
+  clangd = {},
+  denols = {
+    enabled = true,
+    lint = true,
+  },
+  elmls = {},
+  pylsp = {
+    plugins = {
+      black = { enabled = true },
+      pylint = { enabled = true },
+      pyflakes = { enabled = false },
+      pyls_mypy = { enabled = true, live_mode = false },
+      isort = { enabled = true },
+    }
+  },
+  rust_analyzer = {
+    cmd = find_rust_analyzer(),
+    settings = {
+      rust = { clippy_preference = true },
+      ['rust-analyzer'] = {
+        -- cargo = { features = nil },
+        checkOnSave = {
+          enabled = true,
+          command = 'clippy',
+          -- features = nil
+        },
+        inlayHints = {
+          enabled = true
+        }
+      }
+    }
+  },
+  sumneko_lua = {},
+}
+
+-- Plugin module
+
+
+function M.packer_setup_lsp()
   -- Use an on_attach function to only map the following keys
   -- after the language server attaches to the current buffer
   local on_attach = function(client, bufnr) ---@diagnostic disable-line: unused-local
@@ -25,54 +80,6 @@ local function setup_lsp()
     vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
   end
 
-  -- Find rust analyzer
-  local function find_rust_analyzer()
-    if vim.fn.executable('rustup') then
-      local cmd = vim.fn.system('rustup which --toolchain nightly rust-analyzer')
-          :match('^%s*(.-rust--analyzer)%s*$')
-      if cmd then return { cmd } end
-    end
-    if vim.fn.executalbe('rust-analyzer') then return { 'rust-analyzer' } end
-    return nil
-  end
-
-  -- Per server settings
-  local server_settings = {
-    clangd = {},
-    denols = {
-      enabled = true,
-      lint = true,
-    },
-    elmls = {},
-    pylsp = {
-      plugins = {
-        black = { enabled = true },
-        pylint = { enabled = true },
-        pyflakes = { enabled = false },
-        pyls_mypy = { enabled = true, live_mode = false },
-        isort = { enabled = true },
-      }
-    },
-    rust_analyzer = {
-      cmd = find_rust_analyzer(),
-      settings = {
-        rust = { clippy_preference = true },
-        ['rust-analyzer'] = {
-          -- cargo = { features = nil },
-          checkOnSave = {
-            enabled = true,
-            command = 'clippy',
-            -- features = nil
-          },
-          inlayHints = {
-            enabled = true
-          }
-        }
-      }
-    },
-    sumneko_lua = {},
-  }
-
   -- Add additional capabilities supported by nvim-cmp
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
@@ -90,7 +97,7 @@ end
 -- luasnip setup
 -- nvim-cmp setup
 
-local function setup_completion()
+function M.packer_setup_cmp()
   local luasnip = require 'luasnip'
   local cmp = require 'cmp'
   cmp.setup {
@@ -151,13 +158,11 @@ local function setup_completion()
   })
 end
 
--- Plugin module
-local M = {}
-
-function M.startup(use)
+function M.packer_startup(use)
   -- Completion and LSP
   use {
     'hrsh7th/nvim-cmp', -- Autocompletion plugin
+    config = function() require('plug-lsp').packer_setup_cmp() end,
     requires = {
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-cmdline',
@@ -166,6 +171,7 @@ function M.startup(use)
         requires = {
           {
             'neovim/nvim-lspconfig',
+            config = function() require('plug-lsp').packer_setup_lsp() end,
             requires = {
               -- LSP goodies
               'ii14/lsp-command', -- :Lsp command
@@ -187,11 +193,6 @@ function M.startup(use)
       },
     }
   }
-end
-
-function M.setup()
-  setup_completion()
-  setup_lsp()
 end
 
 return M

@@ -11,7 +11,7 @@ local function buffer_setup()
   end
 end
 
-function M.setup()
+function M.packer_setup()
   -- Treesitter configuration
   -- Parsers must be installed manually via :TSInstall
   require('nvim-treesitter.configs').setup {
@@ -87,9 +87,13 @@ function M.setup()
 
 end
 
-function M.startup(use)
+function M.packer_startup(use)
   -- Highlight, edit, and navigate code using a fast incremental parsing library
-  use 'nvim-treesitter/nvim-treesitter'
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    config = function() require('plug-treesitter').packer_setup() end,
+    run = ':TSUpdate',
+  }
   -- Additional textobjects for treesitter
   use 'nvim-treesitter/nvim-treesitter-textobjects'
 end

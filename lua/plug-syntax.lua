@@ -1,6 +1,6 @@
 local M = {}
 
-function M.startup(use)
+function M.packer_startup(use)
   use 'cstrahan/vim-capnp'
   use 'dcharbon/vim-flatbuffers'
   -- We are using Treesitter for syntax highlight

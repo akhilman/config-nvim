@@ -1,6 +1,6 @@
 local M = {}
 
-function M.setup()
+local function setup()
   local telescope_builtin = require 'telescope.builtin'
   local opts = { silent = true }
 
@@ -20,9 +20,10 @@ function M.setup()
   vim.keymap.set('n', '<leader>fh', telescope_builtin.pickers, opts)
 end
 
-function M.startup(use)
+function M.packer_startup(use)
   use {
     'nvim-telescope/telescope.nvim',
+    config = setup,
     requires = {
       'nvim-lua/popup.nvim',
       'nvim-lua/plenary.nvim',

@@ -1,4 +1,7 @@
 -- Formatting
+
+local M = {}
+
 local function formatting()
   local prettier_formats = {
     css = true,
@@ -24,7 +27,6 @@ local function formatting()
   end
 end
 
-local M = {}
 function M.setup()
   vim.keymap.set('n', '<space>f', formatting, { silent = true })
 end
