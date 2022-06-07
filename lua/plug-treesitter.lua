@@ -31,6 +31,7 @@ function M.packer_setup()
       'javascript',
       'json',
       'lua',
+      'markdown',
       'python',
       'rust',
       'toml',
