@@ -15,7 +15,7 @@ local plugins = {
   'plug-formatting',
   'plug-fugitive',
   'plug-gitsigns',
-  -- 'plug-indent-line',
+  'plug-indent-line',
   'plug-indent-object',
   'plug-lsp',
   'plug-lualine',
