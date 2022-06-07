@@ -37,7 +37,7 @@ end)
 if have_packer then
   local packer = packer_or_errormsg
 
-  -- load plugins
+  -- Load plugins
   local plugin_modules = {}
   for _, modname in pairs(plugins) do
     local success, module_or_errormsg = pcall(function()
@@ -48,7 +48,7 @@ if have_packer then
     end
   end
 
-  -- startup extensions
+  -- Startup plugins
   packer.startup(function(use, use_rocks)
     for _, module in pairs(plugin_modules) do
       local success, errormsg = pcall(function()
@@ -58,7 +58,7 @@ if have_packer then
     end
   end)
 
-  -- setup extensions
+  -- Setup plugins
   for _, module in pairs(plugin_modules) do
     local success, errormsg = pcall(function()
       if module.setup then module.setup() end
