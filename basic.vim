@@ -42,8 +42,9 @@ autocmd FileType vim,lua,c,cpp,cmake,json,yaml,javascript,typescript,css,scss,sa
 autocmd FileType bash,dot,fish,sh,rust,python,dockerfile,sql,toml setlocal shiftwidth=4 tabstop=4 expandtab
 
 " folding
-autocmd FileType python,yaml setlocal foldmethod=indent
-autocmd FileType rust,c,cpp,json,javascript,css,scss,sass,html,svg setlocal foldmethod=syntax
+"autocmd FileType python,yaml setlocal foldmethod=indent
+"autocmd FileType rust,c,cpp,json,javascript,css,scss,sass,html,svg setlocal foldmethod=syntax
+set foldmethod=indent
 
 "ставит х, убирает его, а потом ставит #, что бы вим не убирал таб перед #
 "inoremap # x<BS>#

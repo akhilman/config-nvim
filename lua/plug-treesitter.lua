@@ -1,13 +1,19 @@
 local M = {}
 
+-- Folding is broken with treesitter
+-- https://github.com/nvim-treesitter/nvim-treesitter/issues/1424
+-- https://github.com/neovim/neovim/issues/14977
+
 local function buffer_setup()
   -- Setup folding method to treesitter if the parser is installled for the
   -- current buffer language
   if pcall(function()
     return vim.treesitter.language.inspect_language(vim.bo.filetype)
   end) then
-    vim.opt_local.foldexpr = "nvim_treesitter#foldexpr()"
-    vim.opt_local.foldmethod = "expr"
+    -- TODO: Use treesitter folding when issue will be fixed
+    -- vim.opt_local.foldexpr = "nvim_treesitter#foldexpr()"
+    -- vim.opt_local.foldmethod = "expr"
+    vim.opt_local.foldmethod = "indent"
   end
 end
 
@@ -81,8 +87,8 @@ function M.packer_setup()
   }
 
   vim.api.nvim_create_autocmd(
-    { "BufReadPost" },
-    { callback = function() vim.defer_fn(buffer_setup, 100) end }
+    { "BufReadPost", "FileReadPost" },
+    { callback = buffer_setup }
   )
 
 end
