@@ -16,6 +16,8 @@ function M.setup()
   vim.keymap.set('n', '<leader>fg', telescope_builtin.live_grep, opts)
   vim.keymap.set('n', '<leader>fb', telescope_builtin.buffers, opts)
   vim.keymap.set('n', '<leader>fs', telescope_builtin.grep_string, opts)
+  vim.keymap.set('n', '<leader>f/', telescope_builtin.current_buffer_fuzzy_find, opts)
+  vim.keymap.set('n', '<leader>fh', telescope_builtin.pickers, opts)
 end
 
 function M.startup(use)
