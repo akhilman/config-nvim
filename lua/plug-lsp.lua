@@ -1,4 +1,3 @@
-
 local function setup_lsp()
   -- Use an on_attach function to only map the following keys
   -- after the language server attaches to the current buffer
@@ -26,6 +25,17 @@ local function setup_lsp()
     vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
   end
 
+  -- Find rust analyzer
+  local function find_rust_analyzer()
+    if vim.fn.executable('rustup') then
+      local cmd = vim.fn.system('rustup which --toolchain nightly rust-analyzer')
+          :match('^%s*(.-rust--analyzer)%s*$')
+      if cmd then return { cmd } end
+    end
+    if vim.fn.executalbe('rust-analyzer') then return { 'rust-analyzer' } end
+    return nil
+  end
+
   -- Per server settings
   local server_settings = {
     clangd = {},
@@ -44,10 +54,7 @@ local function setup_lsp()
       }
     },
     rust_analyzer = {
-      cmd = {
-        vim.fn.system("rustup which --toolchain nightly rust-analyzer")
-            :match "^%s*(.-)%s*$"
-      },
+      cmd = find_rust_analyzer(),
       settings = {
         rust = { clippy_preference = true },
         ["rust-analyzer"] = {
