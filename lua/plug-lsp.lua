@@ -57,11 +57,11 @@ local function setup_lsp()
       cmd = find_rust_analyzer(),
       settings = {
         rust = { clippy_preference = true },
-        ["rust-analyzer"] = {
+        ['rust-analyzer'] = {
           -- cargo = { features = nil },
           checkOnSave = {
             enabled = true,
-            command = "clippy",
+            command = 'clippy',
             -- features = nil
           },
           inlayHints = {
