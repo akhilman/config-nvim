@@ -15,7 +15,7 @@ install: packer
 	nvim -c 'autocmd User PackerComplete quitall' -c 'PackerInstall'
 
 update: packer
-	nvim -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+	nvim -c 'autocmd User PackerComplete quitall' -c 'PackerSync' -c 'TSUpdateSync'
 
 uninstall:
 	rm -rf plugin

@@ -1,8 +1,5 @@
 local M = {}
 
--- Table `language = true` for all updated languages
-local updated_parsers = {}
-
 local function buffer_setup()
   -- Setup folding method to treesitter if the parser is installled for the
   -- current buffer language
@@ -11,11 +8,6 @@ local function buffer_setup()
   end) then
     vim.opt_local.foldexpr = "nvim_treesitter#foldexpr()"
     vim.opt_local.foldmethod = "expr"
-    -- Update parser
-    if not updated_parsers[vim.bo.filetype] then
-      vim.cmd(":TSUpdate " .. vim.bo.filetype)
-      updated_parsers[vim.bo.filetype] = true
-    end
   end
 end
 
