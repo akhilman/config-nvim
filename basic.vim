@@ -90,3 +90,6 @@ set formatoptions=jcrqln2
 
 " enable mouse
 set mouse=nvh
+
+" More space for messages
+set cmdheight=2
