@@ -97,34 +97,34 @@ function M.packer_setup_lsp()
     -- Mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration,
-      { desc = "Go to declaration", sillent = true, buffer = bufnr })
+      { desc = "Go to declaration", silent = true, buffer = bufnr })
     vim.keymap.set('n', 'gd', require 'telescope.builtin'.lsp_definitions,
-      { desc = "Search for definitions", sillent = true, buffer = bufnr })
+      { desc = "Search for definitions", silent = true, buffer = bufnr })
     vim.keymap.set('n', 'gi', require 'telescope.builtin'.lsp_implementations,
-      { desc = "Search for implementations", sillent = true, buffer = bufnr })
+      { desc = "Search for implementations", silent = true, buffer = bufnr })
     vim.keymap.set('n', 'gr', require 'telescope.builtin'.lsp_references,
-      { desc = "Search for references", sillent = true, buffer = bufnr })
+      { desc = "Search for references", silent = true, buffer = bufnr })
     vim.keymap.set('n', 'K', vim.lsp.buf.hover,
-      { desc = "Show documentation (hover)", sillent = true, buffer = bufnr })
+      { desc = "Show documentation (hover)", silent = true, buffer = bufnr })
     vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help,
-      { desc = "Show signature help", sillent = true, buffer = bufnr })
+      { desc = "Show signature help", silent = true, buffer = bufnr })
     vim.keymap.set('n', '<space>ds', require 'telescope.builtin'.lsp_document_symbols,
-      { desc = "Show document symbols", sillent = true, buffer = bufnr })
+      { desc = "Show document symbols", silent = true, buffer = bufnr })
     vim.keymap.set('n', '<space>ws', require 'telescope.builtin'.lsp_workspace_symbols,
-      { desc = "Show workspace symbols", sillent = true, buffer = bufnr })
+      { desc = "Show workspace symbols", silent = true, buffer = bufnr })
     vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder,
-      { desc = "Add workspace folder", sillent = true, buffer = bufnr })
+      { desc = "Add workspace folder", silent = true, buffer = bufnr })
     vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder,
-      { desc = "Remove workspace folder", sillent = true, buffer = bufnr })
+      { desc = "Remove workspace folder", silent = true, buffer = bufnr })
     vim.keymap.set('n', '<space>wl',
       function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())); end,
-      { desc = "List workspace folders", sillent = true, buffer = bufnr })
+      { desc = "List workspace folders", silent = true, buffer = bufnr })
     vim.keymap.set('n', '<space>D', require 'telescope.builtin'.lsp_type_definitions,
-      { desc = "Search for type definitions", sillent = true, buffer = bufnr })
+      { desc = "Search for type definitions", silent = true, buffer = bufnr })
     vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename,
-      { desc = "Rename symbol (refactoring)", sillent = true, buffer = bufnr })
+      { desc = "Rename symbol (refactoring)", silent = true, buffer = bufnr })
     vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action,
-      { desc = "Show code actions", sillent = true, buffer = bufnr })
+      { desc = "Show code actions", silent = true, buffer = bufnr })
   end
 
   -- Add additional capabilities supported by nvim-cmp
