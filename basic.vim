@@ -54,13 +54,9 @@ set hlsearch
 nnoremap <silent> <Esc> :nohlsearch<Bar>:echo<CR>
 
 " buffers
-" do not work in terminal
-"noremap <C-Tab> :bnext<CR>
-"noremap <C-S-Tab> :bprevious<CR>
-" work in terminal
+noremap <A-PageDown> :bnext<CR>
+noremap <A-PageUp> :bprevious<CR>
 noremap <leader><Tab> :b#<CR>
-"noremap <leader>[ :bprevious<CR>
-"noremap <leader>] :bnext<CR>
 "noremap <leader>p :ls<CR>:b
 "noremap <leader>q :bp<BAR> bd #<CR>
 "noremap <leader>w :w<CR>
