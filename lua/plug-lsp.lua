@@ -5,7 +5,7 @@ local M = {}
 local function find_rust_analyzer()
   if vim.fn.executable('rustup') == 1 then
     local cmd = vim.fn.system('rustup which --toolchain nightly rust-analyzer')
-        :match('^%s*(.-rust--analyzer)%s*$')
+        :match('^%s*(.-rust%-analyzer)%s*$')
     if cmd then return { cmd } end
   end
   if vim.fn.executable('rust-analyzer') == 1 then return { 'rust-analyzer' } end
