@@ -20,6 +20,12 @@ end
 function M.packer_setup()
   -- Treesitter configuration
   -- Parsers must be installed manually via :TSInstall
+
+  if not vim.fn.executable("g++") then
+    print("You need g++ compiler to compile Treesitter parsers")
+    return
+  end
+
   require('nvim-treesitter.configs').setup {
     ensure_installed = {
       'bash',
