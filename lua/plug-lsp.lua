@@ -2,53 +2,88 @@ local M = {}
 
 -- Find rust analyzer
 
-local function find_rust_analyzer()
-  if vim.fn.executable('rustup') then
-    local cmd = vim.fn.system('rustup which --toolchain nightly rust-analyzer')
-        :match('^%s*(.-rust--analyzer)%s*$')
-    if cmd then return { cmd } end
-  end
-  if vim.fn.executable('rust-analyzer') then return { 'rust-analyzer' } end
-  return nil
-end
 
 -- Server settings
+local function server_settings()
+  local settings = {}
 
-local server_settings = {
-  clangd = {},
-  denols = {
-    enabled = true,
-    lint = true,
-  },
-  elmls = {},
-  pylsp = {
-    plugins = {
-      black = { enabled = true },
-      pylint = { enabled = true },
-      pyflakes = { enabled = false },
-      pyls_mypy = { enabled = true, live_mode = false },
-      isort = { enabled = true },
+  -- clangd
+
+  if vim.fn.executable('clangd') then
+    settings.clangd = {}
+  end
+
+  -- denols
+
+  if vim.fn.executable('deno') then
+    settings.denols = {
+      enabled = true,
+      lint = true,
     }
-  },
-  rust_analyzer = {
-    cmd = find_rust_analyzer(),
-    settings = {
-      rust = { clippy_preference = true },
-      ['rust-analyzer'] = {
-        -- cargo = { features = nil },
-        checkOnSave = {
-          enabled = true,
-          command = 'clippy',
-          -- features = nil
-        },
-        inlayHints = {
-          enabled = true
+  end
+
+  -- elmls
+
+  if vim.fn.executable('elm-language-server') then
+    settings.elmls = {}
+  end
+
+  -- pylsp
+
+  if vim.fn.executable('pylsp') then
+    settings.pylsp = {
+      plugins = {
+        black = { enabled = true },
+        pylint = { enabled = true },
+        pyflakes = { enabled = false },
+        pyls_mypy = { enabled = true, live_mode = false },
+        isort = { enabled = true },
+      }
+    }
+  end
+
+  -- rust_analyzer
+
+  local function find_rust_analyzer()
+    if vim.fn.executable('rustup') then
+      local cmd = vim.fn.system('rustup which --toolchain nightly rust-analyzer')
+          :match('^%s*(.-rust--analyzer)%s*$')
+      if cmd then return { cmd } end
+    end
+    if vim.fn.executable('rust-analyzer') then return { 'rust-analyzer' } end
+    return nil
+  end
+
+  local rust_analyzer = find_rust_analyzer()
+
+  if rust_analyzer then
+    settings.rust_analyzer = {
+      cmd = find_rust_analyzer(),
+      settings = {
+        rust = { clippy_preference = true },
+        ['rust-analyzer'] = {
+          -- cargo = { features = nil },
+          checkOnSave = {
+            enabled = true,
+            command = 'clippy',
+            -- features = nil
+          },
+          inlayHints = {
+            enabled = true
+          }
         }
       }
     }
-  },
-  sumneko_lua = {},
-}
+  end
+
+  -- sumneko_lua
+
+  if vim.fn.executable('lua-language-server') then
+    settings.sumneko_lua = {}
+  end
+
+  return settings
+end
 
 -- Plugin module
 
@@ -87,7 +122,7 @@ function M.packer_setup_lsp()
   local lspconfig = require('lspconfig')
 
   -- Enable language servers with the additional completion capabilities offered by nvim-cmp
-  for lsp, config in pairs(server_settings) do
+  for lsp, config in pairs(server_settings()) do
     config.on_attach = on_attach
     config.capabilities = capabilities
     lspconfig[lsp].setup(config)
