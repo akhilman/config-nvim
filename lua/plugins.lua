@@ -73,7 +73,6 @@ local function remove_compiled_cache()
 end
 
 local function remove_outdated_compiled_cache()
-
   local compiled_mtime = vim.fn.getftime(compiled_path)
   if compiled_mtime < 0 then
     return
@@ -106,13 +105,12 @@ local function packer_uninstall()
 end
 
 function M.setup_plugins(plugins)
-  -- Only required if you have packer configured as `opt`
   load_plugin_modules(plugins) -- Sets module global variable `plugin_modules`
+
+  local packer_was_cached = is_packer_cached()
+  remove_outdated_compiled_cache()
+
   if is_packer_installed() then
-
-    local packer_was_cached = is_packer_cached()
-    remove_outdated_compiled_cache()
-
     local packer = require('packer')
     packer.startup({
       function(use, use_rocks)
@@ -128,7 +126,6 @@ function M.setup_plugins(plugins)
     if packer_was_cached and not is_packer_cached() then
       require('packer').compile()
     end
-
   elseif is_packer_cached() then
     remove_compiled_cache()
   end
