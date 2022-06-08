@@ -75,6 +75,9 @@ local function remove_outdated_compiled_cache()
   end
 
   local outdated = false
+  if vim.fn.getftime(vim.fn.stdpath('config') .. '/init.lua') > compiled_mtime then
+    outdated = true
+  end
   for _, modname in ipairs(plugin_names) do
     local path = vim.fn.stdpath('config') .. '/lua/' .. modname .. '.lua'
     if vim.fn.getftime(path) > compiled_mtime then
