@@ -24,6 +24,10 @@ local function formatting()
     vim.cmd("%! toml-fmt")
   elseif vim.bo.filetype == "python" and vim.fn.executable("black") == 1 then
     vim.cmd("%! black -q -")
+  else
+    local cursor = vim.api.nvim_win_get_cursor(0)
+    vim.cmd('normal gggqG')
+    vim.api.nvim_win_set_cursor(0, cursor)
   end
 end
 
