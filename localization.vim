@@ -1,4 +1,5 @@
 " In Insert mode CTRL-^ toggles keymap
+" TODO: rewrite in lua, map to <C-Space>, add third keymap.
 
 " Order matters
 set keymap=russian-jcukenwin

@@ -3,6 +3,7 @@ local M = {}
 -- Folding is broken with treesitter
 -- https://github.com/nvim-treesitter/nvim-treesitter/issues/1424
 -- https://github.com/neovim/neovim/issues/14977
+-- TODO: Use syntax folding when above issues will be solved
 
 local function buffer_setup()
   -- Setup folding method to treesitter if the parser is installled for the
