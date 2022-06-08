@@ -30,7 +30,7 @@ local function load_plugin_modules(plugins)
       table.insert(plugin_modules, module_or_errormsg)
       table.insert(plugin_names, modname)
     else
-      print(module_or_errormsg)
+      vim.notify(module_or_errormsg, vim.log.levels.ERROR)
     end
   end
 end
@@ -41,7 +41,9 @@ local function run_startup(use, use_rocks)
     local success, errormsg = pcall(function()
       if module.packer_startup then module.packer_startup(use, use_rocks) end
     end)
-    if not success then print(errormsg) end
+    if not success then
+      vim.notify(errormsg, vim.log.levels.ERROR)
+    end
   end
 end
 
@@ -51,16 +53,19 @@ local function run_setup()
     local success, errormsg = pcall(function()
       if module.setup then module.setup() end
     end)
-    if not success then print(errormsg) end
+    if not success then
+      vim.notify(errormsg, vim.log.levels.ERROR)
+    end
   end
 end
 
 local function packer_bootstrap()
   if is_packer_installed() then
-    print("Packer already installed")
+    vim.notify('Packer already installed', vim.log.levels.INFO)
     return
   end
-  print(vim.fn.system({ 'git', 'clone', '--depth', '1', packer_repo, install_path }))
+  vim.notify('Installing Packer...', vim.log.levels.INFO)
+  vim.notify(vim.fn.system({ 'git', 'clone', '--depth', '1', packer_repo, install_path }), vim.log.levels.INFO)
 end
 
 local function remove_compiled_cache()
@@ -86,14 +91,17 @@ local function remove_outdated_compiled_cache()
   end
 
   if outdated then
-    print("Removing outdated packer cache")
+    vim.notify('Removing outdated packer cache', vim.log.levels.INFO)
     remove_compiled_cache()
   end
 end
 
 local function packer_uninstall()
-  print(vim.fn.system({ 'rm', '-rvf', install_path }))
-  print(vim.fn.system({ 'rm', '-rvf', packages_path }))
+  vim.notify(string.format('Removing "%s"...', install_path), vim.log.levels.INFO)
+  vim.fn.system({ 'rm', '-rvf', install_path })
+  vim.notify(string.format('Removing "%s"...', packages_path), vim.log.levels.INFO)
+  vim.fn.system({ 'rm', '-rvf', packages_path })
+  vim.notify(string.format('Removing "%s"...', compiled_path), vim.log.levels.INFO)
   remove_compiled_cache()
 end
 
@@ -125,8 +133,8 @@ function M.setup_plugins(plugins)
     remove_compiled_cache()
   end
 
-  vim.api.nvim_create_user_command("PackerBootstrap", packer_bootstrap, {})
-  vim.api.nvim_create_user_command("PackerUninstall", packer_uninstall, {})
+  vim.api.nvim_create_user_command('PackerBootstrap', packer_bootstrap, {})
+  vim.api.nvim_create_user_command('PackerUninstall', packer_uninstall, {})
 
   run_setup() -- setup non-packer plugins
 end
