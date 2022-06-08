@@ -1,6 +1,7 @@
 local M = {}
 
 -- Find rust analyzer
+
 local function find_rust_analyzer()
   if vim.fn.executable('rustup') == 1 then
     local cmd = vim.fn.system('rustup which --toolchain nightly rust-analyzer')
@@ -12,6 +13,7 @@ local function find_rust_analyzer()
 end
 
 -- Server settings
+
 local function server_settings()
   local settings = {}
 
@@ -82,8 +84,7 @@ local function server_settings()
   return settings
 end
 
--- Plugin module
-
+-- LSP setup
 
 function M.packer_setup_lsp()
   -- Use an on_attach function to only map the following keys
@@ -126,7 +127,7 @@ function M.packer_setup_lsp()
   end
 end
 
--- luasnip setup
+-- Luasnip setup
 -- nvim-cmp setup
 
 function M.packer_setup_cmp()
@@ -190,6 +191,8 @@ function M.packer_setup_cmp()
     })
   })
 end
+
+-- Packer startup
 
 function M.packer_startup(use)
   -- Completion and LSP
