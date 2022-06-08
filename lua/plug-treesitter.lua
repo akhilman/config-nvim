@@ -95,11 +95,6 @@ function M.packer_setup()
 end
 
 function M.packer_startup(use)
-  if not vim.fn.executabe("g++") then
-    print("Install g++ to use treesitter")
-    return  -- treesitter requires g++ to compile parsers
-  end
-
   -- Highlight, edit, and navigate code using a fast incremental parsing library
   use {
     'nvim-treesitter/nvim-treesitter',
