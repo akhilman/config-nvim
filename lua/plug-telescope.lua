@@ -20,6 +20,9 @@ local function setup()
   vim.keymap.set('n', '<leader>fg', telescope_builtin.live_grep, opts)
   vim.keymap.set('n', '<leader>fs', telescope_builtin.grep_string, opts)
 
+  -- Spell suggestions
+  vim.keymap.set('n', 'z=', telescope_builtin.spell_suggest, opts)
+
   -- Telescope history
   vim.keymap.set('n', '<leader>fh', telescope_builtin.pickers, opts)
 end
