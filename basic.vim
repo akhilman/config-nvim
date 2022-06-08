@@ -58,11 +58,11 @@ nnoremap <silent> <Esc> :nohlsearch<Bar>:echo<CR>
 "noremap <C-Tab> :bnext<CR>
 "noremap <C-S-Tab> :bprevious<CR>
 " work in terminal
-"noremap <leader>] :bnext<CR>
+noremap <leader><Tab> :b#<CR>
 "noremap <leader>[ :bprevious<CR>
-"noremap <leader>q :bp<BAR> bd #<CR>
+"noremap <leader>] :bnext<CR>
 "noremap <leader>p :ls<CR>:b
-"noremap <leader><Tab> :b#<CR>
+"noremap <leader>q :bp<BAR> bd #<CR>
 "noremap <leader>w :w<CR>
 
 " splits
