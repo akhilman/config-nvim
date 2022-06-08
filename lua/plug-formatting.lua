@@ -19,11 +19,11 @@ local function formatting()
   if vim.lsp.buf.server_ready() then
     vim.lsp.buf.formatting()
   elseif prettier_formats[vim.bo.filetype] and vim.fn.executable("prettier") == 1 then
-    vim.api.nvim_command("%! prettier --parser " .. vim.bo.filetype)
+    vim.cmd("%! prettier --parser " .. vim.bo.filetype)
   elseif vim.bo.filetype == "toml" and vim.fn.executable("toml-fmt") == 1 then
-    vim.api.nvim_command("%! toml-fmt")
+    vim.cmd("%! toml-fmt")
   elseif vim.bo.filetype == "python" and vim.fn.executable("black") == 1 then
-    vim.api.nvim_command("%! black -q -")
+    vim.cmd("%! black -q -")
   end
 end
 
