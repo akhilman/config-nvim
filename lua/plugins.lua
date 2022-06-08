@@ -106,7 +106,6 @@ function M.bootstrap(plugins)
     -- Recompile
     if vim.fn.empty(vim.fn.glob(compiled_path)) == 1 then
       require('packer').compile()
-      -- vim.defer_fn(function() vim.cmd(":e") end, 100)
     end
 
     vim.api.nvim_create_user_command("PackerUninstall", packer_uninstall, {})
