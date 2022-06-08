@@ -1,7 +1,15 @@
 local M = {}
 
 -- Find rust analyzer
-
+local function find_rust_analyzer()
+  if vim.fn.executable('rustup') == 1 then
+    local cmd = vim.fn.system('rustup which --toolchain nightly rust-analyzer')
+        :match('^%s*(.-rust--analyzer)%s*$')
+    if cmd then return { cmd } end
+  end
+  if vim.fn.executable('rust-analyzer') == 1 then return { 'rust-analyzer' } end
+  return nil
+end
 
 -- Server settings
 local function server_settings()
@@ -9,13 +17,13 @@ local function server_settings()
 
   -- clangd
 
-  if vim.fn.executable('clangd') then
+  if vim.fn.executable('clangd') == 1 then
     settings.clangd = {}
   end
 
   -- denols
 
-  if vim.fn.executable('deno') then
+  if vim.fn.executable('deno') == 1 then
     settings.denols = {
       enabled = true,
       lint = true,
@@ -24,13 +32,13 @@ local function server_settings()
 
   -- elmls
 
-  if vim.fn.executable('elm-language-server') then
+  if vim.fn.executable('elm-language-server') == 1 then
     settings.elmls = {}
   end
 
   -- pylsp
 
-  if vim.fn.executable('pylsp') then
+  if vim.fn.executable('pylsp') == 1 then
     settings.pylsp = {
       plugins = {
         black = { enabled = true },
@@ -44,18 +52,7 @@ local function server_settings()
 
   -- rust_analyzer
 
-  local function find_rust_analyzer()
-    if vim.fn.executable('rustup') then
-      local cmd = vim.fn.system('rustup which --toolchain nightly rust-analyzer')
-          :match('^%s*(.-rust--analyzer)%s*$')
-      if cmd then return { cmd } end
-    end
-    if vim.fn.executable('rust-analyzer') then return { 'rust-analyzer' } end
-    return nil
-  end
-
   local rust_analyzer = find_rust_analyzer()
-
   if rust_analyzer then
     settings.rust_analyzer = {
       cmd = find_rust_analyzer(),
@@ -78,7 +75,7 @@ local function server_settings()
 
   -- sumneko_lua
 
-  if vim.fn.executable('lua-language-server') then
+  if vim.fn.executable('lua-language-server') == 1 then
     settings.sumneko_lua = {}
   end
 
