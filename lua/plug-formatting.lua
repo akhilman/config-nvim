@@ -32,7 +32,8 @@ local function formatting()
 end
 
 function M.setup()
-  vim.keymap.set('n', '<space>f', formatting, { silent = true })
+  vim.keymap.set('n', '<space>f', formatting,
+    { silent = true, desc = "Format current buffer" })
 end
 
 return M
