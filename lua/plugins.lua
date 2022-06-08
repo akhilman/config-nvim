@@ -94,7 +94,7 @@ local function packer_uninstall()
   remove_compiled_cache()
 end
 
-function M.bootstrap(plugins)
+function M.setup_plugins(plugins)
   -- Only required if you have packer configured as `opt`
   load_plugin_modules(plugins) -- Sets module global variable `plugin_modules`
   if is_packer_installed() then

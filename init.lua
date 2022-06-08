@@ -5,7 +5,7 @@ vim.cmd('source ' .. vim.fn.stdpath 'config' .. '/localization.vim')
 vim.cmd('source ' .. vim.fn.stdpath 'config' .. '/theme.vim')
 
 -- Load and setup plugins
-require 'plugins'.bootstrap {
+require 'plugins'.setup_plugins {
   'plug-auto-pairs',
   'plug-close-tag',
   'plug-comment',
