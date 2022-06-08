@@ -8,6 +8,9 @@ local function setup()
     options = {
       theme = 'ayu_dark',
     },
+    tabline = {
+      lualine_a = {'tabs', 'buffers'}
+    }
   }
 end
 
