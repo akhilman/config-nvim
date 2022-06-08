@@ -99,7 +99,6 @@ function M.packer_startup(use)
   use {
     'nvim-treesitter/nvim-treesitter',
     config = function() require('plug-treesitter').packer_setup() end,
-    run = function() pcall(vim.cmd('TSUpdate')) end,
   }
   -- Additional textobjects for treesitter
   use 'nvim-treesitter/nvim-treesitter-textobjects'

@@ -10,7 +10,12 @@ local plugin_names = {}
 local plugin_modules = {}
 
 local function is_packer_installed()
-  return vim.fn.empty(vim.fn.glob(install_path)) == 0
+  local success, _ = pcall(function() require 'packer' end)
+  return success
+end
+
+local function is_packer_cached()
+  return vim.fn.empty(vim.fn.glob(compiled_path)) == 0
 end
 
 -- Load plugin modules and set module global variable `plugin_modules`
@@ -58,10 +63,8 @@ local function packer_bootstrap()
   print(vim.fn.system({ 'git', 'clone', '--depth', '1', packer_repo, install_path }))
 end
 
-local function packer_uninstall()
-  print(vim.fn.system({ 'rm', '-rvf', install_path }))
-  print(vim.fn.system({ 'rm', '-rvf', packages_path }))
-  print(vim.fn.system({ 'rm', '-rvf', compiled_path }))
+local function remove_compiled_cache()
+  vim.fn.system({ 'rm', '-rf', compiled_path })
 end
 
 local function remove_outdated_compiled_cache()
@@ -81,15 +84,22 @@ local function remove_outdated_compiled_cache()
 
   if outdated then
     print("Removing outdated packer cache")
-    vim.fn.system({ 'rm', '-rf', compiled_path })
+    remove_compiled_cache()
   end
+end
+
+local function packer_uninstall()
+  print(vim.fn.system({ 'rm', '-rvf', install_path }))
+  print(vim.fn.system({ 'rm', '-rvf', packages_path }))
+  remove_compiled_cache()
 end
 
 function M.bootstrap(plugins)
   -- Only required if you have packer configured as `opt`
-  -- vim.cmd [[packadd packer.nvim]]
   load_plugin_modules(plugins) -- Sets module global variable `plugin_modules`
   if is_packer_installed() then
+
+    local packer_was_cached = is_packer_cached()
     remove_outdated_compiled_cache()
 
     local packer = require('packer')
@@ -104,13 +114,16 @@ function M.bootstrap(plugins)
       }
     })
     -- Recompile
-    if vim.fn.empty(vim.fn.glob(compiled_path)) == 1 then
+    if packer_was_cached and not is_packer_cached() then
       require('packer').compile()
     end
 
-    vim.api.nvim_create_user_command("PackerUninstall", packer_uninstall, {})
+  elseif is_packer_cached() then
+    remove_compiled_cache()
   end
+
   vim.api.nvim_create_user_command("PackerBootstrap", packer_bootstrap, {})
+  vim.api.nvim_create_user_command("PackerUninstall", packer_uninstall, {})
 
   run_setup() -- setup non-packer plugins
 end

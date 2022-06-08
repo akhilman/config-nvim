@@ -1,11 +1,13 @@
 default: install
 
 install:
-	nvim -c 'PackerBootstrap' -c 'quitall'
-	nvim -c 'PackerInstall' -c 'quitall'
+	nvim --headless -c 'PackerBootstrap' -c 'quitall'
+	nvim -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+	nvim --headless -c 'TSUpdateSync' -c 'quitall'
 
 update:
-	nvim -c 'PackerSync' -c 'quitall'
+	nvim -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+	nvim --headless -c 'TSUpdateSync' -c 'quitall'
 
 uninstall:
-	nvim -c 'PackerUninstall' -c 'quitall'
+	nvim --headless -c 'PackerUninstall' -c 'quitall'
