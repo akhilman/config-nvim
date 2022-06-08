@@ -8,7 +8,7 @@ local function find_rust_analyzer()
         :match('^%s*(.-rust--analyzer)%s*$')
     if cmd then return { cmd } end
   end
-  if vim.fn.executabe('rust-analyzer') then return { 'rust-analyzer' } end
+  if vim.fn.executable('rust-analyzer') then return { 'rust-analyzer' } end
   return nil
 end
 
