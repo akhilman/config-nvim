@@ -10,6 +10,7 @@ function M.packer_startup(use)
   use 'jonsmithers/vim-html-template-literals'
   use 'leafgarland/typescript-vim'
   use 'pangloss/vim-javascript'
+  use 'tbastos/vim-lua'
   use 'teal-language/vim-teal'
   use { 'andys8/vim-elm-syntax', { ft = 'elm' } }
 end
