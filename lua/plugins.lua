@@ -130,8 +130,10 @@ function M.setup_plugins(plugins)
     remove_compiled_cache()
   end
 
-  vim.api.nvim_create_user_command('PackerBootstrap', packer_bootstrap, {})
-  vim.api.nvim_create_user_command('PackerUninstall', packer_uninstall, {})
+  vim.api.nvim_create_user_command('PackerBootstrap', packer_bootstrap,
+    { desc = "Install Packer plugin manager" })
+  vim.api.nvim_create_user_command('PackerUninstall', packer_uninstall,
+    { desc = "Remove all plugins installed by Packer and remove Packer itself" })
 
   run_setup() -- setup non-packer plugins
 end
