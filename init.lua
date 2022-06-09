@@ -23,5 +23,4 @@ require 'plugins'.setup_plugins {
   'plug-syntax',
   'plug-telescope',
   'plug-treesitter',
-  -- 'plug-nerdtree',  -- replaced with neotree
 }
