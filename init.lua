@@ -19,8 +19,9 @@ require 'plugins'.setup_plugins {
   'plug-lsp',
   'plug-lualine',
   'plug-markdown-composer',
-  'plug-nerdtree',
+  'plug-neotree',
   'plug-syntax',
   'plug-telescope',
-  -- 'plug-treesitter',
+  -- 'plug-nerdtree',  -- replaced with neotree
+  -- 'plug-treesitter',  -- doesn't work properly
 }
