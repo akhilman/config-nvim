@@ -1,7 +1,7 @@
 local M = {}
 
 local function setup()
-  vim.keymap.set('n', '<C-\\>', ':Neotree toggle<CR>')
+  vim.keymap.set('n', '<C-\\>', ':Neotree toggle<CR>', { silent = true })
 end
 
 function M.packer_startup(use)
