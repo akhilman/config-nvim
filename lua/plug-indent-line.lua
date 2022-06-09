@@ -8,7 +8,6 @@ local function setup()
     show_current_context_start = true,
     use_treesitter = true,
   }
-  vim.cmd [[highlight IndentBlanklineChar guifg=Gray20 gui=nocombine]]
 end
 
 function M.packer_startup(use)

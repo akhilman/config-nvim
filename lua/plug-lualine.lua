@@ -6,7 +6,7 @@ local function setup()
   --Set statusbar
   require('lualine').setup {
     options = {
-      theme = 'ayu_dark',
+      theme = 'auto',
     },
     tabline = {
       lualine_a = {'tabs', 'buffers'}

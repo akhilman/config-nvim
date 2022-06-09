@@ -3,10 +3,11 @@ set nocompatible
 syntax on
 filetype plugin indent on
 let c_minlines=500  " number of lines that vim goes backwards for syntax highlight
-set wrap linebreak breakat=\s  " wrap long lines
 set list  " show trailing spaces and tabs
 set modeline  " check vim configuration in file
+set number  " show line number
 set scrolloff=10  " показывать всегда 10 строк до и после курсора
+set wrap linebreak breakat=\s  " wrap long lines
 " set relativenumber  " relative line number at the left view edge
 
 
