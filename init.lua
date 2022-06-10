@@ -21,6 +21,7 @@ require 'plugins'.setup_plugins {
   'plug-neotree',
   'plug-syntax',
   'plug-telescope',
+  'plug-test',
   'plug-treesitter',
 
   'theme-molokai',
