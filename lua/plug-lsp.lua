@@ -1,7 +1,6 @@
 local M = {}
 
 -- Find rust analyzer
-
 local function find_rust_analyzer()
   if vim.fn.executable('rustup') == 1 then
     local cmd = vim.fn.system('rustup which --toolchain nightly rust-analyzer')
@@ -13,7 +12,6 @@ local function find_rust_analyzer()
 end
 
 -- Server settings
-
 local function server_settings()
   local settings = {}
 
@@ -84,49 +82,48 @@ local function server_settings()
   return settings
 end
 
+-- Use an on_attach function to only map the following keys
+-- after the language server attaches to the current buffer
+local function on_attach(client, bufnr) ---@diagnostic disable-line: unused-local
+
+  -- Enable completion triggered by <c-x><c-o>
+  -- vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+  -- Mappings.
+  -- See `:help vim.lsp.*` for documentation on any of the below functions
+  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration,
+    { desc = "Go to declaration", silent = true, buffer = bufnr })
+  vim.keymap.set('n', 'gd', require 'telescope.builtin'.lsp_definitions,
+    { desc = "Search for definitions", silent = true, buffer = bufnr })
+  vim.keymap.set('n', 'gi', require 'telescope.builtin'.lsp_implementations,
+    { desc = "Search for implementations", silent = true, buffer = bufnr })
+  vim.keymap.set('n', 'gr', require 'telescope.builtin'.lsp_references,
+    { desc = "Search for references", silent = true, buffer = bufnr })
+  vim.keymap.set('n', 'K', vim.lsp.buf.hover,
+    { desc = "Show documentation (hover)", silent = true, buffer = bufnr })
+  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help,
+    { desc = "Show signature help", silent = true, buffer = bufnr })
+  vim.keymap.set('n', '<space>ds', require 'telescope.builtin'.lsp_document_symbols,
+    { desc = "Show document symbols", silent = true, buffer = bufnr })
+  vim.keymap.set('n', '<space>ws', require 'telescope.builtin'.lsp_workspace_symbols,
+    { desc = "Show workspace symbols", silent = true, buffer = bufnr })
+  vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder,
+    { desc = "Add workspace folder", silent = true, buffer = bufnr })
+  vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder,
+    { desc = "Remove workspace folder", silent = true, buffer = bufnr })
+  vim.keymap.set('n', '<space>wl',
+    function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())); end,
+    { desc = "List workspace folders", silent = true, buffer = bufnr })
+  vim.keymap.set('n', '<space>D', require 'telescope.builtin'.lsp_type_definitions,
+    { desc = "Search for type definitions", silent = true, buffer = bufnr })
+  vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename,
+    { desc = "Rename symbol (refactoring)", silent = true, buffer = bufnr })
+  vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action,
+    { desc = "Show code actions", silent = true, buffer = bufnr })
+end
+
 -- LSP setup
-
 function M.packer_setup_lsp()
-  -- Use an on_attach function to only map the following keys
-  -- after the language server attaches to the current buffer
-  local on_attach = function(client, bufnr) ---@diagnostic disable-line: unused-local
-
-    -- Enable completion triggered by <c-x><c-o>
-    -- vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-    -- Mappings.
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration,
-      { desc = "Go to declaration", silent = true, buffer = bufnr })
-    vim.keymap.set('n', 'gd', require 'telescope.builtin'.lsp_definitions,
-      { desc = "Search for definitions", silent = true, buffer = bufnr })
-    vim.keymap.set('n', 'gi', require 'telescope.builtin'.lsp_implementations,
-      { desc = "Search for implementations", silent = true, buffer = bufnr })
-    vim.keymap.set('n', 'gr', require 'telescope.builtin'.lsp_references,
-      { desc = "Search for references", silent = true, buffer = bufnr })
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover,
-      { desc = "Show documentation (hover)", silent = true, buffer = bufnr })
-    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help,
-      { desc = "Show signature help", silent = true, buffer = bufnr })
-    vim.keymap.set('n', '<space>ds', require 'telescope.builtin'.lsp_document_symbols,
-      { desc = "Show document symbols", silent = true, buffer = bufnr })
-    vim.keymap.set('n', '<space>ws', require 'telescope.builtin'.lsp_workspace_symbols,
-      { desc = "Show workspace symbols", silent = true, buffer = bufnr })
-    vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder,
-      { desc = "Add workspace folder", silent = true, buffer = bufnr })
-    vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder,
-      { desc = "Remove workspace folder", silent = true, buffer = bufnr })
-    vim.keymap.set('n', '<space>wl',
-      function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())); end,
-      { desc = "List workspace folders", silent = true, buffer = bufnr })
-    vim.keymap.set('n', '<space>D', require 'telescope.builtin'.lsp_type_definitions,
-      { desc = "Search for type definitions", silent = true, buffer = bufnr })
-    vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename,
-      { desc = "Rename symbol (refactoring)", silent = true, buffer = bufnr })
-    vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action,
-      { desc = "Show code actions", silent = true, buffer = bufnr })
-  end
-
   -- Add additional capabilities supported by nvim-cmp
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
@@ -141,9 +138,7 @@ function M.packer_setup_lsp()
   end
 end
 
--- Luasnip setup
--- nvim-cmp setup
-
+-- Setup completion
 function M.packer_setup_cmp()
   local luasnip = require 'luasnip'
   local cmp = require 'cmp'
@@ -207,7 +202,6 @@ function M.packer_setup_cmp()
 end
 
 -- Packer startup
-
 function M.packer_startup(use)
   -- Completion and LSP
   use {
@@ -221,6 +215,7 @@ function M.packer_startup(use)
         requires = {
           {
             'neovim/nvim-lspconfig',
+            -- Somehow using setup function directly does not work
             config = function() require('plug-lsp').packer_setup_lsp() end,
             requires = {
               -- LSP goodies
