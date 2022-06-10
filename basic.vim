@@ -43,7 +43,7 @@ autocmd FileType vim,lua,c,cpp,cmake,json,yaml,javascript,typescript,css,scss,sa
 autocmd FileType bash,dot,fish,sh,rust,python,dockerfile,sql,toml setlocal shiftwidth=4 tabstop=4 expandtab
 
 " folding
-"set foldmethod=indent
+set foldmethod=indent
 "autocmd FileType rust,c,cpp,json,javascript,typescript,css,scss,sass,html,svg setlocal foldmethod=syntax
 "autocmd FileType python,yaml setlocal foldmethod=indent
 
