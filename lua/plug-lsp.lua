@@ -1,5 +1,7 @@
 local M = {}
 
+local plugins = require 'plugins'
+
 -- Find rust analyzer
 local function find_rust_analyzer()
   if vim.fn.executable('rustup') == 1 then
@@ -16,13 +18,11 @@ local function server_settings()
   local settings = {}
 
   -- clangd
-
   if vim.fn.executable('clangd') == 1 then
     settings.clangd = {}
   end
 
   -- denols
-
   if vim.fn.executable('deno') == 1 then
     settings.denols = {
       enabled = true,
@@ -31,13 +31,11 @@ local function server_settings()
   end
 
   -- elmls
-
   if vim.fn.executable('elm-language-server') == 1 then
     settings.elmls = {}
   end
 
   -- pylsp
-
   if vim.fn.executable('pylsp') == 1 then
     settings.pylsp = {
       plugins = {
@@ -51,7 +49,6 @@ local function server_settings()
   end
 
   -- rust_analyzer
-
   local rust_analyzer = find_rust_analyzer()
   if rust_analyzer then
     settings.rust_analyzer = {
@@ -74,7 +71,6 @@ local function server_settings()
   end
 
   -- sumneko_lua
-
   if vim.fn.executable('lua-language-server') == 1 then
     settings.sumneko_lua = {}
   end
@@ -124,13 +120,15 @@ end
 
 -- LSP setup
 function M.packer_setup_lsp()
-  -- Add additional capabilities supported by nvim-cmp
   local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+  -- Add additional capabilities supported by nvim-cmp
+  if plugins.is_enabled('plug-completion') then
+    capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+  end
 
   local lspconfig = require('lspconfig')
 
-  -- Enable language servers with the additional completion capabilities offered by nvim-cmp
+  -- Enable language servers with the additional completion capabilities
   for lsp, config in pairs(server_settings()) do
     config.on_attach = on_attach
     config.capabilities = capabilities
@@ -138,105 +136,23 @@ function M.packer_setup_lsp()
   end
 end
 
--- Setup completion
-function M.packer_setup_cmp()
-  local luasnip = require 'luasnip'
-  local cmp = require 'cmp'
-  cmp.setup {
-    snippet = {
-      expand = function(args)
-        luasnip.lsp_expand(args.body)
-      end,
-    },
-    mapping = cmp.mapping.preset.insert({
-      ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-      ['<C-f>'] = cmp.mapping.scroll_docs(4),
-      ['<C-Space>'] = cmp.mapping.complete(),
-      ['<CR>'] = cmp.mapping.confirm {
-        behavior = cmp.ConfirmBehavior.Replace,
-        select = true,
-      },
-      ['<Tab>'] = cmp.mapping(function(fallback)
-        if cmp.visible() then
-          cmp.select_next_item()
-        elseif luasnip.expand_or_jumpable() then
-          luasnip.expand_or_jump()
-        else
-          fallback()
-        end
-      end, { 'i', 's' }),
-      ['<S-Tab>'] = cmp.mapping(function(fallback)
-        if cmp.visible() then
-          cmp.select_prev_item()
-        elseif luasnip.jumpable(-1) then
-          luasnip.jump(-1)
-        else
-          fallback()
-        end
-      end, { 'i', 's' }),
-    }),
-    sources = {
-      { name = 'nvim_lsp' },
-      { name = 'luasnip' },
-      { name = 'path' },
-    },
-  }
-
-  -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-  cmp.setup.cmdline('/', {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = {
-      { name = 'buffer' }
-    }
-  })
-
-  -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-  cmp.setup.cmdline(':', {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({
-      { name = 'path' }
-    }, {
-      { name = 'cmdline' }
-    })
-  })
-end
-
 -- Packer startup
 function M.packer_startup(use)
   -- Completion and LSP
   use {
-    'hrsh7th/nvim-cmp', -- Autocompletion plugin
-    config = function() require('plug-lsp').packer_setup_cmp() end,
+    'neovim/nvim-lspconfig',
+    -- Somehow using setup function directly does not work
+    config = function() require('plug-lsp').packer_setup_lsp() end,
     requires = {
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-cmdline',
-      'hrsh7th/cmp-path',
-      { 'hrsh7th/cmp-nvim-lsp', -- LSP source for nvim-cmp
-        requires = {
-          {
-            'neovim/nvim-lspconfig',
-            -- Somehow using setup function directly does not work
-            config = function() require('plug-lsp').packer_setup_lsp() end,
-            requires = {
-              -- LSP goodies
-              'ii14/lsp-command', -- :Lsp command
-              -- 'nvim-lua/lsp_extensions.nvim',  -- Inlay hints
-              -- 'simrat39/rust-tools.nvim',
-              {
-                'nvim-telescope/telescope.nvim',
-                requires = { 'nvim-lua/plenary.nvim' },
-              }
-            },
-          }
-        }
-      },
-      -- Snippets
-      { 'saadparwaiz1/cmp_luasnip', -- Snippets source for nvim-cmp
-        requires = {
-          'L3MON4D3/LuaSnip', -- Snippets
-        }
-      },
-    }
+      -- LSP goodies
+      'ii14/lsp-command', -- :Lsp command
+      -- 'nvim-lua/lsp_extensions.nvim',  -- Inlay hints
+      -- 'simrat39/rust-tools.nvim',
+      {
+        'nvim-telescope/telescope.nvim',
+        requires = { 'nvim-lua/plenary.nvim' },
+      }
+    },
   }
 end
 

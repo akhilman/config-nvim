@@ -138,4 +138,14 @@ function M.setup_plugins(plugins)
   run_setup() -- setup non-packer plugins
 end
 
+function M.is_enabled(name)
+  local enabled = false
+  for _, modname in ipairs(plugin_names) do
+    if modname == name then
+      enabled = true
+    end
+  end
+  return enabled
+end
+
 return M

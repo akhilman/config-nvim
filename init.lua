@@ -8,6 +8,7 @@ require 'plugins'.setup_plugins {
   'plug-auto-pairs',
   'plug-close-tag',
   'plug-comment',
+  'plug-completion',
   'plug-css-color',
   'plug-easy-motion',
   'plug-formatting',
