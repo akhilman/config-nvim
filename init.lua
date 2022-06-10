@@ -23,10 +23,10 @@ require 'plugins'.setup_plugins {
   'plug-telescope',
   'plug-treesitter',
 
-  'theme-moonfly',
-  'theme-nightfox',
   'theme-molokai',
+  'theme-moonfly',
   'theme-nightfly',
+  'theme-nightfox',
   'theme-tender',
 }
 
