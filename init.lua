@@ -28,15 +28,6 @@ require 'plugins'.setup_plugins {
   'theme-nightfly',
   'theme-nightfox',
   'theme-tender',
-}
 
--- Set color scheme
-do
-  if vim.env.COLORTERM == "truecolor" then
-    vim.o.termguicolors = true
-  end
-  local theme_is_loaded = pcall(function() vim.cmd [[colorscheme nightfox]] end)
-  if not theme_is_loaded then
-    vim.cmd('source ' .. vim.fn.stdpath 'config' .. '/theme.vim')
-  end
-end
+  'conf-colorscheme',
+}
