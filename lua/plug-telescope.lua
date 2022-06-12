@@ -34,6 +34,12 @@ local function setup()
   -- Telescope history
   vim.keymap.set('n', '<leader>fh', telescope_builtin.pickers,
     { desc = "Show recent telescope searches", silent = true })
+
+  -- Commands
+  vim.api.nvim_create_user_command('SearchHelp', telescope_builtin.help_tags,
+    {desc = "Search in vim's help using telescope"})
+  vim.api.nvim_create_user_command('SearchKeymaps', telescope_builtin.keymaps,
+    {desc = "Search keymap using telescope"})
 end
 
 function M.packer_startup(use)
