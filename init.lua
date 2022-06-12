@@ -33,4 +33,5 @@ require 'plugins'.setup_plugins {
   'theme-tender',
 
   'conf-colorscheme',
+  'conf-gui',
 }
