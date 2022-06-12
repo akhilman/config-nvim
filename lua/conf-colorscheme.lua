@@ -3,7 +3,7 @@
 local M = {}
 
 local function default_color_scheme()
-  vim.cmd('source ' .. vim.fn.stdpath 'config' .. '/colorscheme.vim')
+  vim.cmd('source ' .. vim.fn.stdpath 'config' .. '/default_colorscheme.vim')
 end
 
 function M.setup()
