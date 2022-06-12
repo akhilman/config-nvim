@@ -10,6 +10,7 @@ require 'plugins'.setup_plugins {
   'plug-comment',
   'plug-completion',
   'plug-css-color',
+  'plug-debugger',
   'plug-easy-motion',
   'plug-formatting',
   'plug-fugitive',

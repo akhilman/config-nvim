@@ -16,8 +16,18 @@ function M.packer_setup()
   if plugins.is_enabled('plug-lsp') then
     table.insert(sources, { name = 'nvim_lsp' })
   end
+  -- Completion for Dap debugger REPL terminal
+  if plugins.is_enabled('plug-debugger') then
+    table.insert(sources, { name = 'dap' })
+  end
 
   cmp.setup {
+    -- nvim-cmp by defaults disables autocomplete for prompt buffers
+    enabled = function()
+      return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt" or
+          (plugins.is_enabled('plug-debugger') and
+              require("cmp_dap").is_dap_buffer())
+    end,
     snippet = {
       expand = function(args)
         luasnip.lsp_expand(args.body)
@@ -90,6 +100,10 @@ function M.packer_startup(use)
   -- Language server protocol
   if plugins.is_enabled('plug-lsp') then
     table.insert(requires, 'hrsh7th/cmp-nvim-lsp')
+  end
+
+  if plugins.is_enabled('plug-debugger') then
+    table.insert(requires, 'rcarriga/cmp-dap')
   end
 
   use {
