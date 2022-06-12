@@ -35,4 +35,5 @@ require 'plugins'.setup_plugins {
   'conf-cd-to-workspace',
   'conf-colorscheme',
   'conf-gui',
+  'conf-undo',
 }

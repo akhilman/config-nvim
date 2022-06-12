@@ -1,3 +1,7 @@
+" This config file is compatible with Vim and can be used as
+"   source ~/.config/nvim/basic.vim
+" form ~/.vimrc
+
 set nocompatible
 
 syntax on
@@ -10,20 +14,10 @@ set scrolloff=10  " показывать всегда 10 строк до и по
 set wrap linebreak breakat=\s  " wrap long lines
 " set relativenumber  " relative line number at the left view edge
 
-
 " This is the persistent undo feature of vim :help undo-persistent
 if exists("+undofile")
-  " undofile - This allows you to use undos after exiting and restarting
-  " This, like swap and backups, uses .vim-undo first, then ~/.vim/undo
-  " :help undo-persistence
-  " This is only present in 7.3+
-  if isdirectory(stdpath("cache") . '/undo') == 0
-    exec ":silent !mkdir -p " . stdpath("cache") . " > /dev/null 2>&1"
-  endif
-  let &undodir = stdpath("cache") . "/undo/"
   set undofile
 endif
-
 
 " setting shell to bash to make all work again when started from fish
 "set shell=/bin/bash
