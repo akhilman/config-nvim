@@ -41,9 +41,6 @@ set foldmethod=indent
 "autocmd FileType rust,c,cpp,json,javascript,typescript,css,scss,sass,html,svg setlocal foldmethod=syntax
 "autocmd FileType python,yaml setlocal foldmethod=indent
 
-"ставит х, убирает его, а потом ставит #, что бы вим не убирал таб перед #
-"inoremap # x<BS>#
-
 " highlight search
 set hlsearch
 nnoremap <silent> <Esc> :nohlsearch<Bar>:echo<CR>
