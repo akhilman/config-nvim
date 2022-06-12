@@ -32,6 +32,7 @@ require 'plugins'.setup_plugins {
   'theme-nightfox',
   'theme-tender',
 
+  'conf-cd-to-workspace',
   'conf-colorscheme',
   'conf-gui',
 }
