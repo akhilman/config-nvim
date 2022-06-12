@@ -33,8 +33,11 @@ autocmd FileType c,cpp,python,ruby,java,lua,vim,cmake,json,javascript,typescript
 " autocmd FileType c,cpp,python,ruby,java,lua setlocal colorcolumn=81
 
 " tab size
-autocmd FileType vim,lua,c,cpp,cmake,json,yaml,javascript,typescript,css,scss,sass,html,svg,htmldjango setlocal shiftwidth=2 tabstop=2 expandtab
-autocmd FileType bash,dot,fish,sh,rust,python,dockerfile,sql,toml setlocal shiftwidth=4 tabstop=4 expandtab
+autocmd FileType vim,lua,c,cpp,cmake,json,yaml,javascript,typescript,css,scss,sass,html,svg,htmldjango setlocal shiftwidth=2 tabstop=2
+autocmd FileType fish,sh,rust,python,dockerfile,sql,toml setlocal shiftwidth=4 tabstop=4
+
+" expand tabs
+autocmd FileType htmldjango,rust,python,json,javascript,typescript,css,scss,sass,html,svg setlocal expandtab
 
 " folding
 set foldmethod=indent
