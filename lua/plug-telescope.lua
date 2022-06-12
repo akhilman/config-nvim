@@ -20,8 +20,6 @@ local function setup()
     { desc = 'Next diagnostic error', silent = true })
 
   -- Files
-  vim.keymap.set('n', '<C-p>', telescope_builtin.find_files,
-    { desc = 'Find file with Telescope', silent = true })
   vim.keymap.set('n', '<leader>ff', telescope_builtin.find_files,
     { desc = 'Find file with Telescope', silent = true })
   vim.keymap.set('n', '<leader>fg', telescope_builtin.live_grep,
