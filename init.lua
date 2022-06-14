@@ -6,6 +6,7 @@ vim.cmd('source ' .. vim.fn.stdpath 'config' .. '/localization.vim')
 -- Load and setup plugins
 require 'plugins'.setup_plugins {
   'plug-auto-pairs',
+  'plug-auto-session',
   'plug-close-tag',
   'plug-comment',
   'plug-completion',
