@@ -1,8 +1,10 @@
 local M = {}
 
-local function do_setup()
+local font = 'Hack:h11'
+
+local function setup_nvim_qt()
   if vim.fn.exists(':GuiFont') ~= 0 then
-    vim.cmd('GuiFont Hack:h11')
+    vim.cmd('GuiFont ' .. font)
   end
   if vim.fn.exists(':GuiTabline') ~= 0 then
     vim.cmd('GuiTabline 0')
@@ -17,7 +19,11 @@ local function do_setup()
 end
 
 function M.setup()
-  vim.api.nvim_create_autocmd({ 'UiEnter' }, { callback = do_setup })
+  -- Neovide
+  vim.opt_global.guifont = font
+
+  -- Neovim-qt
+  vim.api.nvim_create_autocmd({ 'UiEnter' }, { callback = setup_nvim_qt })
 end
 
 return M
