@@ -19,6 +19,7 @@ require 'plugins'.setup_plugins {
   'plug-indent-object',
   'plug-lsp',
   'plug-lualine',
+  'plug-luapad',
   'plug-markdown-composer',
   'plug-neotree',
   'plug-syntax',
