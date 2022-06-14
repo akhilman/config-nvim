@@ -1,7 +1,9 @@
 local M = {}
 
 local function setup()
-  vim.keymap.set('n', '<C-\\>', ':Neotree toggle<CR>', { silent = true })
+  vim.keymap.set('n', '<C-\\>',
+    ': execute "Neotree toggle reveal dir=" . getcwd()<CR>',
+    { silent = true })
 end
 
 function M.packer_startup(use)
