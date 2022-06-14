@@ -27,10 +27,12 @@ require 'plugins'.setup_plugins {
   'plug-test',
   'plug-treesitter',
 
+  'theme-adwaita',
   'theme-molokai',
   'theme-moonfly',
   'theme-nightfly',
   'theme-nightfox',
+  'theme-nord',
   'theme-tender',
 
   'conf-cd-to-workspace',
