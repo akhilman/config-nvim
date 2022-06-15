@@ -19,11 +19,12 @@ local function get_project_root_dir()
   local directory = current_file_directory
   repeat
     for _, fname in ipairs(project_root_marks) do
-      if vim.fn.filereadable(directory .. '/' .. fname) == 1 then
+      if vim.fn.empty(vim.fn.glob(directory .. '/' .. fname)) == 0 then
         return directory
       end
     end
-  until directory ~= "/"
+    directory = vim.fn.fnamemodify(directory, ':h')
+  until directory == "/"
 
   return current_file_directory
 end
