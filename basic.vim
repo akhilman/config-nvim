@@ -46,7 +46,7 @@ set foldmethod=indent
 
 " highlight search
 set hlsearch
-nnoremap <silent> <Esc> :nohlsearch<Bar>:echo<CR>
+nnoremap <silent> <Bs> :nohlsearch<CR><Bs>
 
 " buffers
 noremap <A-PageDown> :bnext<CR>
