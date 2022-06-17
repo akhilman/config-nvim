@@ -16,6 +16,7 @@ require 'plugins'.setup_plugins {
   'plug-formatting',
   'plug-fugitive',
   'plug-gitsigns',
+  'plug-greplace',
   'plug-indent-line',
   'plug-indent-object',
   'plug-lsp',
