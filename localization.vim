@@ -11,3 +11,5 @@ set imsearch=0  " use qwerty by default
 " Order matters
 set spell spelllang=en_gb,ru_yo
 set nospell
+
+autocmd FileType gitcommit setlocal spell
