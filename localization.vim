@@ -12,4 +12,4 @@ set imsearch=0  " use qwerty by default
 set spell spelllang=en_gb,ru_yo
 set nospell
 
-autocmd FileType gitcommit setlocal spell
+autocmd FileType gitcommit,html,markdown setlocal spell
