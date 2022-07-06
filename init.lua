@@ -23,6 +23,7 @@ require 'plugins'.setup_plugins {
   'plug-lualine',
   'plug-luapad',
   'plug-markdown-composer',
+  'plug-mini',
   'plug-neotree',
   'plug-syntax',
   'plug-telescope',
