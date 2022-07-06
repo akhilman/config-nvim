@@ -7,7 +7,7 @@ vim.cmd('source ' .. vim.fn.stdpath 'config' .. '/localization.vim')
 require 'plugins'.setup_plugins {
   -- 'plug-autopairs',
   'plug-auto-session',
-  -- 'plug-close-tag',
+  'plug-close-tag',
   'plug-comment',
   'plug-completion',
   'plug-css-color',
