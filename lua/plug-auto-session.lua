@@ -23,11 +23,22 @@ local function setup()
   }
 end
 
+local function setup_lens()
+  vim.keymap.set('n', '<leader>fS', require('session-lens').search_session,
+    { desc = 'Searches session', silent = true })
+end
+
 function M.packer_startup(use)
   use {
     'rmagatti/auto-session',
     config = setup,
   }
+  if require('plugins').is_enabled('plug-telescope') then
+    use {
+      'rmagatti/session-lens',
+      config = setup_lens,
+    }
+  end
 end
 
 return M
