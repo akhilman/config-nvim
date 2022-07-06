@@ -7,14 +7,12 @@ local function default_color_scheme()
 end
 
 function M.setup()
-  do
-    if vim.env.COLORTERM == "truecolor" then
-      vim.o.termguicolors = true
-    end
-    local theme_is_loaded = pcall(function() vim.cmd [[colorscheme nightfox]] end)
-    if not theme_is_loaded then
-      default_color_scheme()
-    end
+  if vim.env.COLORTERM == "truecolor" then
+    vim.o.termguicolors = true
+  end
+  local theme_is_loaded = pcall(function() vim.cmd [[colorscheme nightfox]] end)
+  if not theme_is_loaded then
+    default_color_scheme()
   end
 end
 
