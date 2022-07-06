@@ -53,8 +53,8 @@ noremap <A-PageDown> :bnext<CR>
 noremap <A-PageUp> :bprevious<CR>
 noremap <leader><Tab> :b#<CR>
 "noremap <leader>p :ls<CR>:b
-"noremap <leader>q :bp<BAR> bd #<CR>
-"noremap <leader>w :w<CR>
+noremap <leader>q :bp<BAR> bd #<CR>
+noremap <leader>w :w<CR>
 
 " splits
 nnoremap <silent> <C-A-j> :resize -1<CR>
