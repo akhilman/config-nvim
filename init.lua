@@ -5,7 +5,7 @@ vim.cmd('source ' .. vim.fn.stdpath 'config' .. '/localization.vim')
 
 -- Load and setup plugins
 require 'plugins'.setup_plugins {
-  'plug-autopairs',
+  -- 'plug-autopairs',
   'plug-auto-session',
   'plug-close-tag',
   'plug-comment',
@@ -23,12 +23,13 @@ require 'plugins'.setup_plugins {
   'plug-lualine',
   'plug-luapad',
   'plug-markdown-composer',
+  'plug-mini',  -- surround, autopairs
   'plug-neotree',
   'plug-syntax',
   'plug-telescope',
   'plug-test',
   'plug-treesitter',
-  'plug-vim-surround',
+  -- 'plug-vim-surround',
 
   'theme-adwaita',
   'theme-molokai',
