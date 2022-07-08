@@ -4,15 +4,17 @@
 
 local M = {}
 
+local function setup()
+  require("nvim-surround").setup {
+    -- Configuration here, or leave empty to use defaults
+  }
+end
+
 function M.packer_startup(use)
-  use({
+  use {
     "kylechui/nvim-surround",
-    config = function()
-      require("nvim-surround").setup({
-        -- Configuration here, or leave empty to use defaults
-      })
-    end
-  })
+    config = setup,
+  }
 end
 
 return M
