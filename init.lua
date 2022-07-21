@@ -33,12 +33,7 @@ require 'plugins'.setup_plugins {
   -- 'plug-vim-surround',
 
   'theme-adwaita',
-  'theme-molokai',
-  'theme-moonfly',
-  'theme-nightfly',
   'theme-nightfox',
-  'theme-nord',
-  'theme-tender',
 
   'conf-cd-to-workspace',
   'conf-colorscheme',
