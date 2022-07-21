@@ -19,6 +19,7 @@ require 'plugins'.setup_plugins {
   'plug-greplace',
   'plug-indent-line',
   'plug-indent-object',
+  'plug-lazygit',
   'plug-lsp',
   'plug-lualine',
   'plug-luapad',
