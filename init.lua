@@ -34,6 +34,7 @@ require 'plugins'.setup_plugins {
   -- 'plug-vim-surround',
 
   'theme-adwaita',
+  'theme-github',
   'theme-nightfox',
 
   'conf-cd-to-workspace',
