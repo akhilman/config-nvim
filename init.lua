@@ -10,7 +10,8 @@ require 'plugins'.setup_plugins {
   'plug-close-tag',
   'plug-comment',
   'plug-completion',
-  'plug-css-color',
+  'plug-create-color-code',
+  -- 'plug-css-color',  -- replaced by create-color-code
   'plug-debugger',
   'plug-easy-motion',
   'plug-formatting',
