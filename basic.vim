@@ -12,7 +12,7 @@ set modeline  " check vim configuration in file
 set number  " show line number
 set scrolloff=10  " показывать всегда 10 строк до и после курсора
 set wrap linebreak breakat=\s  " wrap long lines
-" set relativenumber  " relative line number at the left view edge
+set relativenumber  " relative line number at the left view edge
 
 " This is the persistent undo feature of vim :help undo-persistent
 if exists("+undofile")
