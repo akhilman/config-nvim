@@ -123,7 +123,9 @@ function M.packer_setup_lsp()
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   -- Add additional capabilities supported by nvim-cmp
   if plugins.is_enabled('plug-completion') then
-    capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+    pcall(function()
+      capabilities = require('cmp_nvim_lsp').default_capabilities()
+    end)
   end
 
   local lspconfig = require('lspconfig')

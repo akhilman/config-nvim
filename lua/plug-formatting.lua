@@ -17,7 +17,7 @@ local function formatting()
     yaml = true,
   }
   if vim.lsp.buf.server_ready() then
-    vim.lsp.buf.formatting()
+    vim.lsp.buf.format{ async = true }
   elseif prettier_formats[vim.bo.filetype] and vim.fn.executable("prettier") == 1 then
     vim.cmd("%! prettier --parser " .. vim.bo.filetype)
   elseif vim.bo.filetype == "toml" and vim.fn.executable("toml-fmt") == 1 then
