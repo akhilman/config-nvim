@@ -63,9 +63,24 @@ function M.packer_setup()
     sources = sources,
   }
 
+  -- Like `cmp.mapping.complete` but for command line.
+  local function cmd_complete(option)
+    return cmp.mapping(function()
+      if cmp.visible() then
+        cmp.select_next_item()
+      else
+        cmp.complete(option)
+      end
+    end, { 'c' })
+  end
+
   -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
   cmp.setup.cmdline('/', {
-    mapping = cmp.mapping.preset.cmdline(),
+    completion = { autocomplete = false },
+    mapping = cmp.mapping.preset.cmdline({
+      ['<C-Space>'] = cmd_complete(),
+      ['<Tab>'] = cmd_complete(),
+    }),
     sources = {
       { name = 'buffer' }
     }
@@ -73,7 +88,11 @@ function M.packer_setup()
 
   -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
   cmp.setup.cmdline(':', {
-    mapping = cmp.mapping.preset.cmdline(),
+    completion = { autocomplete = false },
+    mapping = cmp.mapping.preset.cmdline({
+      ['<C-Space>'] = cmd_complete(),
+      ['<Tab>'] = cmd_complete(),
+    }),
     sources = cmp.config.sources({
       { name = 'path' }
     }, {
