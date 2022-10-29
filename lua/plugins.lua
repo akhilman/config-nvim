@@ -69,7 +69,7 @@ local function packer_bootstrap()
 end
 
 local function remove_compiled_cache()
-  vim.fn.system({ 'rm', '-rf', compiled_path })
+  vim.fn.delete(compiled_path)
 end
 
 local function remove_outdated_compiled_cache()
@@ -97,9 +97,9 @@ end
 
 local function packer_uninstall()
   vim.notify(string.format('Removing "%s"...', install_path), vim.log.levels.INFO)
-  vim.fn.system({ 'rm', '-rvf', install_path })
+  vim.fn.delete(install_path, 'rf')
   vim.notify(string.format('Removing "%s"...', packages_path), vim.log.levels.INFO)
-  vim.fn.system({ 'rm', '-rvf', packages_path })
+  vim.fn.delete(packages_path, 'rf')
   vim.notify(string.format('Removing "%s"...', compiled_path), vim.log.levels.INFO)
   remove_compiled_cache()
 end
