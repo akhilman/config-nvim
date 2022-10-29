@@ -48,6 +48,9 @@ set foldmethod=indent
 set hlsearch
 nnoremap <silent> <Esc>/ :nohlsearch<CR>
 
+" live search while typing
+set incsearch
+
 " buffers
 noremap <A-PageDown> :bnext<CR>
 noremap <A-PageUp> :bprevious<CR>
