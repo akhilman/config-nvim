@@ -26,7 +26,7 @@ require 'plugins'.setup_plugins {
   'plug-luapad',
   'plug-markdown-composer',
   -- 'plug-mini',  -- surround, autopairs
-  'plug-neotree',
+  -- 'plug-neotree',
   'plug-nvim-surround',
   'plug-syntax',
   'plug-telescope',
