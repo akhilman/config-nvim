@@ -1,7 +1,7 @@
 local M = {}
 
 local function setup()
-  vim.keymap.set('n', '<C-\\>',
+  vim.keymap.set('n', '<Space>\\',
     ': execute "Neotree toggle reveal dir=" . getcwd()<CR>',
     { silent = true })
 end
