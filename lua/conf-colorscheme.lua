@@ -10,7 +10,7 @@ function M.setup()
   if vim.env.COLORTERM == "truecolor" then
     vim.o.termguicolors = true
   end
-  local theme_is_loaded = pcall(function() vim.cmd 'colorscheme nightfox' end)
+  local theme_is_loaded = pcall(function() vim.cmd 'colorscheme kanagawa' end)
   if not theme_is_loaded then
     default_color_scheme()
   end
