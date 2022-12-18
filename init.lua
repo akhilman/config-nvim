@@ -36,6 +36,7 @@ require 'plugins'.setup_plugins {
 
   'theme-adwaita',
   'theme-github',
+  'theme-jellybeans',
   'theme-nightfox',
 
   'conf-cd-to-workspace',
