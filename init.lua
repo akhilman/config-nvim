@@ -33,6 +33,7 @@ require 'plugins'.setup_plugins {
   'plug-test',
   'plug-nvim-tree',
   'plug-treesitter',
+  'plug-undotree',
   -- 'plug-vim-surround',
 
   'theme-adwaita',
