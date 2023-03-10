@@ -57,28 +57,22 @@ set incsearch
 noremap <A-PageDown> :bnext<CR>
 noremap <A-PageUp> :bprevious<CR>
 noremap <leader><Tab> :b#<CR>
-"noremap <leader>p :ls<CR>:b
-noremap <leader>q :bp<BAR> bd #<CR>
-noremap <leader>w :w<CR>
+noremap <C-q> :bp<BAR> bd #<CR>
+noremap <C-s> :w<CR>
 
 " splits
-nnoremap <silent> <C-A-j> :resize -1<CR>
-nnoremap <silent> <C-A-k> :resize +1<CR>
-nnoremap <silent> <C-A-l> :vertical resize +1<CR>
-nnoremap <silent> <C-A-h> :vertical resize -1<CR>
-nnoremap <A-h> <C-w>h
-nnoremap <A-j> <C-w>j
-nnoremap <A-k> <C-w>k
-nnoremap <A-l> <C-w>l
-
-nnoremap <C-w><S-Up> <C-w><S-k>
-nnoremap <C-w><S-Down> <C-w><S-j>
-nnoremap <C-w><S-Left> <C-w><S-h>
-nnoremap <C-w><S-Right> <C-w><S-l>
-nnoremap <silent> <C-w><A-Up> :resize +10<CR>
-nnoremap <silent> <C-w><A-Down> :resize -10<CR>
-nnoremap <silent> <C-w><A-Right> :vertical resize +10<CR>
-nnoremap <silent> <C-w><A-Left> :vertical resize -10<CR>
+nnoremap <A-Up> <C-w>k
+nnoremap <A-Down> <C-w>j
+nnoremap <A-Left> <C-w>h
+nnoremap <A-Right> <C-w>l
+nnoremap <A-S-Up> <C-w><S-k>
+nnoremap <A-S-Down> <C-w><S-j>
+nnoremap <A-S-Left> <C-w><S-h>
+nnoremap <A-S-Right> <C-w><S-l>
+nnoremap <silent> <A-C-Up> :resize +10<CR>
+nnoremap <silent> <A-C-Down> :resize -10<CR>
+nnoremap <silent> <A-C-Right> :vertical resize +10<CR>
+nnoremap <silent> <A-C-Left> :vertical resize -10<CR>
 
 " switch tabs
 noremap <A-1> 1gt
