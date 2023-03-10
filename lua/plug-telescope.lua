@@ -4,15 +4,15 @@ local function setup()
   local telescope_builtin = require 'telescope.builtin'
 
   -- Buffers
-  vim.keymap.set('n', '<leader>f/', telescope_builtin.current_buffer_fuzzy_find,
+  vim.keymap.set('n', '<Leader>f/', telescope_builtin.current_buffer_fuzzy_find,
     { desc = 'Find in current buffer with Telescope', silent = true })
-  vim.keymap.set('n', '<leader>fb', telescope_builtin.buffers,
+  vim.keymap.set('n', '<Leader>fb', telescope_builtin.buffers,
     { desc = 'Find buffer with Telescope', silent = true })
 
   -- Diagnostics
-  vim.keymap.set('n', '<space>e', vim.diagnostic.open_float,
+  vim.keymap.set('n', '<LocalLeader>e', vim.diagnostic.open_float,
     { desc = 'Show diagnostic errors', silent = true })
-  vim.keymap.set('n', '<space>q', telescope_builtin.diagnostics,
+  vim.keymap.set('n', '<LocalLeader>q', telescope_builtin.diagnostics,
     { desc = 'Show diagnostic errors with Telescope', silent = true })
   vim.keymap.set('n', '[d', vim.diagnostic.goto_prev,
     { desc = 'Previous diagnostic error', silent = true })
@@ -20,11 +20,11 @@ local function setup()
     { desc = 'Next diagnostic error', silent = true })
 
   -- Files
-  vim.keymap.set('n', '<leader>ff', telescope_builtin.find_files,
+  vim.keymap.set('n', '<Leader>ff', telescope_builtin.find_files,
     { desc = 'Find file with Telescope', silent = true })
-  vim.keymap.set('n', '<leader>fg', telescope_builtin.live_grep,
+  vim.keymap.set('n', '<Leader>fg', telescope_builtin.live_grep,
     { desc = 'Search for a string and get results live as you type', silent = true })
-  vim.keymap.set('n', '<leader>fs', telescope_builtin.grep_string,
+  vim.keymap.set('n', '<Leader>fs', telescope_builtin.grep_string,
     { desc = 'Searches for the string under your cursor in your current working directory', silent = true })
 
   -- Spell suggestions
@@ -32,7 +32,7 @@ local function setup()
     { desc = "Spell suggestions with Telescope", silent = true })
 
   -- Telescope history
-  vim.keymap.set('n', '<leader>fh', telescope_builtin.pickers,
+  vim.keymap.set('n', '<Leader>fh', telescope_builtin.pickers,
     { desc = "Show recent telescope searches", silent = true })
 
   -- Commands
