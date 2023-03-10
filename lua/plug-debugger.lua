@@ -31,20 +31,20 @@ local function setup_dap()
   dap.configurations.rust = dap.configurations.c
 
   -- keymap
-  vim.keymap.set('n', '<Leader>db', ':DapToggleBreakpoint<CR>')
-  vim.keymap.set('n', '<Leader>dc', ':DapContinue<CR>')
-  vim.keymap.set('n', '<Leader>di', ':DapStepInto<CR>')
-  vim.keymap.set('n', '<Leader>do', ':DapStepOut<CR>')
-  vim.keymap.set('n', '<Leader>dq', ':DapTerminate<CR>')
-  vim.keymap.set('n', '<Leader>dr', ':DapToggleRepl<CR>')
-  vim.keymap.set('n', '<Leader>ds', ':DapStepOver<CR>')
+  vim.keymap.set('n', '<LocalLeader>db', ':DapToggleBreakpoint<CR>')
+  vim.keymap.set('n', '<LocalLeader>dc', ':DapContinue<CR>')
+  vim.keymap.set('n', '<LocalLeader>di', ':DapStepInto<CR>')
+  vim.keymap.set('n', '<LocalLeader>do', ':DapStepOut<CR>')
+  vim.keymap.set('n', '<LocalLeader>dq', ':DapTerminate<CR>')
+  vim.keymap.set('n', '<LocalLeader>dr', ':DapToggleRepl<CR>')
+  vim.keymap.set('n', '<LocalLeader>ds', ':DapStepOver<CR>')
 end
 
 local function setup_ui()
   local dapui = require "dapui"
   dapui.setup()
 
-  vim.keymap.set('n', '<Leader>dv', dapui.toggle,
+  vim.keymap.set('n', '<LocalLeader>dv', dapui.toggle,
     { desc = "Toggle debugger UI", silent = true })
 end
 

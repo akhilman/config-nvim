@@ -99,22 +99,22 @@ local function on_attach(client, bufnr) ---@diagnostic disable-line: unused-loca
     { desc = "Show documentation (hover)", silent = true, buffer = bufnr })
   vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help,
     { desc = "Show signature help", silent = true, buffer = bufnr })
-  vim.keymap.set('n', '<space>ds', require 'telescope.builtin'.lsp_document_symbols,
+  vim.keymap.set('n', '<LocalLeader>s', require 'telescope.builtin'.lsp_document_symbols,
     { desc = "Show document symbols", silent = true, buffer = bufnr })
-  vim.keymap.set('n', '<space>ws', require 'telescope.builtin'.lsp_workspace_symbols,
+  vim.keymap.set('n', '<LocalLeader>ws', require 'telescope.builtin'.lsp_workspace_symbols,
     { desc = "Show workspace symbols", silent = true, buffer = bufnr })
-  vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder,
+  vim.keymap.set('n', '<LocalLeader>wa', vim.lsp.buf.add_workspace_folder,
     { desc = "Add workspace folder", silent = true, buffer = bufnr })
-  vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder,
+  vim.keymap.set('n', '<LocalLeader>wr', vim.lsp.buf.remove_workspace_folder,
     { desc = "Remove workspace folder", silent = true, buffer = bufnr })
-  vim.keymap.set('n', '<space>wl',
+  vim.keymap.set('n', '<LocalLeader>wl',
     function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())); end,
     { desc = "List workspace folders", silent = true, buffer = bufnr })
-  vim.keymap.set('n', '<space>D', require 'telescope.builtin'.lsp_type_definitions,
+  vim.keymap.set('n', '<LocalLeader>D', require 'telescope.builtin'.lsp_type_definitions,
     { desc = "Search for type definitions", silent = true, buffer = bufnr })
-  vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename,
+  vim.keymap.set('n', '<LocalLeader>rn', vim.lsp.buf.rename,
     { desc = "Rename symbol (refactoring)", silent = true, buffer = bufnr })
-  vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action,
+  vim.keymap.set('n', '<LocalLeader>ca', vim.lsp.buf.code_action,
     { desc = "Show code actions", silent = true, buffer = bufnr })
 end
 

@@ -4,6 +4,10 @@
 
 set nocompatible
 
+" Map Leader key
+let g:mapleader="\<Space>"  " <Leader>
+let g:maplocalleader="\\"  " <LocalLeader>
+
 syntax on
 filetype plugin indent on
 let c_minlines=500  " number of lines that vim goes backwards for syntax highlight
