@@ -27,11 +27,11 @@ require 'plugins'.setup_plugins {
   'plug-markdown-composer',
   -- 'plug-mini',  -- surround, autopairs
   'plug-nvim-surround',
+  'plug-nvim-tree',
   'plug-rust-tools',
   'plug-syntax',
   'plug-telescope',
   'plug-test',
-  'plug-nvim-tree',
   'plug-treesitter',
   'plug-undotree',
   -- 'plug-vim-surround',
