@@ -86,13 +86,15 @@ local function setup()
         },
       },
     },
+    -- playground = {
+    --   enable = true,
+    -- },
   }
 
   -- vim.api.nvim_create_autocmd(
   --   { "BufReadPost", "FileReadPost" },
   --   { callback = buffer_setup }
   -- )
-
 end
 
 function M.packer_startup(use)
@@ -106,6 +108,8 @@ function M.packer_startup(use)
   use { 'nvim-treesitter/nvim-treesitter-context', config = function()
     require 'treesitter-context'.setup {}
   end }
+  -- Visualiration of AST for debuging and plugin development
+  -- use 'nvim-treesitter/playground'
 end
 
 return M
