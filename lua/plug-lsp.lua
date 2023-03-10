@@ -3,15 +3,15 @@ local M = {}
 local plugins = require 'plugins'
 
 -- Find rust analyzer
-local function find_rust_analyzer()
-  if vim.fn.executable('rustup') == 1 then
-    local cmd = vim.fn.system('rustup which --toolchain nightly rust-analyzer')
-        :match('^%s*(.-rust%-analyzer)%s*$')
-    if cmd then return { cmd } end
-  end
-  if vim.fn.executable('rust-analyzer') == 1 then return { 'rust-analyzer' } end
-  return nil
-end
+-- local function find_rust_analyzer()
+--   if vim.fn.executable('rustup') == 1 then
+--     local cmd = vim.fn.system('rustup which --toolchain nightly rust-analyzer')
+--         :match('^%s*(.-rust%-analyzer)%s*$')
+--     if cmd then return { cmd } end
+--   end
+--   if vim.fn.executable('rust-analyzer') == 1 then return { 'rust-analyzer' } end
+--   return nil
+-- end
 
 -- Server settings
 local function server_settings()
@@ -48,27 +48,28 @@ local function server_settings()
     }
   end
 
-  -- rust_analyzer
-  local rust_analyzer = find_rust_analyzer()
-  if rust_analyzer then
-    settings.rust_analyzer = {
-      cmd = find_rust_analyzer(),
-      settings = {
-        rust = { clippy_preference = true },
-        ['rust-analyzer'] = {
-          -- cargo = { features = nil },
-          checkOnSave = {
-            enabled = true,
-            command = 'clippy',
-            -- features = nil
-          },
-          inlayHints = {
-            enabled = true
-          }
-        }
-      }
-    }
-  end
+  -- The rust LSP is configured by the rust tools
+  -- -- rust_analyzer
+  -- local rust_analyzer_cmd = find_rust_analyzer()
+  -- if rust_analyzer_cmd then
+  --   settings.rust_analyzer = {
+  --     cmd = rust_analyzer_cmd,
+  --     settings = {
+  --       rust = { clippy_preference = true },
+  --       ['rust-analyzer'] = {
+  --         -- cargo = { features = nil },
+  --         checkOnSave = {
+  --           enabled = true,
+  --           command = 'clippy',
+  --           -- features = nil
+  --         },
+  --         inlayHints = {
+  --           enabled = true
+  --         }
+  --       }
+  --     }
+  --   }
+  -- end
 
   -- Lua
   if vim.fn.executable('lua-language-server') == 1 then
@@ -80,8 +81,7 @@ end
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-local function on_attach(client, bufnr) ---@diagnostic disable-line: unused-local
-
+function M.lsp_on_attach(client, bufnr) ---@diagnostic disable-line: unused-local
   -- Enable completion triggered by <c-x><c-o>
   -- vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -132,7 +132,7 @@ function M.packer_setup_lsp()
 
   -- Enable language servers with the additional completion capabilities
   for lsp, config in pairs(server_settings()) do
-    config.on_attach = on_attach
+    config.on_attach = M.lsp_on_attach
     config.capabilities = capabilities
     lspconfig[lsp].setup(config)
   end

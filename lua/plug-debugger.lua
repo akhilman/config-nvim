@@ -28,7 +28,8 @@ local function setup_dap()
     },
   }
   dap.configurations.cpp = dap.configurations.c
-  dap.configurations.rust = dap.configurations.c
+  -- The Rust debugger is configured by the rust tools
+  -- dap.configurations.rust = dap.configurations.c
 
   -- keymap
   vim.keymap.set('n', '<LocalLeader>db', ':DapToggleBreakpoint<CR>')

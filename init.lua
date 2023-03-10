@@ -27,6 +27,7 @@ require 'plugins'.setup_plugins {
   'plug-markdown-composer',
   -- 'plug-mini',  -- surround, autopairs
   'plug-nvim-surround',
+  'plug-rust-tools',
   'plug-syntax',
   'plug-telescope',
   'plug-test',
