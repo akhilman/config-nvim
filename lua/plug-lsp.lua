@@ -70,9 +70,9 @@ local function server_settings()
     }
   end
 
-  -- sumneko_lua
+  -- Lua
   if vim.fn.executable('lua-language-server') == 1 then
-    settings.sumneko_lua = {}
+    settings.lua_ls = {}
   end
 
   return settings
