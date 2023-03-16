@@ -2,7 +2,7 @@
 " TODO: rewrite in lua, map to <C-Space>, add third keymap.
 
 " Order matters
-set keymap=russian-jcukenwin
+set keymap=russian-translit
 set iminsert=0  " use qwerty by default
 set imsearch=0  " use qwerty by default
 
