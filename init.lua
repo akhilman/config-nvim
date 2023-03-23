@@ -28,7 +28,6 @@ require 'plugins'.setup_plugins {
   -- 'plug-mini',  -- surround, autopairs
   'plug-nvim-surround',
   'plug-nvim-tree',
-  'plug-rust-tools',
   'plug-syntax',
   'plug-telescope',
   'plug-test',
