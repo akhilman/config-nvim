@@ -8,10 +8,9 @@ Commands:
 :DeleteSession " deletes a session in the currently set `auto_session_root_dir`.
 :DeleteSession ~/my/custom/path " deleetes a session based on the provided path.
 --]]
-
 local M = {}
 
-local function setup()
+function M.setup()
   vim.o.sessionoptions = "help,skiprtp,tabpages,winsize"
   require('auto-session').setup {
     auto_restore_enabled = false,
@@ -23,7 +22,7 @@ local function setup()
   }
 end
 
-local function setup_lens()
+function M.setup_lens()
   vim.keymap.set('n', '<leader>fS', require('session-lens').search_session,
     { desc = 'Searches session', silent = true })
 end
@@ -31,12 +30,16 @@ end
 function M.packer_startup(use)
   use {
     'rmagatti/auto-session',
-    config = setup,
+    config = function()
+      require 'plug-auto-session'.setup()
+    end,
   }
   if require('plugins').is_enabled('plug-telescope') then
     use {
       'rmagatti/session-lens',
-      config = setup_lens,
+      config = function()
+        require 'plug-auto-session'.setup_lens()
+      end,
     }
   end
 end
