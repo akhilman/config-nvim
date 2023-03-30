@@ -119,7 +119,7 @@ local function on_attach(client, bufnr) ---@diagnostic disable-line: unused-loca
 end
 
 -- LSP setup
-function M.packer_setup_lsp()
+function M.setup_lsp()
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   -- Add additional capabilities supported by nvim-cmp
   if plugins.is_enabled('plug-completion') then
@@ -144,7 +144,7 @@ function M.packer_startup(use)
   use {
     'neovim/nvim-lspconfig',
     -- Somehow using setup function directly does not work
-    config = function() require('plug-lsp').packer_setup_lsp() end,
+    config = function() require('plug-lsp').setup_lsp() end,
     requires = {
       -- LSP goodies
       'ii14/lsp-command', -- :Lsp command
