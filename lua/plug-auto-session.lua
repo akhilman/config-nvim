@@ -10,35 +10,29 @@ Commands:
 --]]
 local M = {}
 
-function M.setup()
-  vim.o.sessionoptions = "help,skiprtp,tabpages,winsize"
-  require('auto-session').setup {
-    auto_restore_enabled = false,
-    auto_save_enabled = true,
-    auto_session_create_enabled = false,
-    bypass_session_save_file_types = {
-      'neo-tree',
-    },
-  }
-end
-
-function M.setup_lens()
-  vim.keymap.set('n', '<leader>fS', require('session-lens').search_session,
-    { desc = 'Searches session', silent = true })
-end
+local auto_sesson_config = {
+  auto_restore_enabled = true,
+  auto_save_enabled = true,
+  auto_session_create_enabled = false,
+  bypass_session_save_file_types = {
+    'neo-tree',
+  },
+}
 
 function M.packer_startup(use)
   use {
     'rmagatti/auto-session',
     config = function()
-      require 'plug-auto-session'.setup()
+      vim.o.sessionoptions = "help,skiprtp,tabpages,winsize"
+      require('auto-session').setup(auto_sesson_config)
     end,
   }
   if require('plugins').is_enabled('plug-telescope') then
     use {
       'rmagatti/session-lens',
       config = function()
-        require 'plug-auto-session'.setup_lens()
+        vim.keymap.set('n', '<leader>fS', require('session-lens').search_session,
+          { desc = 'Searches session', silent = true })
       end,
     }
   end
