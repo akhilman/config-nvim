@@ -13,75 +13,9 @@ local function find_rust_analyzer()
   return nil
 end
 
--- Server settings
-local function server_settings()
-  local settings = {}
-
-  -- clangd
-  if vim.fn.executable('clangd') == 1 then
-    settings.clangd = {}
-  end
-
-  -- denols
-  if vim.fn.executable('deno') == 1 then
-    settings.denols = {
-      enabled = true,
-      lint = true,
-    }
-  end
-
-  -- elmls
-  if vim.fn.executable('elm-language-server') == 1 then
-    settings.elmls = {}
-  end
-
-  -- pylsp
-  if vim.fn.executable('pylsp') == 1 then
-    settings.pylsp = {
-      plugins = {
-        black = { enabled = true },
-        pylint = { enabled = true },
-        pyflakes = { enabled = false },
-        pyls_mypy = { enabled = true, live_mode = false },
-        isort = { enabled = true },
-      }
-    }
-  end
-
-  -- rust_analyzer
-  local rust_analyzer = find_rust_analyzer()
-  if rust_analyzer then
-    settings.rust_analyzer = {
-      cmd = find_rust_analyzer(),
-      settings = {
-        rust = { clippy_preference = true },
-        ['rust-analyzer'] = {
-          -- cargo = { features = nil },
-          checkOnSave = {
-            enabled = true,
-            command = 'clippy',
-            -- features = nil
-          },
-          inlayHints = {
-            enabled = true
-          }
-        }
-      }
-    }
-  end
-
-  -- Lua
-  if vim.fn.executable('lua-language-server') == 1 then
-    settings.lua_ls = {}
-  end
-
-  return settings
-end
-
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local function on_attach(client, bufnr) ---@diagnostic disable-line: unused-local
-
   -- Enable completion triggered by <c-x><c-o>
   -- vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -95,8 +29,13 @@ local function on_attach(client, bufnr) ---@diagnostic disable-line: unused-loca
     { desc = "Search for implementations", silent = true, buffer = bufnr })
   vim.keymap.set('n', 'gr', require 'telescope.builtin'.lsp_references,
     { desc = "Search for references", silent = true, buffer = bufnr })
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover,
-    { desc = "Show documentation (hover)", silent = true, buffer = bufnr })
+  if vim.bo[bufnr].filetype == 'rust' then
+    vim.keymap.set('n', 'K', require 'rust-tools'.hover_actions.hover_actions,
+      { desc = "Show documentation and actions (hover)", silent = true, buffer = bufnr })
+  else
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover,
+      { desc = "Show documentation (hover)", silent = true, buffer = bufnr })
+  end
   vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help,
     { desc = "Show signature help", silent = true, buffer = bufnr })
   vim.keymap.set('n', '<LocalLeader>s', require 'telescope.builtin'.lsp_document_symbols,
@@ -120,27 +59,85 @@ end
 
 -- LSP setup
 function M.setup_lsp()
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  -- Base configuration
+  local base_cfg = {
+    on_attach = on_attach,
+    capabilities = vim.lsp.protocol.make_client_capabilities(),
+  }
   -- Add additional capabilities supported by nvim-cmp
   if plugins.is_enabled('plug-completion') then
     pcall(function()
-      capabilities = require('cmp_nvim_lsp').default_capabilities()
+      base_cfg.capabilities = require('cmp_nvim_lsp').default_capabilities()
     end)
   end
 
-  local lspconfig = require('lspconfig')
+  -- Setup language servers
+  local lspconfig = require 'lspconfig'
 
-  -- Enable language servers with the additional completion capabilities
-  for lsp, config in pairs(server_settings()) do
-    config.on_attach = on_attach
-    config.capabilities = capabilities
-    lspconfig[lsp].setup(config)
+  -- clangd
+  if vim.fn.executable('clangd') == 1 then
+    lspconfig.clangd.setup(vim.tbl_extend('force', base_cfg, {}))
+  end
+
+  -- denols
+  if vim.fn.executable('deno') == 1 then
+    lspconfig.denols.setup(vim.tbl_extend('force', base_cfg, {
+      enabled = true,
+      lint = true,
+    }))
+  end
+
+  -- elmls
+  if vim.fn.executable('elm-language-server') == 1 then
+    lspconfig.elmls.setup(vim.tbl_extend('force', base_cfg, {}))
+  end
+
+  -- pylsp
+  if vim.fn.executable('deno') == 1 then
+    lspconfig.denols.setup(vim.tbl_extend('force', base_cfg, {
+      plugins = {
+        black = { enabled = true },
+        pylint = { enabled = true },
+        pyflakes = { enabled = false },
+        pyls_mypy = { enabled = true, live_mode = false },
+        isort = { enabled = true },
+      }
+    }))
+  end
+
+  -- rust_analyzer
+  local rust_analyzer = find_rust_analyzer()
+  if rust_analyzer then
+    local rt = require 'rust-tools'
+    rt.setup {
+      server = vim.tbl_extend('force', base_cfg, {
+        cmd = rust_analyzer,
+        settings = {
+          rust = { clippy_preference = true },
+          ['rust-analyzer'] = {
+            -- cargo = { features = nil },
+            checkOnSave = {
+              enabled = true,
+              command = 'clippy',
+              -- features = nil
+            },
+            inlayHints = {
+              enabled = true
+            }
+          }
+        }
+      })
+    }
+  end
+
+  -- Lua
+  if vim.fn.executable('lua-language-server') == 1 then
+    lspconfig.lua_ls.setup(vim.tbl_extend('force', base_cfg, {}))
   end
 end
 
 -- Packer startup
 function M.packer_startup(use)
-  -- Completion and LSP
   use {
     'neovim/nvim-lspconfig',
     -- Somehow using setup function directly does not work
@@ -149,7 +146,7 @@ function M.packer_startup(use)
       -- LSP goodies
       'ii14/lsp-command', -- :Lsp command
       -- 'nvim-lua/lsp_extensions.nvim',  -- Inlay hints
-      -- 'simrat39/rust-tools.nvim',
+      'simrat39/rust-tools.nvim',
       {
         'nvim-telescope/telescope.nvim',
         requires = { 'nvim-lua/plenary.nvim' },
