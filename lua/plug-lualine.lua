@@ -9,7 +9,7 @@ local function setup()
     lualine_z = {},
   }
   if plugins.is_enabled('plug-auto-session') then
-    table.insert(tabline.lualine_z, require('auto-session-library').current_session_name)
+    table.insert(tabline.lualine_z, require('auto-session.lib').current_session_name)
   end
 
   local sections = {
