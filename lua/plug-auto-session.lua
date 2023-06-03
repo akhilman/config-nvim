@@ -34,6 +34,7 @@ function M.packer_startup(use)
         vim.keymap.set('n', '<leader>fS', require('session-lens').search_session,
           { desc = 'Searches session', silent = true })
       end,
+      requires = { 'rmagatti/auto-session', 'nvim-lua/plenary.nvim' },
     }
   end
 end
