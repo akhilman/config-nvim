@@ -22,9 +22,11 @@ local function setup()
   -- Files
   vim.keymap.set('n', '<Leader>ff', telescope_builtin.find_files,
     { desc = 'Find file with Telescope', silent = true })
-  vim.keymap.set('n', '<Leader>fg', telescope_builtin.live_grep,
+  vim.keymap.set('n', '<Leader>fg', telescope_builtin.git_files,
+    { desc = 'Find file in git with Telescope', silent = true })
+  vim.keymap.set('n', '<Leader>f/', telescope_builtin.live_grep,
     { desc = 'Search for a string and get results live as you type', silent = true })
-  vim.keymap.set('n', '<Leader>fs', telescope_builtin.grep_string,
+  vim.keymap.set('n', '<Leader>f*', telescope_builtin.grep_string,
     { desc = 'Searches for the string under your cursor in your current working directory', silent = true })
 
   -- Spell suggestions
@@ -39,9 +41,9 @@ local function setup()
   vim.keymap.set('n', '<Leader>fc', telescope_builtin.commands,
     { desc = 'Find command with Telescope', silent = true })
   vim.api.nvim_create_user_command('SearchHelp', telescope_builtin.help_tags,
-    {desc = "Search in vim's help using telescope"})
+    { desc = "Search in vim's help using telescope" })
   vim.api.nvim_create_user_command('SearchKeymaps', telescope_builtin.keymaps,
-    {desc = "Search keymap using telescope"})
+    { desc = "Search keymap using telescope" })
 end
 
 function M.packer_startup(use)
