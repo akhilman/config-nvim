@@ -104,10 +104,13 @@ function M.packer_startup(use)
     config = setup,
   }
   -- Additional textobjects for treesitter
-  use 'nvim-treesitter/nvim-treesitter-textobjects'
-  use { 'nvim-treesitter/nvim-treesitter-context', config = function()
-    require 'treesitter-context'.setup {}
-  end }
+  use { 'nvim-treesitter/nvim-treesitter-textobjects', requires = { 'nvim-treesitter/nvim-treesitter' } }
+  use {
+    'nvim-treesitter/nvim-treesitter-context', config = function()
+      require 'treesitter-context'.setup {}
+    end,
+    requires = { 'nvim-treesitter/nvim-treesitter' },
+  }
   -- Visualiration of AST for debuging and plugin development
   -- use 'nvim-treesitter/playground'
 end
