@@ -80,6 +80,7 @@ function M.setup_lsp()
   end
 
   -- denols
+  -- TODO: use https://github.com/sigmaSd/deno-nvim
   if vim.fn.executable('deno') == 1 then
     lspconfig.denols.setup(vim.tbl_extend('force', base_cfg, {
       enabled = true,
