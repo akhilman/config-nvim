@@ -5,7 +5,7 @@ local function setup()
     update_focused_file = { enable = true }
   }
   vim.keymap.set(
-    'n', '<Space>\\',
+    'n', '<Space>/',
     ':NvimTreeFindFileToggle<CR>',
     {}
     -- { silent = true }
