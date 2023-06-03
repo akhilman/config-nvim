@@ -13,7 +13,7 @@ require 'plugins'.setup_plugins {
   'plug-create-color-code',
   -- 'plug-css-color',  -- replaced by create-color-code
   'plug-debugger',
-  -- 'plug-early-retirement',
+  'plug-early-retirement',
   'plug-easy-motion',
   'plug-formatting',
   'plug-fugitive',
