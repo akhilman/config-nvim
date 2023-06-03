@@ -94,8 +94,8 @@ function M.setup_lsp()
   end
 
   -- pylsp
-  if vim.fn.executable('deno') == 1 then
-    lspconfig.denols.setup(vim.tbl_extend('force', base_cfg, {
+  if vim.fn.executable('pylsp') == 1 then
+    lspconfig.pylsp.setup(vim.tbl_extend('force', base_cfg, {
       plugins = {
         black = { enabled = true },
         pylint = { enabled = true },
