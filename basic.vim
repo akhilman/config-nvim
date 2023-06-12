@@ -23,6 +23,17 @@ set timeoutlen=1500  " timeout for key chain
 " This is the persistent undo feature of vim :help undo-persistent
 if exists("+undofile")
   set undofile
+  if !has('nvim')
+    if has('unix')
+      let undoDirPath = $HOME . '/.vim/undo'
+    else
+      let undoDirPath = $HOME .'\Programming\Vim\vimfiles\undo'
+    endif
+    if !isdirectory(undoDirPath)
+        call mkdir(undoDirPath)
+    endif
+    exe 'set undodir=' . undoDirPath
+  endif
 endif
 
 " setting shell to bash to make all work again when started from fish
