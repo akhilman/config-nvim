@@ -1,13 +1,15 @@
+NVIM_CMD ?= nvim
+
 default: install
 
 install:
-	nvim --headless -c 'PackerBootstrap' -c 'quitall'
-	nvim -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
-	nvim --headless -c 'TSUpdateSync' -c 'quitall'
+	$(NVIM_CMD) --headless -c 'PackerBootstrap' -c 'quitall'
+	$(NVIM_CMD) -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+	$(NVIM_CMD) --headless -c 'TSUpdateSync' -c 'quitall'
 
 update:
-	nvim -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
-	nvim --headless -c 'TSUpdateSync' -c 'quitall'
+	$(NVIM_CMD) -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+	$(NVIM_CMD) --headless -c 'TSUpdateSync' -c 'quitall'
 
 uninstall:
-	nvim --headless -c 'PackerUninstall' -c 'quitall'
+	$(NVIM_CMD) --headless -c 'PackerUninstall' -c 'quitall'
