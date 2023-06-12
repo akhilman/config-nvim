@@ -30,7 +30,7 @@ if exists("+undofile")
       let undoDirPath = $HOME .'\Programming\Vim\vimfiles\undo'
     endif
     if !isdirectory(undoDirPath)
-        call mkdir(undoDirPath)
+        call mkdir(undoDirPath, 'p')
     endif
     exe 'set undodir=' . undoDirPath
   endif
