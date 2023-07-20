@@ -10,6 +10,8 @@ function M.packer_startup(use)
         ['<Right>'] = mapping.increase1,
       }
     }
+    vim.keymap.set('n', '<LocalLeader>c', ':CccPick<CR>',
+      { silent = true, desc = "Pick color with :CccPick" })
   end }
 end
 
