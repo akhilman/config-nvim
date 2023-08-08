@@ -97,6 +97,11 @@ noremap <A-4> 4gt
 noremap <A-5> 5gt
 noremap <A-6> 6gt
 
+" quickfix
+noremap <Leader>q :copen<CR>
+noremap <Leader>n :cnext<CR>
+noremap <Leader>p :cprevious<CR>
+
 " Saving Files that Require Root Permission with sudo
 cmap w!! %!sudo tee > /dev/null %
 
