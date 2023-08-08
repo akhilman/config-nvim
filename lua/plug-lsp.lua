@@ -102,6 +102,7 @@ function M.setup_lsp()
         pyflakes = { enabled = false },
         pyls_mypy = { enabled = true, live_mode = false },
         isort = { enabled = true },
+        rope_autoimport = { enabled = true },
       }
     }))
   end
