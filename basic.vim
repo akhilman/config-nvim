@@ -15,9 +15,9 @@ set cursorline  " highlight the line under the cursor
 set list  " show trailing spaces and tabs
 set modeline  " check vim configuration in file
 set number  " show line number
+set relativenumber  " relative line number at the left view edge
 set scrolloff=5  " показывать всегда 5 строк до и после курсора
 set wrap linebreak breakat=\s  " wrap long lines
-set relativenumber  " relative line number at the left view edge
 set timeoutlen=1500  " timeout for key chain
 
 " This is the persistent undo feature of vim :help undo-persistent
