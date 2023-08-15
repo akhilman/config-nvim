@@ -21,7 +21,7 @@ require 'plugins'.setup_plugins {
   'plug-indent-line',
   'plug-indent-object',
   'plug-lazygit',
-  'plug-leap',  -- like easymotion
+  -- 'plug-leap',  -- like easymotion
   'plug-lsp',
   'plug-lualine',
   'plug-luapad',
