@@ -59,6 +59,8 @@ end
 
 -- LSP setup
 function M.setup_lsp()
+  -- vim.lsp.set_log_level("debug")
+
   -- Base configuration
   local base_cfg = {
     on_attach = on_attach,
@@ -83,8 +85,10 @@ function M.setup_lsp()
   -- TODO: use https://github.com/sigmaSd/deno-nvim
   if vim.fn.executable('deno') == 1 then
     lspconfig.denols.setup(vim.tbl_extend('force', base_cfg, {
-      enabled = true,
-      lint = true,
+      settings = {
+        enabled = true,
+        lint = true,
+      }
     }))
   end
 
@@ -96,13 +100,15 @@ function M.setup_lsp()
   -- pylsp
   if vim.fn.executable('pylsp') == 1 then
     lspconfig.pylsp.setup(vim.tbl_extend('force', base_cfg, {
-      plugins = {
-        black = { enabled = true },
-        pylint = { enabled = true },
-        pyflakes = { enabled = false },
-        pyls_mypy = { enabled = true, live_mode = false },
-        isort = { enabled = true },
-        rope_autoimport = { enabled = true },
+      settings = {
+        plugins = {
+          black = { enabled = true },
+          pylint = { enabled = true },
+          pyflakes = { enabled = false },
+          pyls_mypy = { enabled = true, live_mode = false },
+          isort = { enabled = true },
+          rope_autoimport = { enabled = true },
+        }
       }
     }))
   end
