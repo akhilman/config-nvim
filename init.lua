@@ -14,7 +14,6 @@ require 'plugins'.setup_plugins {
   -- 'plug-css-color',  -- replaced by create-color-code
   'plug-debugger',
   'plug-early-retirement',
-  'plug-easy-motion',
   'plug-formatting',
   'plug-fugitive',
   'plug-gitsigns',
@@ -22,6 +21,7 @@ require 'plugins'.setup_plugins {
   'plug-indent-line',
   'plug-indent-object',
   'plug-lazygit',
+  'plug-leap',  -- like easymotion
   'plug-lsp',
   'plug-lualine',
   'plug-luapad',
