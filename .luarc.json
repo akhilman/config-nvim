@@ -2,7 +2,7 @@
   "$schema": "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json",
   "runtime": {
     "version": "LuaJIT",
-    "path": ["?.lua", "?/init.lua"]
+    "path": ["init.lua", "lua/?.lua", "plugin.availale/?.lua"]
   },
   "diagnostics": {
     "globals": ["vim"]
