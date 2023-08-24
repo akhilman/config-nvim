@@ -13,6 +13,7 @@ local function config()
   local sources = {
     { name = 'luasnip' },
     { name = 'path' },
+    { name = 'buffer' },
   }
   -- Completion for LSP
   if plugins.contains('lsp') then
