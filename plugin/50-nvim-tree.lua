@@ -1,0 +1,1 @@
+../plugin.available/50-nvim-tree.lua
