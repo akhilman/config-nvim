@@ -2,47 +2,30 @@ vim.g.python3_host_prog = '/usr/bin/python3'
 
 vim.cmd('source ' .. vim.fn.stdpath 'config' .. '/basic.vim')
 vim.cmd('source ' .. vim.fn.stdpath 'config' .. '/localization.vim')
+vim.cmd('source ' .. vim.fn.stdpath 'config' .. '/default_colorscheme.vim')
 
--- Load and setup plugins
-require 'plugins'.setup_plugins {
-  'plug-autopairs',
-  'plug-auto-session',
-  'plug-close-tag',
-  'plug-comment',
-  'plug-completion',
-  'plug-create-color-code',
-  -- 'plug-css-color',  -- replaced by create-color-code
-  'plug-debugger',
-  'plug-early-retirement',
-  'plug-formatting',
-  'plug-fugitive',
-  'plug-gitsigns',
-  'plug-greplace',
-  'plug-indent-line',
-  'plug-indent-object',
-  'plug-lazygit',
-  -- 'plug-leap',  -- like easymotion
-  'plug-lsp',
-  'plug-lualine',
-  'plug-luapad',
-  'plug-markdown-composer',
-  -- 'plug-mini',  -- surround, autopairs
-  'plug-nvim-surround',
-  'plug-nvim-tree',
-  'plug-syntax',
-  'plug-telescope',
-  'plug-test',
-  'plug-treesitter',
-  'plug-undotree',
-  -- 'plug-vim-surround',
+-- GUI configuration
 
-  'theme-adwaita',
-  'theme-github',
-  'theme-jellybeans',
-  'theme-kanagawa',
-  'theme-nightfox',
+local font = 'Hack:h11'
 
-  'conf-cd-to-workspace',
-  'conf-colorscheme',
-  'conf-gui',
-}
+local function setup_nvim_qt()
+  if vim.fn.exists(':GuiFont') ~= 0 then
+    vim.cmd('GuiFont ' .. font)
+  end
+  if vim.fn.exists(':GuiTabline') ~= 0 then
+    vim.cmd('GuiTabline 0')
+  end
+
+  if vim.fn.exists('*GuiShowContextMenu') ~= 0 then
+    vim.keymap.set('n', '<RightMouse>', ':call GuiShowContextMenu()<CR>', { silent = true })
+    vim.keymap.set('i', '<RightMouse>', '<Esc>:call GuiShowContextMenu()<CR>', { silent = true })
+    vim.keymap.set('x', '<RightMouse>', ':call GuiShowContextMenu()<CR>gv', { silent = true })
+    vim.keymap.set('s', '<RightMouse>', '<C-G>:call GuiShowContextMenu()<CR>gv', { silent = true })
+  end
+end
+
+-- Neovide
+vim.opt_global.guifont = font
+
+-- Neovim-qt
+vim.api.nvim_create_autocmd({ 'UiEnter' }, { callback = setup_nvim_qt })

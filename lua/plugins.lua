@@ -1,38 +1,23 @@
 local M = {}
 
-local install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 local packages_path = vim.fn.stdpath('data') .. '/site/pack/packer/'
-local compiled_path = vim.fn.stdpath('config') .. '/plugin/packer_compiled.lua'
+local install_path = packages_path .. 'start/packer.nvim'
+local compiled_path = vim.fn.stdpath('config') .. '/plugin/00-packer_compiled.lua'
 local packer_name = 'wbthomason/packer.nvim'
 local packer_repo = 'https://github.com/' .. packer_name
 
-local plugin_names = {}
 local plugin_modules = {}
+
+function M.add(module)
+  if not module.name then
+    error("Table has no `name` field")
+  end
+  plugin_modules[module.name] = module
+end
 
 local function is_packer_installed()
   local success, _ = pcall(function() require 'packer' end)
   return success
-end
-
-local function is_packer_cached()
-  return vim.fn.empty(vim.fn.glob(compiled_path)) == 0
-end
-
--- Load plugin modules and set module global variable `plugin_modules`
-local function load_plugin_modules(plugins)
-  plugin_modules = {} -- module global
-  plugin_names = {} -- module global
-  for _, modname in pairs(plugins) do
-    local success, module_or_errormsg = pcall(function()
-      return require(modname)
-    end)
-    if success then
-      table.insert(plugin_modules, module_or_errormsg)
-      table.insert(plugin_names, modname)
-    else
-      vim.notify(module_or_errormsg, vim.log.levels.ERROR)
-    end
-  end
 end
 
 -- Startup plugins
@@ -42,6 +27,7 @@ local function run_startup(use, use_rocks)
       if module.packer_startup then module.packer_startup(use, use_rocks) end
     end)
     if not success then
+      vim.notify("Failed to run `" .. module.name .. "` .packer_startup() function", vim.log.levels.ERROR)
       vim.notify(errormsg, vim.log.levels.ERROR)
     end
   end
@@ -54,6 +40,7 @@ local function run_setup()
       if module.setup then module.setup() end
     end)
     if not success then
+      vim.notify("Failed to run `" .. module.name .. "` .setup() function", vim.log.levels.ERROR)
       vim.notify(errormsg, vim.log.levels.ERROR)
     end
   end
@@ -72,29 +59,6 @@ local function remove_compiled_cache()
   vim.fn.delete(compiled_path)
 end
 
-local function remove_outdated_compiled_cache()
-  local compiled_mtime = vim.fn.getftime(compiled_path)
-  if compiled_mtime < 0 then
-    return
-  end
-
-  local outdated = false
-  if vim.fn.getftime(vim.fn.stdpath('config') .. '/init.lua') > compiled_mtime then
-    outdated = true
-  end
-  for _, modname in ipairs(plugin_names) do
-    local path = vim.fn.stdpath('config') .. '/lua/' .. modname .. '.lua'
-    if vim.fn.getftime(path) > compiled_mtime then
-      outdated = true
-    end
-  end
-
-  if outdated then
-    vim.notify('Removing outdated packer cache', vim.log.levels.INFO)
-    remove_compiled_cache()
-  end
-end
-
 local function packer_uninstall()
   vim.notify(string.format('Removing "%s"...', install_path), vim.log.levels.INFO)
   vim.fn.delete(install_path, 'rf')
@@ -104,12 +68,7 @@ local function packer_uninstall()
   remove_compiled_cache()
 end
 
-function M.setup_plugins(plugins)
-  load_plugin_modules(plugins) -- Sets module global variable `plugin_modules`
-
-  local packer_was_cached = is_packer_cached()
-  remove_outdated_compiled_cache()
-
+function M.startup()
   if is_packer_installed() then
     local packer = require('packer')
     packer.startup({
@@ -122,12 +81,6 @@ function M.setup_plugins(plugins)
         max_jobs = 8,
       }
     })
-    -- Recompile
-    if packer_was_cached and not is_packer_cached() then
-      require('packer').compile()
-    end
-  elseif is_packer_cached() then
-    remove_compiled_cache()
   end
 
   vim.api.nvim_create_user_command('PackerBootstrap', packer_bootstrap,
@@ -138,14 +91,11 @@ function M.setup_plugins(plugins)
   run_setup() -- setup non-packer plugins
 end
 
-function M.is_enabled(name)
-  local enabled = false
-  for _, modname in ipairs(plugin_names) do
-    if modname == name then
-      enabled = true
-    end
+function M.contains(name)
+  if plugin_modules[name] then
+    return true
   end
-  return enabled
+  return false
 end
 
 return M
