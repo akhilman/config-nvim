@@ -11,17 +11,17 @@ local function config()
 
   -- Main sources
   local sources = {
-    { name = 'luasnip' },
+    { name = 'luasnip', priority = 100 },
     { name = 'path' },
     { name = 'buffer' },
   }
   -- Completion for LSP
   if plugins.contains('lsp') then
-    table.insert(sources, { name = 'nvim_lsp' })
+    table.insert(sources, { name = 'nvim_lsp', priority = 50 })
   end
   -- Completion for Dap debugger REPL terminal
   if plugins.contains('debugger') then
-    table.insert(sources, { name = 'dap' })
+    table.insert(sources, { name = 'dap', priority = 50 })
   end
 
   cmp.setup {
@@ -121,6 +121,7 @@ function M.packer_startup(use)
       }
     },
   }
+
   -- Language server protocol
   if plugins.contains('lsp') then
     table.insert(requires, 'hrsh7th/cmp-nvim-lsp')
