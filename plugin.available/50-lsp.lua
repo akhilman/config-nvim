@@ -69,7 +69,7 @@ local function config()
     capabilities = vim.lsp.protocol.make_client_capabilities(),
   }
   -- Add additional capabilities supported by nvim-cmp
-  if plugins.contains('plug-completion') then
+  if plugins.contains('completion') then
     pcall(function()
       base_cfg.capabilities = require('cmp_nvim_lsp').default_capabilities()
     end)
