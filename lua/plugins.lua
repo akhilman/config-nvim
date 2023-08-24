@@ -2,7 +2,7 @@ local M = {}
 
 local packages_path = vim.fn.stdpath('data') .. '/site/pack/packer/'
 local install_path = packages_path .. 'start/packer.nvim'
-local compiled_path = vim.fn.stdpath('config') .. '/plugin/00-packer_compiled.lua'
+local compiled_path = vim.fn.stdpath('config') .. '/plugin/95-packer_compiled.lua'
 local packer_name = 'wbthomason/packer.nvim'
 local packer_repo = 'https://github.com/' .. packer_name
 

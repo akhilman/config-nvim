@@ -70,9 +70,7 @@ local function config()
   }
   -- Add additional capabilities supported by nvim-cmp
   if plugins.contains('completion') then
-    pcall(function()
-      base_cfg.capabilities = require('cmp_nvim_lsp').default_capabilities()
-    end)
+    base_cfg.capabilities = require('cmp_nvim_lsp').default_capabilities()
   end
 
   -- Setup language servers
