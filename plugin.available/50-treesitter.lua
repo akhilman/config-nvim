@@ -106,9 +106,14 @@ function M.packer_startup(use)
     config = config,
   }
   -- Additional textobjects for treesitter
-  use { 'nvim-treesitter/nvim-treesitter-textobjects', requires = { 'nvim-treesitter/nvim-treesitter' } }
   use {
-    'nvim-treesitter/nvim-treesitter-context', config = function()
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    requires = { 'nvim-treesitter/nvim-treesitter' },
+    after = { 'nvim-treesitter' },
+  }
+  use {
+    'nvim-treesitter/nvim-treesitter-context',
+    config = function()
       require 'treesitter-context'.setup {}
     end,
     requires = { 'nvim-treesitter/nvim-treesitter' },

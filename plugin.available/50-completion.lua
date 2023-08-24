@@ -126,7 +126,7 @@ function M.packer_startup(use)
   end
 
   if plugins.contains('debugger') then
-    table.insert(requires, 'rcarriga/cmp-dap')
+    table.insert(requires, { 'rcarriga/cmp-dap', after = 'nvim-cmp' })
   end
 
   use {

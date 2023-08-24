@@ -37,6 +37,7 @@ function M.packer_startup(use)
           { desc = 'Searches session', silent = true })
       end,
       requires = { 'rmagatti/auto-session', 'nvim-lua/plenary.nvim' },
+      after = { 'auto-session' },
     }
   end
 end
