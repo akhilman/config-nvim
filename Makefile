@@ -4,11 +4,11 @@ default: install
 
 install:
 	$(NVIM_CMD) --headless -c 'PackerBootstrap' -c 'quitall'
-	$(NVIM_CMD) -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+	$(NVIM_CMD) -c 'autocmd User PackerComplete call timer_start(100, {-> execute("quitall")})' -c 'PackerSync'
 	$(NVIM_CMD) --headless -c 'TSUpdateSync' -c 'quitall'
 
 update:
-	$(NVIM_CMD) -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+	$(NVIM_CMD) -c 'autocmd User PackerComplete call timer_start(100, {-> execute("quitall")})' -c 'PackerSync'
 	$(NVIM_CMD) --headless -c 'TSUpdateSync' -c 'quitall'
 
 uninstall:
