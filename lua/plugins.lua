@@ -46,7 +46,11 @@ local function run_setup()
   end
 end
 
-local function packer_bootstrap()
+local function remove_compiled_cache()
+  vim.fn.delete(compiled_path)
+end
+
+function M.bootstrap()
   if is_packer_installed() then
     vim.notify('Packer already installed', vim.log.levels.INFO)
     return
@@ -55,11 +59,7 @@ local function packer_bootstrap()
   vim.notify(vim.fn.system({ 'git', 'clone', '--depth', '1', packer_repo, install_path }), vim.log.levels.INFO)
 end
 
-local function remove_compiled_cache()
-  vim.fn.delete(compiled_path)
-end
-
-local function packer_uninstall()
+function M.uninstall()
   vim.notify(string.format('Removing "%s"...', install_path), vim.log.levels.INFO)
   vim.fn.delete(install_path, 'rf')
   vim.notify(string.format('Removing "%s"...', packages_path), vim.log.levels.INFO)
@@ -83,9 +83,9 @@ function M.startup()
     })
   end
 
-  vim.api.nvim_create_user_command('PackerBootstrap', packer_bootstrap,
+  vim.api.nvim_create_user_command('PackerBootstrap', M.bootstrap,
     { desc = "Install Packer plugin manager" })
-  vim.api.nvim_create_user_command('PackerUninstall', packer_uninstall,
+  vim.api.nvim_create_user_command('PackerUninstall', M.uninstall,
     { desc = "Remove all plugins installed by Packer and remove Packer itself" })
 
   run_setup() -- setup non-packer plugins
