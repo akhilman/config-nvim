@@ -1,1 +1,1 @@
-require 'plugins'.startup()
+../plugin.available/ZZ-plugins.lua
