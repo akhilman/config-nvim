@@ -15,10 +15,12 @@ local function config()
     { name = 'path' },
     { name = 'buffer' },
   }
+
   -- Completion for LSP
   if plugins.contains('lsp') then
     table.insert(sources, { name = 'nvim_lsp', priority = 50 })
   end
+
   -- Completion for Dap debugger REPL terminal
   if plugins.contains('debugger') then
     table.insert(sources, { name = 'dap', priority = 50 })
@@ -106,9 +108,9 @@ end
 
 -- Packer startup
 function M.packer_startup(use)
-  -- Completion and LSP
   local plugins = require 'plugins'
 
+  -- Completion and LSP
   local requires = {
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-cmdline',
