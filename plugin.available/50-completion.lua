@@ -1,6 +1,6 @@
 local M = {}
 
-M.name = 'autocompletion'
+M.name = 'completion'
 
 -- Setup completion
 local function config()
