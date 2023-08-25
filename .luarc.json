@@ -5,7 +5,8 @@
     "path": ["init.lua", "lua/?.lua", "plugin.availale/?.lua"]
   },
   "diagnostics": {
-    "globals": ["vim"]
+    "globals": ["vim"],
+    "disable": ["different-requires"]
   },
   "workspace": {
     "library": ["/usr/share/nvim/runtime/lua/"]
