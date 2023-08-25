@@ -1,10 +1,4 @@
-local M = {}
-
-M.name = 'lsp'
-
 local function config()
-  local plugins = require 'plugins'
-
   -- Find rust analyzer
   local function find_rust_analyzer()
     if vim.fn.executable('rustup') == 1 then
@@ -69,7 +63,7 @@ local function config()
     capabilities = vim.lsp.protocol.make_client_capabilities(),
   }
   -- Add additional capabilities supported by nvim-cmp
-  if plugins.contains('completion') then
+  if require('plugins').can_require('cmp_nvim_lsp') then
     base_cfg.capabilities = require('cmp_nvim_lsp').default_capabilities()
   end
 
@@ -145,22 +139,18 @@ local function config()
 end
 
 -- Packer startup
-function M.packer_startup(use)
-  use {
-    'neovim/nvim-lspconfig',
-    -- Somehow using setup function directly does not work
-    config = config,
-    requires = {
-      -- LSP goodies
-      'ii14/lsp-command', -- :Lsp command
-      -- 'nvim-lua/lsp_extensions.nvim',  -- Inlay hints
-      'simrat39/rust-tools.nvim',
-      {
-        'nvim-telescope/telescope.nvim',
-        requires = { 'nvim-lua/plenary.nvim' },
-      }
-    },
-  }
-end
-
-require('plugins').add(M)
+require('plugins').try_use {
+  'neovim/nvim-lspconfig',
+  -- Somehow using setup function directly does not work
+  config = config,
+  requires = {
+    -- LSP goodies
+    'ii14/lsp-command', -- :Lsp command
+    -- 'nvim-lua/lsp_extensions.nvim',  -- Inlay hints
+    'simrat39/rust-tools.nvim',
+    {
+      'nvim-telescope/telescope.nvim',
+      requires = { 'nvim-lua/plenary.nvim' },
+    }
+  },
+}

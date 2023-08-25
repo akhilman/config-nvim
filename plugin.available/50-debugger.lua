@@ -1,12 +1,8 @@
-local M = {}
-
-M.name = 'debugger'
-
 -- TODO: Make running unit tests convenient.
 -- TODO: Get lldb-vscode path from environment
 
 
-local function setup_dap()
+local function dap_config()
   local dap = require('dap')
 
   -- c, cpp, rust
@@ -41,7 +37,7 @@ local function setup_dap()
   vim.keymap.set('n', '<LocalLeader>ds', ':DapStepOver<CR>')
 end
 
-local function setup_ui()
+local function ui_config()
   local dapui = require "dapui"
   dapui.setup()
 
@@ -49,29 +45,24 @@ local function setup_ui()
     { desc = "Toggle debugger UI", silent = true })
 end
 
-function M.packer_startup(use)
-  local plugins = require 'plugins'
-  use {
-    'mfussenegger/nvim-dap',
-    config = setup_dap,
-  }
-  use {
-    'mfussenegger/nvim-dap-python',
-    config = function() require('dap-python').setup() end,
-    requires = { "mfussenegger/nvim-dap" },
-  }
-  use {
-    "rcarriga/nvim-dap-ui",
-    config = setup_ui,
-    requires = { "mfussenegger/nvim-dap" },
-  }
-  if plugins.contains('treesitter') then
-    use {
-      'theHamsta/nvim-dap-virtual-text',
-      config = function() require("nvim-dap-virtual-text").setup() end,
-      requires = { "mfussenegger/nvim-dap" },
-    }
-  end
-end
 
-require('plugins').add(M)
+local try_use = require('plugins').try_use
+try_use {
+  'mfussenegger/nvim-dap',
+  config = dap_config,
+}
+try_use {
+  'mfussenegger/nvim-dap-python',
+  config = function() require('dap-python').setup() end,
+  requires = { "mfussenegger/nvim-dap" },
+}
+try_use {
+  "rcarriga/nvim-dap-ui",
+  config = ui_config,
+  requires = { "mfussenegger/nvim-dap" },
+}
+try_use {
+  'theHamsta/nvim-dap-virtual-text',
+  config = function() require("nvim-dap-virtual-text").setup() end,
+  requires = { "mfussenegger/nvim-dap" },
+}

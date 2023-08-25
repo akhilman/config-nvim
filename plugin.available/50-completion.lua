@@ -1,11 +1,5 @@
-local M = {}
-
-M.name = 'completion'
-
 -- Setup completion
 local function config()
-  local plugins = require 'plugins'
-
   local luasnip = require 'luasnip'
   local cmp = require 'cmp'
 
@@ -16,13 +10,17 @@ local function config()
     { name = 'buffer' },
   }
 
+  local can_require = require('plugins').can_require
+
   -- Completion for LSP
-  if plugins.contains('lsp') then
+  if can_require('lspconfig') then
+    vim.cmd 'packadd cmp-nvim-lsp'
     table.insert(sources, { name = 'nvim_lsp', priority = 50 })
   end
 
   -- Completion for Dap debugger REPL terminal
-  if plugins.contains('debugger') then
+  if can_require('dap') then
+    vim.cmd 'packadd cmp-dap'
     table.insert(sources, { name = 'dap', priority = 50 })
   end
 
@@ -30,7 +28,7 @@ local function config()
     -- nvim-cmp by defaults disables autocomplete for prompt buffers
     enabled = function()
       return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt" or
-          (plugins.contains('debugger') and
+          (require('plugins').can_require('cmp_dap') and
             require("cmp_dap").is_dap_buffer())
     end,
     snippet = {
@@ -107,11 +105,12 @@ local function config()
 end
 
 -- Packer startup
-function M.packer_startup(use)
-  local plugins = require 'plugins'
 
-  -- Completion and LSP
-  local requires = {
+require('plugins').try_use {
+  'hrsh7th/nvim-cmp', -- Autocompletion plugin
+  config = config,
+  requires =
+  {
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-cmdline',
     'hrsh7th/cmp-path',
@@ -122,22 +121,7 @@ function M.packer_startup(use)
         'L3MON4D3/LuaSnip',       -- Snippets
       }
     },
-  }
-
-  -- Language server protocol
-  if plugins.contains('lsp') then
-    table.insert(requires, 'hrsh7th/cmp-nvim-lsp')
-  end
-
-  if plugins.contains('debugger') then
-    table.insert(requires, { 'rcarriga/cmp-dap', after = 'nvim-cmp' })
-  end
-
-  use {
-    'hrsh7th/nvim-cmp', -- Autocompletion plugin
-    config = config,
-    requires = requires,
-  }
-end
-
-require('plugins').add(M)
+    { 'hrsh7th/cmp-nvim-lsp', opt = true },
+    { 'rcarriga/cmp-dap',     opt = true },
+  },
+}

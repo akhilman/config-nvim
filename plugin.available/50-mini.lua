@@ -1,7 +1,3 @@
-local M = {}
-
-M.name = 'mini'
-
 local function config()
   -- -- bufremove
   -- local bufremove = require 'mini.bufremove'
@@ -16,9 +12,4 @@ local function config()
   require('mini.surround').setup {}
 end
 
-function M.packer_startup(use)
-  -- Stable
-  use { 'echasnovski/mini.nvim', branch = 'stable', config = config }
-end
-
-require('plugins').add(M)
+require('plugins').try_use { 'echasnovski/mini.nvim', branch = 'stable', config = config }

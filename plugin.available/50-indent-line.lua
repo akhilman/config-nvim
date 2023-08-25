@@ -1,8 +1,4 @@
-local M = {}
-
-M.name = 'indent-line'
-
-local function confug()
+local function config()
   require("indent_blankline").setup {
     -- for example, context is off by default, use this to turn it on
     -- these options requires treesitter
@@ -12,12 +8,10 @@ local function confug()
   }
 end
 
-function M.packer_startup(use)
-  use {
-    'lukas-reineke/indent-blankline.nvim',
-    config = confug,
-  }
-end
+require('plugins').try_use {
+  'lukas-reineke/indent-blankline.nvim',
+  config = config,
+}
 
 ---@diagnostic disable-next-line unused-local
 local test = {
@@ -37,5 +31,3 @@ local test = {
     }
   }
 }
-
-require('plugins').add(M)

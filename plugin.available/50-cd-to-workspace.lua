@@ -1,5 +1,3 @@
-local M = {}
-
 local project_root_marks = {
   '.git',
   'package.json',
@@ -38,17 +36,13 @@ local function autochdir()
   end
 end
 
-function M.chdir()
+local function chdir()
   autochdir()
 end
 
-function M.setup()
-  -- vim.api.nvim_create_autocmd(
-  --   { 'BufReadPost', 'FileReadPost' },
-  --   { callback = autochdir }
-  -- )
-  vim.api.nvim_create_user_command('CdToWorkspace', autochdir,
-    { desc = "Change current directory to workspace root" })
-end
-
-require('plugins').add(M)
+-- vim.api.nvim_create_autocmd(
+--   { 'BufReadPost', 'FileReadPost' },
+--   { callback = autochdir }
+-- )
+vim.api.nvim_create_user_command('CdToWorkspace', autochdir,
+  { desc = "Change current directory to workspace root" })

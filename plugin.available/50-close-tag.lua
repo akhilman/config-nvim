@@ -2,12 +2,7 @@
 -- Closes html tags
 --
 
-local M = {}
-
-M.name = 'close-tag'
-
 local function config()
-
   vim.g.closetag_filetypes = 'html,xhtml,phtml,svg,javascript,typescript'
   vim.g.closetag_regions = {
     ['typescript.tsx'] = 'jsxRegion,tsxRegion,litHtmlRegion',
@@ -17,8 +12,4 @@ local function config()
   }
 end
 
-function M.packer_startup(use)
-  use { 'alvan/vim-closetag', config = config }
-end
-
-require('plugins').add(M)
+require('plugins').try_use { 'alvan/vim-closetag', config = config }

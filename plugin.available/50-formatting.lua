@@ -1,9 +1,5 @@
 -- Formatting
 
-local M = {}
-
-M.name = 'formatting'
-
 local function format_buffer()
   local prettier_formats = {
     css = true,
@@ -33,9 +29,5 @@ local function format_buffer()
   end
 end
 
-function M.setup()
-  vim.keymap.set('n', '<LocalLeader>f', format_buffer,
-    { silent = true, desc = "Format current buffer" })
-end
-
-require 'plugins'.add(M)
+vim.keymap.set('n', '<LocalLeader>f', format_buffer,
+  { silent = true, desc = "Format current buffer" })

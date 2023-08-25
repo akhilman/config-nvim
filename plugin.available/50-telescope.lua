@@ -1,7 +1,3 @@
-local M = {}
-
-M.name = 'telescope'
-
 local function config()
   local telescope_builtin = require 'telescope.builtin'
 
@@ -48,16 +44,12 @@ local function config()
     { desc = "Search keymap using telescope" })
 end
 
-function M.packer_startup(use)
-  use {
-    'nvim-telescope/telescope.nvim',
-    config = config,
-    requires = {
-      'nvim-lua/popup.nvim',
-      'nvim-lua/plenary.nvim',
-      -- { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
-    },
-  }
-end
-
-require('plugins').add(M)
+require('plugins').try_use {
+  'nvim-telescope/telescope.nvim',
+  config = config,
+  requires = {
+    'nvim-lua/popup.nvim',
+    'nvim-lua/plenary.nvim',
+    -- { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+  },
+}

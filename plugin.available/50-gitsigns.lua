@@ -1,7 +1,3 @@
-local M = {}
-
-M.name = 'gitsigns'
-
 local function config()
   require('gitsigns').setup {
     signs = {
@@ -15,12 +11,8 @@ local function config()
   vim.cmd [[highlight SignColumn guibg=Gray10]]
 end
 
-function M.packer_startup(use)
-  use {
-    'lewis6991/gitsigns.nvim',
-    requires = { 'nvim-lua/plenary.nvim' },
-    config = config,
-  }
-end
-
-require('plugins').add(M)
+require('plugins').try_use {
+  'lewis6991/gitsigns.nvim',
+  requires = { 'nvim-lua/plenary.nvim' },
+  config = config,
+}

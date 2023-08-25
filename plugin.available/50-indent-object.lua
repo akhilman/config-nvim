@@ -1,9 +1,1 @@
-local M = {}
-
-M.name = 'indent-object'
-
-function M.packer_startup(use)
-  use 'michaeljsmith/vim-indent-object'
-end
-
-require('plugins').add(M)
+require('plugins').try_use 'michaeljsmith/vim-indent-object'

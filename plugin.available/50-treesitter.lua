@@ -1,7 +1,3 @@
-local M = {}
-
-M.name = 'treesitter'
-
 -- Folding is broken with treesitter
 -- https://github.com/nvim-treesitter/nvim-treesitter/issues/1424
 -- https://github.com/neovim/neovim/issues/14977
@@ -99,27 +95,24 @@ local function config()
   -- )
 end
 
-function M.packer_startup(use)
-  -- Highlight, edit, and navigate code using a fast incremental parsing library
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    config = config,
-  }
-  -- Additional textobjects for treesitter
-  use {
-    'nvim-treesitter/nvim-treesitter-textobjects',
-    requires = { 'nvim-treesitter/nvim-treesitter' },
-    after = { 'nvim-treesitter' },
-  }
-  use {
-    'nvim-treesitter/nvim-treesitter-context',
-    config = function()
-      require 'treesitter-context'.setup {}
-    end,
-    requires = { 'nvim-treesitter/nvim-treesitter' },
-  }
-  -- Visualiration of AST for debuging and plugin development
-  -- use 'nvim-treesitter/playground'
-end
-
-require('plugins').add(M)
+local try_use = require('plugins').try_use
+-- Highlight, edit, and navigate code using a fast incremental parsing library
+try_use {
+  'nvim-treesitter/nvim-treesitter',
+  config = config,
+}
+-- Additional textobjects for treesitter
+try_use {
+  'nvim-treesitter/nvim-treesitter-textobjects',
+  requires = { 'nvim-treesitter/nvim-treesitter' },
+  after = { 'nvim-treesitter' },
+}
+try_use {
+  'nvim-treesitter/nvim-treesitter-context',
+  config = function()
+    require 'treesitter-context'.setup {}
+  end,
+  requires = { 'nvim-treesitter/nvim-treesitter' },
+}
+-- Visualiration of AST for debuging and plugin development
+-- try_use 'nvim-treesitter/playground'
