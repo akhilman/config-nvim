@@ -114,5 +114,9 @@ try_use {
   end,
   requires = { 'nvim-treesitter/nvim-treesitter' },
 }
+try_use {
+  'kiyoon/treesitter-indent-object.nvim',
+  requires = { 'nvim-treesitter/nvim-treesitter' },
+}
 -- Visualiration of AST for debuging and plugin development
 -- try_use 'nvim-treesitter/playground'
