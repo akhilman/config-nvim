@@ -6,13 +6,18 @@ local packer_repo = 'https://github.com/' .. packer_name
 
 local M = {}
 
-function M.try_require(mod_name)
-  local ok, mod = pcall(function() return require(mod_name) end)
-  return ok and mod or nil
+function M.try_require(mod_name, log_level)
+  local ok, mod_or_msg = pcall(function() return require(mod_name) end)
+  if ok then
+    return mod_or_msg
+  end
+  if mod_or_msg then
+    vim.notify_once(mod_or_msg, log_level or vim.log.levels.ERROR)
+  end
 end
 
 function M.try_use(cfg)
-  local packer = M.try_require('packer')
+  local packer = M.try_require('packer', vim.log.levels.INFO)
   if packer then
     packer.use(cfg)
     return true
