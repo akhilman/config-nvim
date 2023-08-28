@@ -27,7 +27,7 @@ function M.try_use(cfg)
 end
 
 function M.bootstrap()
-  if vim.fn.isdirectory(packer_path) then
+  if vim.fn.isdirectory(packer_path) == 1 then
     vim.notify('Packer already installed', vim.log.levels.INFO)
     return
   end
