@@ -10,16 +10,16 @@ local function config()
     { name = 'buffer' },
   }
 
-  local can_require = require('plugins').can_require
+  local try_require = require('plugins').try_require
 
   -- Completion for LSP
-  if can_require('lspconfig') then
+  if try_require('lspconfig') then
     vim.cmd 'packadd cmp-nvim-lsp'
     table.insert(sources, { name = 'nvim_lsp', priority = 50 })
   end
 
   -- Completion for Dap debugger REPL terminal
-  if can_require('dap') then
+  if try_require('dap') then
     vim.cmd 'packadd cmp-dap'
     table.insert(sources, { name = 'dap', priority = 50 })
   end
@@ -28,7 +28,7 @@ local function config()
     -- nvim-cmp by defaults disables autocomplete for prompt buffers
     enabled = function()
       return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt" or
-          (require('plugins').can_require('cmp_dap') and
+          (require('plugins').try_require('cmp_dap') and
             require("cmp_dap").is_dap_buffer())
     end,
     snippet = {

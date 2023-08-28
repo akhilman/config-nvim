@@ -63,8 +63,9 @@ local function config()
     capabilities = vim.lsp.protocol.make_client_capabilities(),
   }
   -- Add additional capabilities supported by nvim-cmp
-  if require('plugins').can_require('cmp_nvim_lsp') then
-    base_cfg.capabilities = require('cmp_nvim_lsp').default_capabilities()
+  local cmp_nvim_lsp = require('plugins').try_require('cmp_nvim_lsp')
+  if cmp_nvim_lsp then
+    base_cfg.capabilities = cmp_nvim_lsp.default_capabilities()
   end
 
   -- Setup language servers

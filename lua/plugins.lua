@@ -6,9 +6,9 @@ local packer_repo = 'https://github.com/' .. packer_name
 
 local M = {}
 
-function M.can_require(module)
-  local ok, _ = pcall(function() require(module) end)
-  return ok
+function M.try_require(mod_name)
+  local ok, mod = pcall(function() return require(mod_name) end)
+  return ok and mod or nil
 end
 
 function M.try_use(cfg)
