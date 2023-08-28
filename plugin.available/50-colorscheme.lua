@@ -13,3 +13,4 @@ try_use { 'metalelf0/jellybeans-nvim',
 }
 try_use 'rebelot/kanagawa.nvim'
 try_use 'EdenEast/nightfox.nvim'
+try_use 'olimorris/onedarkpro.nvim'
