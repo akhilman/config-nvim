@@ -11,13 +11,14 @@ function M.try_require(mod_name, log_level)
   if ok then
     return mod_or_msg
   end
-  if mod_or_msg then
-    vim.notify_once(mod_or_msg, log_level or vim.log.levels.ERROR)
+  local level = log_level or vim.log.levels.DEBUG
+  if level ~= vim.log.levels.OFF and mod_or_msg then
+    vim.notify_once(mod_or_msg, level)
   end
 end
 
 function M.try_use(cfg)
-  local packer = M.try_require('packer', vim.log.levels.INFO)
+  local packer = M.try_require('packer', vim.log.levels.OFF)
   if packer then
     packer.use(cfg)
     return true
