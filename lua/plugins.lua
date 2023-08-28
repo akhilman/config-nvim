@@ -12,14 +12,12 @@ function M.try_require(mod_name)
 end
 
 function M.try_use(cfg)
-  local ok, packer = pcall(function() return require 'packer' end)
-  if not ok or not packer then
-    return false
+  local packer = M.try_require('packer')
+  if packer then
+    packer.use(cfg)
+    return true
   end
-
-  packer.use(cfg)
-
-  return true
+  return false
 end
 
 function M.bootstrap()
