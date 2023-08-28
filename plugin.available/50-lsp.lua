@@ -1,12 +1,12 @@
 local function config()
   -- Find rust analyzer
   local function find_rust_analyzer()
+    if vim.fn.executable('rust-analyzer') == 1 then return 'rust-analyzer' end
     if vim.fn.executable('rustup') == 1 then
       local cmd = vim.fn.system('rustup which --toolchain nightly rust-analyzer')
           :match('^%s*(.-rust%-analyzer)%s*$')
-      if cmd then return { cmd } end
+      if cmd then return cmd end
     end
-    if vim.fn.executable('rust-analyzer') == 1 then return { 'rust-analyzer' } end
     return nil
   end
 
@@ -114,7 +114,7 @@ local function config()
     local rt = require 'rust-tools'
     rt.setup {
       server = vim.tbl_extend('force', base_cfg, {
-        cmd = rust_analyzer,
+        cmd = { rust_analyzer },
         settings = {
           rust = { clippy_preference = true },
           ['rust-analyzer'] = {
