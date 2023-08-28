@@ -11,7 +11,7 @@ let g:maplocalleader="\\"  " <LocalLeader>
 syntax on
 filetype plugin indent on
 let c_minlines=500  " number of lines that vim goes backwards for syntax highlight
-set cursorline  " highlight the line under the cursor
+"set cursorline  " highlight the line under the cursor
 set list  " show trailing spaces and tabs
 set modeline  " check vim configuration in file
 set number  " show line number
