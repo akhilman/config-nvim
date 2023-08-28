@@ -6,15 +6,6 @@ local packer_repo = 'https://github.com/' .. packer_name
 
 local M = {}
 
-local function is_packer_installed()
-  local success, _ = pcall(function() require 'packer' end)
-  return success
-end
-
-local function remove_compiled_cache()
-  vim.fn.delete(compiled_path)
-end
-
 function M.can_require(module)
   local ok, _ = pcall(function() require(module) end)
   return ok
@@ -32,7 +23,7 @@ function M.try_use(cfg)
 end
 
 function M.bootstrap()
-  if is_packer_installed() then
+  if vim.fn.isdirectory(install_path) then
     vim.notify('Packer already installed', vim.log.levels.INFO)
     return
   end
@@ -46,7 +37,7 @@ function M.uninstall()
   vim.notify(string.format('Removing "%s"...', packages_path), vim.log.levels.INFO)
   vim.fn.delete(packages_path, 'rf')
   vim.notify(string.format('Removing "%s"...', compiled_path), vim.log.levels.INFO)
-  remove_compiled_cache()
+  vim.fn.delete(compiled_path)
 end
 
 function M.init()
