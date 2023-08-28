@@ -1,6 +1,6 @@
-local packages_path = vim.fn.stdpath('data') .. '/site/pack/packer/'
-local install_path = packages_path .. 'start/packer.nvim'
 local compiled_path = vim.fn.stdpath('config') .. '/plugin/20-packer_compiled.lua'
+local packages_path = vim.fn.stdpath('data') .. '/site/pack/packer/'
+local packer_path = packages_path .. 'start/packer.nvim'
 local packer_name = 'wbthomason/packer.nvim'
 local packer_repo = 'https://github.com/' .. packer_name
 
@@ -23,17 +23,17 @@ function M.try_use(cfg)
 end
 
 function M.bootstrap()
-  if vim.fn.isdirectory(install_path) then
+  if vim.fn.isdirectory(packer_path) then
     vim.notify('Packer already installed', vim.log.levels.INFO)
     return
   end
   vim.notify('Installing Packer...', vim.log.levels.INFO)
-  vim.notify(vim.fn.system({ 'git', 'clone', '--depth', '1', packer_repo, install_path }), vim.log.levels.INFO)
+  vim.notify(vim.fn.system({ 'git', 'clone', '--depth', '1', packer_repo, packer_path }), vim.log.levels.INFO)
 end
 
 function M.uninstall()
-  vim.notify(string.format('Removing "%s"...', install_path), vim.log.levels.INFO)
-  vim.fn.delete(install_path, 'rf')
+  vim.notify(string.format('Removing "%s"...', packer_path), vim.log.levels.INFO)
+  vim.fn.delete(packer_path, 'rf')
   vim.notify(string.format('Removing "%s"...', packages_path), vim.log.levels.INFO)
   vim.fn.delete(packages_path, 'rf')
   vim.notify(string.format('Removing "%s"...', compiled_path), vim.log.levels.INFO)
