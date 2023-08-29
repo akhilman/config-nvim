@@ -2,27 +2,17 @@ local function config()
   local telescope_builtin = require 'telescope.builtin'
 
   -- Buffers
-  vim.keymap.set('n', '<Leader>f/', telescope_builtin.current_buffer_fuzzy_find,
+  vim.keymap.set('n', '<Leader>/', telescope_builtin.current_buffer_fuzzy_find,
     { desc = 'Find in current buffer with Telescope', silent = true })
   vim.keymap.set('n', '<Leader>fb', telescope_builtin.buffers,
     { desc = 'Find buffer with Telescope', silent = true })
-
-  -- Diagnostics
-  vim.keymap.set('n', '<LocalLeader>e', vim.diagnostic.open_float,
-    { desc = 'Show diagnostic errors', silent = true })
-  vim.keymap.set('n', '<LocalLeader>q', telescope_builtin.diagnostics,
-    { desc = 'Show diagnostic errors with Telescope', silent = true })
-  vim.keymap.set('n', '[d', vim.diagnostic.goto_prev,
-    { desc = 'Previous diagnostic error', silent = true })
-  vim.keymap.set('n', ']d', vim.diagnostic.goto_next,
-    { desc = 'Next diagnostic error', silent = true })
 
   -- Files
   vim.keymap.set('n', '<Leader>ff', telescope_builtin.find_files,
     { desc = 'Find file with Telescope', silent = true })
   vim.keymap.set('n', '<Leader>fg', telescope_builtin.git_files,
     { desc = 'Find file in git with Telescope', silent = true })
-  vim.keymap.set('n', '<Leader>fF', telescope_builtin.live_grep,
+  vim.keymap.set('n', '<Leader>f/', telescope_builtin.live_grep,
     { desc = 'Search for a string and get results live as you type', silent = true })
   vim.keymap.set('n', '<Leader>f*', telescope_builtin.grep_string,
     { desc = 'Searches for the string under your cursor in your current working directory', silent = true })

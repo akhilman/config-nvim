@@ -23,6 +23,15 @@ local function config()
         vim.lsp.buf.hover()
       end
     end
+
+    local function show_diagnostics()
+      if packer_plugins['telescope.nvim'] then
+        require('telescope.builtin').diagnostics()
+      else
+        vim.diagnostics.setqflist()
+      end
+    end
+
     local function to_definitions()
       if packer_plugins['telescope.nvim'] then
         require('telescope.builtin').lsp_definitions()
@@ -30,6 +39,7 @@ local function config()
         vim.lsp.buf.definition()
       end
     end
+
     local function to_implementations()
       if packer_plugins['telescope.nvim'] then
         require('telescope.builtin').lsp_implementations()
@@ -37,6 +47,7 @@ local function config()
         vim.lsp.buf.implementation()
       end
     end
+
     local function to_references()
       if packer_plugins['telescope.nvim'] then
         require('telescope.builtin').lsp_references()
@@ -44,6 +55,7 @@ local function config()
         vim.lsp.buf.references()
       end
     end
+
     local function to_type_defenitions()
       if packer_plugins['telescope.nvim'] then
         require('telescope.builtin').lsp_type_defenitions()
@@ -51,6 +63,7 @@ local function config()
         vim.lsp.buf.type_defenition()
       end
     end
+
     local function document_symbols()
       if packer_plugins['telescope.nvim'] then
         require('telescope.builtin').lsp_document_symbols()
@@ -58,6 +71,7 @@ local function config()
         vim.lsp.buf.document_symbol()
       end
     end
+
     local function workspace_symbols()
       if packer_plugins['telescope.nvim'] then
         require('telescope.builtin').lsp_workspace_symbols()
@@ -68,6 +82,8 @@ local function config()
 
     -- Mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
+
+    -- Go to
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration,
       { desc = "Go to declaration", silent = true, buffer = bufnr })
     vim.keymap.set('n', 'gd', to_definitions,
@@ -76,10 +92,16 @@ local function config()
       { desc = "Search for implementations", silent = true, buffer = bufnr })
     vim.keymap.set('n', 'gr', to_references,
       { desc = "Search for references", silent = true, buffer = bufnr })
+    vim.keymap.set('n', '<LocalLeader>D', to_type_defenitions,
+      { desc = "Search for type definitions", silent = true, buffer = bufnr })
+
+    -- Help
     vim.keymap.set('n', 'K', hover,
       { desc = "Show documentation (hover)", silent = true, buffer = bufnr })
     vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help,
       { desc = "Show signature help", silent = true, buffer = bufnr })
+
+    -- Symbols and workspace
     vim.keymap.set('n', '<LocalLeader>s', document_symbols,
       { desc = "Show document symbols", silent = true, buffer = bufnr })
     vim.keymap.set('n', '<LocalLeader>ws', workspace_symbols,
@@ -89,14 +111,24 @@ local function config()
     vim.keymap.set('n', '<LocalLeader>wr', vim.lsp.buf.remove_workspace_folder,
       { desc = "Remove workspace folder", silent = true, buffer = bufnr })
     vim.keymap.set('n', '<LocalLeader>wl',
-      function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())); end,
+      function() vim.print(vim.lsp.buf.list_workspace_folders()); end,
       { desc = "List workspace folders", silent = true, buffer = bufnr })
-    vim.keymap.set('n', '<LocalLeader>D', to_type_defenitions,
-      { desc = "Search for type definitions", silent = true, buffer = bufnr })
+
+    -- Refactoring and code actions
     vim.keymap.set('n', '<LocalLeader>rn', vim.lsp.buf.rename,
       { desc = "Rename symbol (refactoring)", silent = true, buffer = bufnr })
     vim.keymap.set('n', '<LocalLeader>ca', vim.lsp.buf.code_action,
       { desc = "Show code actions", silent = true, buffer = bufnr })
+
+    -- Diagnostics
+    vim.keymap.set('n', '<LocalLeader>e', vim.diagnostic.open_float,
+      { desc = 'Show diagnostic errors', silent = true })
+    vim.keymap.set('n', '<LocalLeader>q', show_diagnostics,
+      { desc = 'Show diagnostic errors with Telescope', silent = true })
+    vim.keymap.set('n', '[d', vim.diagnostic.goto_prev,
+      { desc = 'Previous diagnostic error', silent = true })
+    vim.keymap.set('n', ']d', vim.diagnostic.goto_next,
+      { desc = 'Next diagnostic error', silent = true })
   end
 
   -- LSP setup

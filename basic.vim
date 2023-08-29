@@ -99,8 +99,8 @@ noremap <A-6> 6gt
 
 " quickfix
 noremap <Leader>q :copen<CR>
-noremap <Leader>n :cnext<CR>
-noremap <Leader>p :cprevious<CR>
+noremap [q :cnext<CR>
+noremap ]q :cprevious<CR>
 
 " Saving Files that Require Root Permission with sudo
 cmap w!! %!sudo tee > /dev/null %

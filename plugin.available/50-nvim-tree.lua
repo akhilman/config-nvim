@@ -3,7 +3,7 @@ local function config()
     update_focused_file = { enable = true }
   }
   vim.keymap.set(
-    'n', '<Space>/',
+    'n', '<Leader>t',
     ':NvimTreeFindFileToggle<CR>',
     {}
   -- { silent = true }
