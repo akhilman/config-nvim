@@ -17,7 +17,7 @@ local auto_sesson_config = {
   },
 }
 
-require('plugins').try_use {
+require('packer_utils').try_use {
   'rmagatti/auto-session',
   config = function()
     vim.o.sessionoptions = "help,skiprtp,tabpages,winsize"
@@ -25,7 +25,7 @@ require('plugins').try_use {
   end,
 }
 
-require('plugins').try_use {
+require('packer_utils').try_use {
   'rmagatti/session-lens',
   config = function()
     vim.keymap.set('n', '<leader>fS', require('session-lens').search_session,

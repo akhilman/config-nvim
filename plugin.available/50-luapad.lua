@@ -1,1 +1,1 @@
-require('plugins').try_use { 'rafcamlet/nvim-luapad' }
+require('packer_utils').try_use { 'rafcamlet/nvim-luapad' }

@@ -1,4 +1,4 @@
-require('plugins').try_use {
+require('packer_utils').try_use {
   "chrisgrieser/nvim-early-retirement",
   config = function()
     require("early-retirement").setup {

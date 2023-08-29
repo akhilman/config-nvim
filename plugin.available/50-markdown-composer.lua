@@ -1,5 +1,5 @@
 if vim.fn.executable('cargo') == 1 then
-  require('plugins').try_use {
+  require('packer_utils').try_use {
     'euclio/vim-markdown-composer',
     run = 'cargo build --release --locked',
     ft = 'markdown',

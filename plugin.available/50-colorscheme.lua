@@ -5,7 +5,7 @@ if vim.env.COLORTERM == "truecolor" then
 end
 pcall(function() vim.cmd 'colorscheme carbonfox' end)
 
-local try_use = require('plugins').try_use
+local try_use = require('packer_utils').try_use
 try_use 'Mofiqul/adwaita.nvim'
 try_use 'projekt0n/github-nvim-theme'
 try_use { 'metalelf0/jellybeans-nvim',

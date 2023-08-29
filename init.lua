@@ -5,7 +5,7 @@ vim.cmd('source ' .. vim.fn.stdpath 'config' .. '/localization.vim')
 vim.cmd('source ' .. vim.fn.stdpath 'config' .. '/default_colorscheme.vim')
 
 -- Initialize packer
-require('plugins').init()
+require('packer_utils').init()
 -- Rest plugins will be loaded by plugin/after/*
 
 -- GUI configuration

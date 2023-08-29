@@ -44,7 +44,7 @@ local function config()
     { desc = "Search keymap using telescope" })
 end
 
-require('plugins').try_use {
+require('packer_utils').try_use {
   'nvim-telescope/telescope.nvim',
   config = config,
   requires = {

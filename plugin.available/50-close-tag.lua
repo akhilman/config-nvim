@@ -12,4 +12,4 @@ local function config()
   }
 end
 
-require('plugins').try_use { 'alvan/vim-closetag', config = config }
+require('packer_utils').try_use { 'alvan/vim-closetag', config = config }

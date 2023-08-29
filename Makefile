@@ -12,4 +12,4 @@ update:
 	$(NVIM_CMD) --headless -c 'TSUpdateSync' -c 'quitall'
 
 uninstall:
-	$(NVIM_CMD) --headless --noplugin -c 'lua require("plugins").uninstall()' -c 'quitall'
+	$(NVIM_CMD) --headless --noplugin -c 'lua require("packer_utils").uninstall()' -c 'quitall'

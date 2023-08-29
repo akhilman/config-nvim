@@ -10,7 +10,7 @@ local function config()
   )
 end
 
-require('plugins').try_use {
+require('packer_utils').try_use {
   'nvim-tree/nvim-tree.lua',
   requires = {
     'nvim-tree/nvim-web-devicons',   -- optional, for file icons

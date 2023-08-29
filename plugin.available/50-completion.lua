@@ -104,7 +104,7 @@ end
 
 -- Packer startup
 
-require('plugins').try_use {
+require('packer_utils').try_use {
   'hrsh7th/nvim-cmp', -- Autocompletion plugin
   config = config,
   requires =

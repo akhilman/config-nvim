@@ -1,4 +1,4 @@
-require('plugins').try_use { 'uga-rosa/ccc.nvim', config = function()
+require('packer_utils').try_use { 'uga-rosa/ccc.nvim', config = function()
   local ccc = require('ccc')
   local mapping = ccc.mapping
   ccc.setup {

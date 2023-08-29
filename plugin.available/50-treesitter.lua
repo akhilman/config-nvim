@@ -112,7 +112,7 @@ local function config_indent_object()
     { desc = "select entire inner range (including if, else, etc.)" })
 end
 
-local try_use = require('plugins').try_use
+local try_use = require('packer_utils').try_use
 -- Highlight, edit, and navigate code using a fast incremental parsing library
 try_use {
   'nvim-treesitter/nvim-treesitter',
