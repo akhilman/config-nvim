@@ -16,28 +16,73 @@ local function config()
     -- Enable completion triggered by <c-x><c-o>
     -- vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
+    local function hover()
+      if packer_plugins['rust-tools.nvim'] and vim.bo[bufnr].filetype == 'rust' then
+        require('rust-tools').hover_actions.hover_actions()
+      else
+        vim.lsp.buf.hover()
+      end
+    end
+    local function to_definitions()
+      if packer_plugins['telescope.nvim'] then
+        require('telescope.builtin').lsp_definitions()
+      else
+        vim.lsp.buf.definition()
+      end
+    end
+    local function to_implementations()
+      if packer_plugins['telescope.nvim'] then
+        require('telescope.builtin').lsp_implementations()
+      else
+        vim.lsp.buf.implementation()
+      end
+    end
+    local function to_references()
+      if packer_plugins['telescope.nvim'] then
+        require('telescope.builtin').lsp_references()
+      else
+        vim.lsp.buf.references()
+      end
+    end
+    local function to_type_defenitions()
+      if packer_plugins['telescope.nvim'] then
+        require('telescope.builtin').lsp_type_defenitions()
+      else
+        vim.lsp.buf.type_defenition()
+      end
+    end
+    local function document_symbols()
+      if packer_plugins['telescope.nvim'] then
+        require('telescope.builtin').lsp_document_symbols()
+      else
+        vim.lsp.buf.document_symbol()
+      end
+    end
+    local function workspace_symbols()
+      if packer_plugins['telescope.nvim'] then
+        require('telescope.builtin').lsp_workspace_symbols()
+      else
+        vim.lsp.buf.workspace_symbol()
+      end
+    end
+
     -- Mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration,
       { desc = "Go to declaration", silent = true, buffer = bufnr })
-    vim.keymap.set('n', 'gd', require 'telescope.builtin'.lsp_definitions,
+    vim.keymap.set('n', 'gd', to_definitions,
       { desc = "Search for definitions", silent = true, buffer = bufnr })
-    vim.keymap.set('n', 'gi', require 'telescope.builtin'.lsp_implementations,
+    vim.keymap.set('n', 'gi', to_implementations,
       { desc = "Search for implementations", silent = true, buffer = bufnr })
-    vim.keymap.set('n', 'gr', require 'telescope.builtin'.lsp_references,
+    vim.keymap.set('n', 'gr', to_references,
       { desc = "Search for references", silent = true, buffer = bufnr })
-    if vim.bo[bufnr].filetype == 'rust' then
-      vim.keymap.set('n', 'K', require 'rust-tools'.hover_actions.hover_actions,
-        { desc = "Show documentation and actions (hover)", silent = true, buffer = bufnr })
-    else
-      vim.keymap.set('n', 'K', vim.lsp.buf.hover,
-        { desc = "Show documentation (hover)", silent = true, buffer = bufnr })
-    end
+    vim.keymap.set('n', 'K', hover,
+      { desc = "Show documentation (hover)", silent = true, buffer = bufnr })
     vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help,
       { desc = "Show signature help", silent = true, buffer = bufnr })
-    vim.keymap.set('n', '<LocalLeader>s', require 'telescope.builtin'.lsp_document_symbols,
+    vim.keymap.set('n', '<LocalLeader>s', document_symbols,
       { desc = "Show document symbols", silent = true, buffer = bufnr })
-    vim.keymap.set('n', '<LocalLeader>ws', require 'telescope.builtin'.lsp_workspace_symbols,
+    vim.keymap.set('n', '<LocalLeader>ws', workspace_symbols,
       { desc = "Show workspace symbols", silent = true, buffer = bufnr })
     vim.keymap.set('n', '<LocalLeader>wa', vim.lsp.buf.add_workspace_folder,
       { desc = "Add workspace folder", silent = true, buffer = bufnr })
@@ -46,7 +91,7 @@ local function config()
     vim.keymap.set('n', '<LocalLeader>wl',
       function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())); end,
       { desc = "List workspace folders", silent = true, buffer = bufnr })
-    vim.keymap.set('n', '<LocalLeader>D', require 'telescope.builtin'.lsp_type_definitions,
+    vim.keymap.set('n', '<LocalLeader>D', to_type_defenitions,
       { desc = "Search for type definitions", silent = true, buffer = bufnr })
     vim.keymap.set('n', '<LocalLeader>rn', vim.lsp.buf.rename,
       { desc = "Rename symbol (refactoring)", silent = true, buffer = bufnr })
@@ -63,9 +108,8 @@ local function config()
     capabilities = vim.lsp.protocol.make_client_capabilities(),
   }
   -- Add additional capabilities supported by nvim-cmp
-  local cmp_nvim_lsp = require('plugins').try_require('cmp_nvim_lsp')
-  if cmp_nvim_lsp then
-    base_cfg.capabilities = cmp_nvim_lsp.default_capabilities()
+  if packer_plugins['cmp-mvim-lsp'] then
+    base_cfg.capabilities = require('cmp_nvim_lsp').default_capabilities()
   end
 
   -- Setup language servers
@@ -111,6 +155,7 @@ local function config()
   -- rust_analyzer
   local rust_analyzer = find_rust_analyzer()
   if rust_analyzer then
+    vim.cmd 'packadd rust-tools.nvim'
     local rt = require 'rust-tools'
     rt.setup {
       server = vim.tbl_extend('force', base_cfg, {
@@ -148,10 +193,6 @@ require('plugins').try_use {
     -- LSP goodies
     'ii14/lsp-command', -- :Lsp command
     -- 'nvim-lua/lsp_extensions.nvim',  -- Inlay hints
-    'simrat39/rust-tools.nvim',
-    {
-      'nvim-telescope/telescope.nvim',
-      requires = { 'nvim-lua/plenary.nvim' },
-    }
+    { 'simrat39/rust-tools.nvim', opt = true},
   },
 }

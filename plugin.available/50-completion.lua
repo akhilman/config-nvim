@@ -5,18 +5,28 @@ local function config()
 
   -- Main sources
   local sources = {
-    { name = 'luasnip',  priority = 100 },
-    { name = 'nvim_lsp', priority = 50 },
-    { name = 'dap',      priority = 50 },
-    { name = 'buffer' },
+    { name = 'luasnip', priority = 100 },
     { name = 'path' },
+    { name = 'buffer' },
   }
+
+  -- Completion for LSP
+  if packer_plugins['nvim-lspconfig'] then
+    vim.cmd 'packadd cmp-nvim-lsp'
+    table.insert(sources, { name = 'nvim_lsp', priority = 50 })
+  end
+
+  -- Completion for Dap debugger REPL terminal
+  if packer_plugins['nvim-dap'] then
+    vim.cmd 'packadd cmp-dap'
+    table.insert(sources, { name = 'dap', priority = 50 })
+  end
 
   cmp.setup {
     -- nvim-cmp by defaults disables autocomplete for prompt buffers
     enabled = function()
       return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt" or
-          (require('plugins').try_require('cmp_dap') and
+          (packer_plugins['cmp-dap'] and
             require("cmp_dap").is_dap_buffer())
     end,
     snippet = {
@@ -109,7 +119,7 @@ require('plugins').try_use {
         'L3MON4D3/LuaSnip',       -- Snippets
       }
     },
-    'hrsh7th/cmp-nvim-lsp',
-    'rcarriga/cmp-dap',
+    { 'hrsh7th/cmp-nvim-lsp', opt = true },
+    { 'rcarriga/cmp-dap',     opt = true },
   },
 }

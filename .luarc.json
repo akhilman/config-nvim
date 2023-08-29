@@ -5,7 +5,7 @@
     "path": ["init.lua", "lua/?.lua", "plugin.availale/?.lua"]
   },
   "diagnostics": {
-    "globals": ["vim"],
+    "globals": ["vim", "packer_plugins"],
     "disable": ["different-requires"]
   },
   "workspace": {
