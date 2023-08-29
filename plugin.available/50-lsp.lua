@@ -140,13 +140,15 @@ local function config()
   if vim.fn.executable('pylsp') == 1 then
     lspconfig.pylsp.setup(vim.tbl_extend('force', base_cfg, {
       settings = {
-        plugins = {
-          black = { enabled = true },
-          pylint = { enabled = true },
-          pyflakes = { enabled = false },
-          pyls_mypy = { enabled = true, live_mode = false },
-          isort = { enabled = true },
-          rope_autoimport = { enabled = true },
+        pylsp = {
+          plugins = {
+            black = { enabled = true },
+            pylint = { enabled = true },
+            pyflakes = { enabled = false },
+            pyls_mypy = { enabled = true, live_mode = false },
+            isort = { enabled = true },
+            rope_autoimport = { enabled = true },
+          }
         }
       }
     }))
@@ -193,6 +195,6 @@ require('packer_utils').try_use {
     -- LSP goodies
     'ii14/lsp-command', -- :Lsp command
     -- 'nvim-lua/lsp_extensions.nvim',  -- Inlay hints
-    { 'simrat39/rust-tools.nvim', opt = true},
+    { 'simrat39/rust-tools.nvim', opt = true },
   },
 }
