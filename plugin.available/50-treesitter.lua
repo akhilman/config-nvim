@@ -16,7 +16,7 @@
 --   end
 -- end
 
-local function config()
+local function config_treesitter()
   -- Treesitter configuration
   -- Parsers must be installed manually via :TSInstall
   require('nvim-treesitter.configs').setup {
@@ -95,11 +95,28 @@ local function config()
   -- )
 end
 
+local function config_indent_object()
+  require('treesitter_indent_object').setup {}
+
+  vim.keymap.set({ "x", "o" }, "ai",
+    function() require('treesitter_indent_object.textobj').select_indent_outer() end,
+    { desc = "select context-aware indent" })
+  vim.keymap.set({ "x", "o" }, "aI",
+    function() require('treesitter_indent_object.textobj').select_indent_outer(true) end,
+    { desc = "ensure selecting entire line (or just use Vai)" })
+  vim.keymap.set({ "x", "o" }, "ii",
+    function() require('treesitter_indent_object.textobj').select_indent_inner() end,
+    { desc = "select inner block (only if block, only else block, etc.)" })
+  vim.keymap.set({ "x", "o" }, "iI",
+    function() require('treesitter_indent_object').textobj.select_indent_inner(true) end,
+    { desc = "select entire inner range (including if, else, etc.)" })
+end
+
 local try_use = require('plugins').try_use
 -- Highlight, edit, and navigate code using a fast incremental parsing library
 try_use {
   'nvim-treesitter/nvim-treesitter',
-  config = config,
+  config = config_treesitter,
 }
 -- Additional textobjects for treesitter
 try_use {
@@ -109,13 +126,12 @@ try_use {
 }
 try_use {
   'nvim-treesitter/nvim-treesitter-context',
-  config = function()
-    require 'treesitter-context'.setup {}
-  end,
+  config = function() require 'treesitter-context'.setup {} end,
   requires = { 'nvim-treesitter/nvim-treesitter' },
 }
 try_use {
   'kiyoon/treesitter-indent-object.nvim',
+  config = config_indent_object,
   requires = { 'nvim-treesitter/nvim-treesitter' },
 }
 -- Visualiration of AST for debuging and plugin development
