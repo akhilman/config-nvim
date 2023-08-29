@@ -36,10 +36,6 @@ local function autochdir()
   end
 end
 
-local function chdir()
-  autochdir()
-end
-
 -- vim.api.nvim_create_autocmd(
 --   { 'BufReadPost', 'FileReadPost' },
 --   { callback = autochdir }
