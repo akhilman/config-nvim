@@ -5,15 +5,19 @@ local function config()
 
   -- Main sources
   local sources = {
+    { name = 'calc', priority = 150 },
     { name = 'luasnip', priority = 100 },
-    { name = 'path' },
-    { name = 'buffer' },
+    { name = 'nvim_lua', priority = 50 },
+    { name = 'path', priority = 10 },
+    { name = 'buffer', priority = 0 },
   }
 
   -- Completion for LSP
   if packer_plugins['nvim-lspconfig'] then
     vim.cmd 'packadd cmp-nvim-lsp'
+    vim.cmd 'packadd cmp-nvim-lsp-signature-help'
     table.insert(sources, { name = 'nvim_lsp', priority = 50 })
+    table.insert(sources, { name = 'nvim_lsp_signature_help', priority = 100 })
   end
 
   -- Completion for Dap debugger REPL terminal
@@ -107,11 +111,13 @@ end
 require('packer_utils').try_use {
   'hrsh7th/nvim-cmp', -- Autocompletion plugin
   config = config,
-  requires =
-  {
+  requires = {
+    -- See https://github.com/hrsh7th/nvim-cmp/wiki/List-of-sources for more sources
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-cmdline',
-    'hrsh7th/cmp-path',
+    'hrsh7th/cmp-path',  -- Maybe replace by FelipeLema/cmp-async-path
+    'hrsh7th/cmp-calc',
+    'hrsh7th/cmp-nvim-lua',  -- Neovim Lua API
     -- Snippets
     {
       'saadparwaiz1/cmp_luasnip', -- Snippets source for nvim-cmp
@@ -120,6 +126,7 @@ require('packer_utils').try_use {
       }
     },
     { 'hrsh7th/cmp-nvim-lsp', opt = true },
-    { 'rcarriga/cmp-dap',     opt = true },
+    { 'hrsh7th/cmp-nvim-lsp-signature-help', opt = true },
+    { 'rcarriga/cmp-dap', opt = true },
   },
 }
