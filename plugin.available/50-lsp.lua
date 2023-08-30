@@ -159,8 +159,11 @@ local function config()
   if vim.fn.executable('deno') == 1 then
     lspconfig.denols.setup(vim.tbl_extend('force', base_cfg, {
       settings = {
-        enabled = true,
-        lint = true,
+        -- https://deno.land/manual/advanced/language_server/overview
+        deno = {
+          enabled = true,
+          lint = true,
+        }
       }
     }))
   end
