@@ -10,4 +10,4 @@ try_use 'leafgarland/typescript-vim'
 try_use 'pangloss/vim-javascript'
 try_use 'tbastos/vim-lua'
 try_use 'teal-language/vim-teal'
-try_use { 'andys8/vim-elm-syntax', { ft = 'elm' } }
+try_use 'andys8/vim-elm-syntax'
