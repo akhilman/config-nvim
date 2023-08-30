@@ -1,21 +1,23 @@
 local function config()
   local telescope_builtin = require 'telescope.builtin'
 
-  -- Buffers
+  -- Word search
   vim.keymap.set('n', '<Leader>/', telescope_builtin.current_buffer_fuzzy_find,
     { desc = 'Find in current buffer with Telescope', silent = true })
-  vim.keymap.set('n', '<Leader>fb', telescope_builtin.buffers,
-    { desc = 'Find buffer with Telescope', silent = true })
+  vim.keymap.set('n', '<Leader>fw', telescope_builtin.live_grep,
+    { desc = 'Search for a string and get results live as you type', silent = true })
+  vim.keymap.set('n', '<Leader>f*', telescope_builtin.grep_string,
+    { desc = 'Searches for the string under your cursor in your current working directory', silent = true })
 
-  -- Files
+  -- File search
   vim.keymap.set('n', '<Leader>ff', telescope_builtin.find_files,
     { desc = 'Find file with Telescope', silent = true })
   vim.keymap.set('n', '<Leader>fg', telescope_builtin.git_files,
     { desc = 'Find file in git with Telescope', silent = true })
-  vim.keymap.set('n', '<Leader>f/', telescope_builtin.live_grep,
-    { desc = 'Search for a string and get results live as you type', silent = true })
-  vim.keymap.set('n', '<Leader>f*', telescope_builtin.grep_string,
-    { desc = 'Searches for the string under your cursor in your current working directory', silent = true })
+
+  -- Buffer search
+  vim.keymap.set('n', '<Leader>fb', telescope_builtin.buffers,
+    { desc = 'Find buffer with Telescope', silent = true })
 
   -- Spell suggestions
   vim.keymap.set('n', 'z=', telescope_builtin.spell_suggest,
