@@ -139,14 +139,15 @@ local function config()
   -- Base configuration
   local base_cfg = {
     on_attach = on_attach,
-    capabilities = vim.lsp.protocol.make_client_capabilities(),
   }
   -- Add additional capabilities supported by nvim-cmp
   if packer_plugins['cmp-nvim-lsp'] then
+    vim.cmd 'packadd cmp-nvim-lsp'
     base_cfg.capabilities = require('cmp_nvim_lsp').default_capabilities()
+  else
+    base_cfg.capabilities = vim.lsp.protocol.make_client_capabilities()
   end
 
-  -- Setup language servers
   local lspconfig = require 'lspconfig'
 
   -- clangd
@@ -200,7 +201,7 @@ local function config()
       server = vim.tbl_extend('force', base_cfg, {
         cmd = { rust_analyzer },
         settings = {
-          rust = { clippy_preference = true },
+          -- https://rust-analyzer.github.io/manual.html
           ['rust-analyzer'] = {
             -- cargo = { features = nil },
             checkOnSave = {
