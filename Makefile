@@ -1,6 +1,9 @@
 NVIM_CMD ?= nvim
 
-default: install
+default: compile
+
+compile:
+	$(NVIM_CMD) --headless -c 'PackerCompile' -c 'quitall'
 
 install:
 	$(NVIM_CMD) --headless -c 'PackerBootstrap' -c 'quitall'
