@@ -5,16 +5,16 @@ if vim.env.COLORTERM == "truecolor" then
 end
 -- pcall(function() vim.cmd 'colorscheme carbonfox' end)
 
-local try_use = require('packer_bootstrap').try_use
-try_use {
+local use = require('packer_bootstrap').use
+use {
   'EdenEast/nightfox.nvim',
   config = function() vim.cmd 'colorscheme carbonfox' end
 }
 
-try_use 'Mofiqul/adwaita.nvim'
-try_use 'projekt0n/github-nvim-theme'
-try_use { 'metalelf0/jellybeans-nvim',
+use 'Mofiqul/adwaita.nvim'
+use 'projekt0n/github-nvim-theme'
+use { 'metalelf0/jellybeans-nvim',
   requires = { 'rktjmp/lush.nvim' }
 }
-try_use 'rebelot/kanagawa.nvim'
-try_use 'olimorris/onedarkpro.nvim'
+use 'rebelot/kanagawa.nvim'
+use 'olimorris/onedarkpro.nvim'

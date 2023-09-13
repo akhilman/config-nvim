@@ -1,1 +1,1 @@
-require('packer_bootstrap').try_use { 'rafcamlet/nvim-luapad' }
+require('packer_bootstrap').use { 'rafcamlet/nvim-luapad' }

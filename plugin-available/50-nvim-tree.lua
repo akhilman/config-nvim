@@ -10,7 +10,7 @@ local function config()
   )
 end
 
-require('packer_bootstrap').try_use {
+require('packer_bootstrap').use {
   'nvim-tree/nvim-tree.lua',
   requires = {
     'nvim-tree/nvim-web-devicons',   -- optional, for file icons

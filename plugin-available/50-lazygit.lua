@@ -1,1 +1,1 @@
-require('packer_bootstrap').try_use 'kdheepak/lazygit.nvim'
+require('packer_bootstrap').use 'kdheepak/lazygit.nvim'

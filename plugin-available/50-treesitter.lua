@@ -112,27 +112,27 @@ local function config_indent_object()
     { desc = "select entire inner range (including if, else, etc.)" })
 end
 
-local try_use = require('packer_bootstrap').try_use
+local use = require('packer_bootstrap').use
 -- Highlight, edit, and navigate code using a fast incremental parsing library
-try_use {
+use {
   'nvim-treesitter/nvim-treesitter',
   config = config_treesitter,
 }
 -- Additional textobjects for treesitter
-try_use {
+use {
   'nvim-treesitter/nvim-treesitter-textobjects',
   requires = { 'nvim-treesitter/nvim-treesitter' },
   after = { 'nvim-treesitter' },
 }
-try_use {
+use {
   'nvim-treesitter/nvim-treesitter-context',
   config = function() require 'treesitter-context'.setup {} end,
   requires = { 'nvim-treesitter/nvim-treesitter' },
 }
-try_use {
+use {
   'kiyoon/treesitter-indent-object.nvim',
   config = config_indent_object,
   requires = { 'nvim-treesitter/nvim-treesitter' },
 }
 -- Visualiration of AST for debuging and plugin development
--- try_use 'nvim-treesitter/playground'
+-- use 'nvim-treesitter/playground'

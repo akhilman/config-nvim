@@ -46,22 +46,22 @@ local function ui_config()
 end
 
 
-local try_use = require('packer_bootstrap').try_use
-try_use {
+local use = require('packer_bootstrap').use
+use {
   'mfussenegger/nvim-dap',
   config = dap_config,
 }
-try_use {
+use {
   'mfussenegger/nvim-dap-python',
   config = function() require('dap-python').setup() end,
   requires = { "mfussenegger/nvim-dap" },
 }
-try_use {
+use {
   "rcarriga/nvim-dap-ui",
   config = ui_config,
   requires = { "mfussenegger/nvim-dap" },
 }
-try_use {
+use {
   'theHamsta/nvim-dap-virtual-text',
   config = function() require("nvim-dap-virtual-text").setup() end,
   requires = { "mfussenegger/nvim-dap" },

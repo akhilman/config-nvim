@@ -1,1 +1,1 @@
-require('packer_bootstrap').try_use 'skwp/greplace.vim'
+require('packer_bootstrap').use 'skwp/greplace.vim'

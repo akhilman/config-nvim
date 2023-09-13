@@ -9,7 +9,7 @@ local function config()
   }
 end
 
-require('packer_bootstrap').try_use {
+require('packer_bootstrap').use {
   'lukas-reineke/indent-blankline.nvim',
   config = config,
 }

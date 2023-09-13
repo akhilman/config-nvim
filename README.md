@@ -2,9 +2,7 @@
 
 ## Install
 
- * Run command in nvim `:PackreBootrtap`
- * Restart nvim
- * After restart all plugins will be installed
+ Run command `:PackreBootrtap`
 
 ## Update
 

@@ -8,7 +8,7 @@ local function config()
   }
 end
 
-require('packer_bootstrap').try_use {
+require('packer_bootstrap').use {
   "kylechui/nvim-surround",
   config = config,
 }

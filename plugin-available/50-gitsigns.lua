@@ -11,7 +11,7 @@ local function config()
   vim.cmd [[highlight SignColumn guibg=Gray10]]
 end
 
-require('packer_bootstrap').try_use {
+require('packer_bootstrap').use {
   'lewis6991/gitsigns.nvim',
   requires = { 'nvim-lua/plenary.nvim' },
   config = config,

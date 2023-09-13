@@ -1,15 +1,44 @@
 local compiled_path = vim.fn.stdpath('config') .. '/plugin/ZZ-packer_compiled.lua'
 local packages_path = vim.fn.stdpath('data') .. '/site/pack/packer/'
-local packer_path = packages_path .. 'start/packer.nvim'
+local packer_path = packages_path .. 'opt/packer.nvim'
 local packer_name = 'wbthomason/packer.nvim'
 local packer_repo = 'https://github.com/' .. packer_name
 
+local deferred_uses = {}
+
 local M = {}
 
-function M.try_use(cfg)
+local function purge_compiled()
+  local old_cfg = vim.split(vim.fn.glob(
+    vim.fn.stdpath('config') .. '/plugin/??-packer_compiled.lua'), '\n')
+  for _, f in ipairs(old_cfg) do
+    if string.len(f) ~= 0 then
+      vim.notify(string.format('Removing "%s"...', f), vim.log.levels.INFO)
+      vim.fn.delete(f)
+    end
+  end
+end
+
+local function init_packer()
+  local ok, packer = pcall(function() return require 'packer' end)
+  if ok and packer then
+    packer.init {
+      compile_path = compiled_path,
+      max_jobs = 8,
+    }
+    packer.use {
+      packer_name,
+      opt = true,
+    }
+  end
+end
+
+function M.use(cfg)
   local ok, packer = pcall(function() return require 'packer' end)
   if ok and packer then
     packer.use(cfg)
+  else
+    table.insert(deferred_uses, cfg)
   end
 end
 
@@ -20,6 +49,16 @@ function M.bootstrap()
   end
   vim.notify('Installing Packer...', vim.log.levels.INFO)
   vim.notify(vim.fn.system({ 'git', 'clone', '--depth', '1', packer_repo, packer_path }), vim.log.levels.INFO)
+  pcall(function() vim.cmd 'packadd packer.nvim' end)
+  local ok, packer = pcall(function() return require 'packer' end)
+  if ok and packer then
+    init_packer()
+    for _, cfg in ipairs(deferred_uses) do
+      packer.use(cfg)
+    end
+    deferred_uses = {}
+    packer.sync()
+  end
 end
 
 function M.update_config()
@@ -42,11 +81,7 @@ function M.update_config()
 
   if outdated then
     vim.notify('Updating plugin configuration', vim.log.levels.INFO)
-    local old_cfg = vim.split(vim.fn.glob(
-      vim.fn.stdpath('config') .. '/plugin/??-packer_compiled.lua'), '\n')
-    for _, f in ipairs(old_cfg) do
-      vim.fn.delete(f)
-    end
+    purge_compiled()
     vim.cmd 'autocmd User PackerComplete ++once PackerCompile'
     packer.install()
   end
@@ -62,16 +97,9 @@ function M.uninstall()
 end
 
 function M.init()
-  local ok, packer = pcall(function() return require 'packer' end)
-  if ok and packer then
-    packer.init {
-      compile_path = compiled_path,
-      max_jobs = 8,
-    }
-    packer.use {
-      packer_name
-    }
-  end
+  pcall(function() vim.cmd 'packadd packer.nvim' end)
+
+  init_packer()
 
   vim.api.nvim_create_user_command('PackerBootstrap', M.bootstrap,
     { desc = "Install Packer plugin manager" })

@@ -1,4 +1,4 @@
-require('packer_bootstrap').try_use {
+require('packer_bootstrap').use {
   "chrisgrieser/nvim-early-retirement",
   config = function()
     require("early-retirement").setup {
