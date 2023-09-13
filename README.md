@@ -2,22 +2,16 @@
 
 ## Install
 
-```bash
-git clone https://github.com/akhilman/config-nvim.git ~/.config/nvim
-cd ~/.config/nvim
-make install
-```
+ * Run command in nvim `:PackreBootrtap`
+ * Restart nvim
+ * After restart all plugins will be installed
 
 ## Update
 
-```bash
-cd ~/.config/nvim
-make update
-```
+Run in nvim
+ * `:PackerSync`
+ * `:TSUpdate`
 
 ## Uninstall
 
-```bash
-cd ~/.config/nvim
-make uninstall
-```
+ Run command `:PackreUninstall`

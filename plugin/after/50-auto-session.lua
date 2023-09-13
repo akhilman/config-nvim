@@ -1,1 +1,0 @@
-../../plugin-available/50-auto-session.lua
