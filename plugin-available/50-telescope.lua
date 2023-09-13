@@ -12,6 +12,8 @@ local function config()
   -- File search
   vim.keymap.set('n', '<Leader>ff', telescope_builtin.find_files,
     { desc = 'Find a file with Telescope', silent = true })
+  vim.keymap.set('n', '<Leader>fl', telescope_builtin.oldfiles,
+    { desc = 'Find a recently opened file with Telescope', silent = true })
   vim.keymap.set('n', '<Leader>fg', telescope_builtin.git_files,
     { desc = 'Find a file in git with Telescope', silent = true })
 
