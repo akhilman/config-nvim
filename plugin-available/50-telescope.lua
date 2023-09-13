@@ -11,13 +11,13 @@ local function config()
 
   -- File search
   vim.keymap.set('n', '<Leader>ff', telescope_builtin.find_files,
-    { desc = 'Find file with Telescope', silent = true })
+    { desc = 'Find a file with Telescope', silent = true })
   vim.keymap.set('n', '<Leader>fg', telescope_builtin.git_files,
-    { desc = 'Find file in git with Telescope', silent = true })
+    { desc = 'Find a file in git with Telescope', silent = true })
 
   -- Buffer search
   vim.keymap.set('n', '<Leader>fb', telescope_builtin.buffers,
-    { desc = 'Find buffer with Telescope', silent = true })
+    { desc = 'Find a buffer with Telescope', silent = true })
 
   -- Spell suggestions
   vim.keymap.set('n', 'z=', telescope_builtin.spell_suggest,
@@ -29,11 +29,11 @@ local function config()
 
   -- Commands
   vim.keymap.set('n', '<Leader>fc', telescope_builtin.commands,
-    { desc = 'Find command with Telescope', silent = true })
   vim.api.nvim_create_user_command('SearchHelp', telescope_builtin.help_tags,
     { desc = "Search in vim's help using telescope" })
   vim.api.nvim_create_user_command('SearchKeymaps', telescope_builtin.keymaps,
     { desc = "Search keymap using telescope" })
+    { desc = 'Find a command with Telescope', silent = true })
 end
 
 require('packer_utils').try_use {
