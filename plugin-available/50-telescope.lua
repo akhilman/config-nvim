@@ -29,10 +29,6 @@ local function config()
 
   -- Commands
   vim.keymap.set('n', '<Leader>fc', telescope_builtin.commands,
-  vim.api.nvim_create_user_command('SearchHelp', telescope_builtin.help_tags,
-    { desc = "Search in vim's help using telescope" })
-  vim.api.nvim_create_user_command('SearchKeymaps', telescope_builtin.keymaps,
-    { desc = "Search keymap using telescope" })
     { desc = 'Find a command with Telescope', silent = true })
 end
 
