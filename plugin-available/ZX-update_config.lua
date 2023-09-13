@@ -1,1 +1,1 @@
-require('packer_utils').update_config()
+require('packer_bootstrap').update_config()

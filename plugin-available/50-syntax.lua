@@ -1,4 +1,4 @@
-local try_use = require('packer_utils').try_use
+local try_use = require('packer_bootstrap').try_use
 try_use 'cespare/vim-toml'
 try_use 'cstrahan/vim-capnp'
 try_use 'dag/vim-fish'

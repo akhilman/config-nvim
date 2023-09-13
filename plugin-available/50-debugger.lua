@@ -46,7 +46,7 @@ local function ui_config()
 end
 
 
-local try_use = require('packer_utils').try_use
+local try_use = require('packer_bootstrap').try_use
 try_use {
   'mfussenegger/nvim-dap',
   config = dap_config,

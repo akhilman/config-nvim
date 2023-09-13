@@ -225,7 +225,7 @@ local function config()
 end
 
 -- Packer startup
-require('packer_utils').try_use {
+require('packer_bootstrap').try_use {
   'neovim/nvim-lspconfig',
   -- Somehow using setup function directly does not work
   config = config,

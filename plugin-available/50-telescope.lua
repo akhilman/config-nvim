@@ -34,7 +34,7 @@ local function config()
     { desc = 'Find a command with Telescope', silent = true })
 end
 
-require('packer_utils').try_use {
+require('packer_bootstrap').try_use {
   'nvim-telescope/telescope.nvim',
   config = config,
   requires = {

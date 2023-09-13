@@ -1,7 +1,7 @@
 -- Fancier statusline
 
 local function config()
-  -- local plugins = require 'packer_utils'
+  -- local plugins = require 'packer_bootstrap'
   local tabline = {
     lualine_a = { 'tabs', 'buffers' },
     lualine_z = {},
@@ -28,7 +28,7 @@ local function config()
   }
 end
 
-require('packer_utils').try_use {
+require('packer_bootstrap').try_use {
   'nvim-lualine/lualine.nvim',
   config = config,
 }
