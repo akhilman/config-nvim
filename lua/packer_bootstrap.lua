@@ -31,7 +31,8 @@ function M.update_config()
   local comp_time = vim.fn.getftime(compiled_path) -- -1 if file is not exist
   local mod_time = -1
 
-  local plugins = vim.split(vim.fn.glob(vim.fn.stdpath('config') .. '/plugin/**/*.lua'), '\n')
+  local plugins = vim.split(vim.fn.glob(
+    vim.fn.stdpath('config') .. '/plugin/**/*.lua'), '\n')
   for _, f in ipairs(plugins) do
     local mtime = vim.fn.getftime(f)
     if mtime > mod_time then
@@ -41,7 +42,11 @@ function M.update_config()
 
   if mod_time > comp_time then
     vim.notify('Updating plugin configuration', vim.log.levels.INFO)
-    vim.fn.delete(compiled_path)
+    local old_cfg = vim.split(vim.fn.glob(
+      vim.fn.stdpath('config') .. '/plugin/??-packer_compiled.lua'), '\n')
+    for _, f in ipairs(old_cfg) do
+      vim.fn.delete(f)
+    end
     vim.cmd 'autocmd User PackerComplete ++once PackerCompile'
     packer.install()
   end
