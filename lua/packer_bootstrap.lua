@@ -29,18 +29,18 @@ function M.update_config()
   end
 
   local comp_time = vim.fn.getftime(compiled_path) -- -1 if file is not exist
-  local mod_time = -1
+  local outdated = false
 
   local plugins = vim.split(vim.fn.glob(
     vim.fn.stdpath('config') .. '/plugin/**/*.lua'), '\n')
   for _, f in ipairs(plugins) do
     local mtime = vim.fn.getftime(f)
-    if mtime > mod_time then
-      mod_time = mtime
+    if mtime > comp_time then
+      outdated = true
     end
   end
 
-  if mod_time > comp_time then
+  if outdated then
     vim.notify('Updating plugin configuration', vim.log.levels.INFO)
     local old_cfg = vim.split(vim.fn.glob(
       vim.fn.stdpath('config') .. '/plugin/??-packer_compiled.lua'), '\n')
