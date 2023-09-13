@@ -6,7 +6,7 @@ vim.cmd('source ' .. vim.fn.stdpath 'config' .. '/default_colorscheme.vim')
 
 -- Initialize packer
 require('packer_bootstrap').init()
--- Rest plugins will be loaded by plugin/after/*
+-- Plugins will be loaded by plugin/*
 
 -- GUI configuration
 
