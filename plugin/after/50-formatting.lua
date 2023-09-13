@@ -1,1 +1,1 @@
-../../plugin.available/50-formatting.lua
+../../plugin-available/50-formatting.lua

@@ -1,1 +1,1 @@
-../../plugin.available/50-test.lua
+../../plugin-available/50-test.lua

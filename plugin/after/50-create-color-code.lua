@@ -1,1 +1,1 @@
-../../plugin.available/50-create-color-code.lua
+../../plugin-available/50-create-color-code.lua

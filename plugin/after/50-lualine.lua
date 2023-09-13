@@ -1,1 +1,1 @@
-../../plugin.available/50-lualine.lua
+../../plugin-available/50-lualine.lua

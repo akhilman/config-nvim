@@ -1,1 +1,1 @@
-../../plugin.available/50-markdown-composer.lua
+../../plugin-available/50-markdown-composer.lua

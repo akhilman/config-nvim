@@ -1,1 +1,1 @@
-../../plugin.available/50-greplace.lua
+../../plugin-available/50-greplace.lua

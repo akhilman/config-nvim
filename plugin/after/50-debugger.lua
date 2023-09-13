@@ -1,1 +1,1 @@
-../../plugin.available/50-debugger.lua
+../../plugin-available/50-debugger.lua

@@ -1,1 +1,1 @@
-../../plugin.available/50-autopairs.lua
+../../plugin-available/50-autopairs.lua

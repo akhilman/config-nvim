@@ -1,1 +1,1 @@
-../../plugin.available/50-undotree.lua
+../../plugin-available/50-undotree.lua

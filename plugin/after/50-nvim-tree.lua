@@ -1,1 +1,1 @@
-../../plugin.available/50-nvim-tree.lua
+../../plugin-available/50-nvim-tree.lua

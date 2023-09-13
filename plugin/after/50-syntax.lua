@@ -1,1 +1,1 @@
-../../plugin.available/50-syntax.lua
+../../plugin-available/50-syntax.lua

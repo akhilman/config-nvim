@@ -1,1 +1,1 @@
-../../plugin.available/50-treesitter.lua
+../../plugin-available/50-treesitter.lua

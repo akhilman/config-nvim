@@ -1,1 +1,1 @@
-../../plugin.available/50-luapad.lua
+../../plugin-available/50-luapad.lua

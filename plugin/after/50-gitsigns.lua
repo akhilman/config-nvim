@@ -1,1 +1,1 @@
-../../plugin.available/50-gitsigns.lua
+../../plugin-available/50-gitsigns.lua

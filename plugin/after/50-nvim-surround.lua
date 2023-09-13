@@ -1,1 +1,1 @@
-../../plugin.available/50-nvim-surround.lua
+../../plugin-available/50-nvim-surround.lua

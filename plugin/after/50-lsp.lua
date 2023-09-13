@@ -1,1 +1,1 @@
-../../plugin.available/50-lsp.lua
+../../plugin-available/50-lsp.lua

@@ -1,1 +1,1 @@
-../../plugin.available/50-telescope.lua
+../../plugin-available/50-telescope.lua

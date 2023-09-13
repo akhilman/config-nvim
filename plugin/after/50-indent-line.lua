@@ -1,1 +1,1 @@
-../../plugin.available/50-indent-line.lua
+../../plugin-available/50-indent-line.lua

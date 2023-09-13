@@ -1,1 +1,1 @@
-../../plugin.available/50-fugitive.lua
+../../plugin-available/50-fugitive.lua

@@ -1,1 +1,1 @@
-../../plugin.available/50-comment.lua
+../../plugin-available/50-comment.lua

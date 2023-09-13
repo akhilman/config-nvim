@@ -1,1 +1,1 @@
-../../plugin.available/50-early-retirement.lua
+../../plugin-available/50-early-retirement.lua

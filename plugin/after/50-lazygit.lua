@@ -1,1 +1,1 @@
-../../plugin.available/50-lazygit.lua
+../../plugin-available/50-lazygit.lua

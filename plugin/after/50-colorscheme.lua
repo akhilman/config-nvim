@@ -1,1 +1,1 @@
-../../plugin.available/50-colorscheme.lua
+../../plugin-available/50-colorscheme.lua
