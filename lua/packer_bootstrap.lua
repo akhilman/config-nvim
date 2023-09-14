@@ -9,13 +9,14 @@ local deferred_uses = {}
 local M = {}
 
 local function purge_compiled()
-  local old_cfg = vim.split(vim.fn.glob(
-    vim.fn.stdpath('config') .. '/plugin/??-packer_compiled.lua'), '\n')
+  local old_cfg = vim.split(
+    vim.fn.glob(
+      vim.fn.stdpath('config') .. '/plugin/??-packer_compiled.lua'),
+    '\n', { trimempty = true }
+  )
   for _, f in ipairs(old_cfg) do
-    if string.len(f) ~= 0 then
-      vim.notify(string.format('Removing "%s"...', f), vim.log.levels.INFO)
-      vim.fn.delete(f)
-    end
+    vim.notify(string.format('Removing "%s"...', f), vim.log.levels.INFO)
+    vim.fn.delete(f)
   end
 end
 
@@ -69,8 +70,11 @@ function M.update_config()
   local comp_time = vim.fn.getftime(compiled_path) -- -1 if file is not exist
   local outdated = false
 
-  local plugins = vim.split(vim.fn.glob(
-    vim.fn.stdpath('config') .. '/plugin/**/*.lua'), '\n')
+  local plugins = vim.split(
+    vim.fn.glob(
+      vim.fn.stdpath('config') .. '/plugin/**/*.lua'),
+    '\n', { trimempty = true }
+  )
   for _, f in ipairs(plugins) do
     local mtime = vim.fn.getftime(f)
     if mtime > comp_time then
