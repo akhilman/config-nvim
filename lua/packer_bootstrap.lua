@@ -20,17 +20,14 @@ local function purge_compiled()
   end
 end
 
-local function init_packer()
-  local ok, packer = pcall(function() return require 'packer' end)
-  if ok and packer then
-    packer.init {
-      compile_path = compiled_path,
-      max_jobs = 8,
-    }
-    packer.use {
-      packer_name,
-    }
-  end
+local function init_packer(packer)
+  packer.init {
+    compile_path = compiled_path,
+    max_jobs = 8,
+  }
+  packer.use {
+    packer_name,
+  }
 end
 
 function M.use(cfg)
@@ -52,7 +49,7 @@ function M.bootstrap()
   vim.opt_global.runtimepath:append { packer_path }
   local ok, packer = pcall(function() return require 'packer' end)
   if ok and packer then
-    init_packer()
+    init_packer(packer)
     for _, cfg in ipairs(deferred_uses) do
       packer.use(cfg)
     end
@@ -100,7 +97,10 @@ function M.uninstall()
 end
 
 function M.init()
-  init_packer()
+  local ok, packer = pcall(function() return require 'packer' end)
+  if ok and packer then
+    init_packer(packer)
+  end
 
   vim.api.nvim_create_user_command('PackerBootstrap', M.bootstrap,
     { desc = "Install Packer plugin manager" })
