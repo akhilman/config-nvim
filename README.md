@@ -2,7 +2,8 @@
 
 ## Install
 
- Run command `:PackreBootrtap`
+ * Run command `:PackreBootrtap`
+ * Restart NeoVIM
 
 ## Update
 
