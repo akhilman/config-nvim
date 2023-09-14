@@ -1,6 +1,6 @@
 local compiled_path = vim.fn.stdpath('config') .. '/plugin/ZZ-packer_compiled.lua'
 local packages_path = vim.fn.stdpath('data') .. '/site/pack/packer/'
-local packer_path = packages_path .. 'opt/packer.nvim'
+local packer_path = packages_path .. 'start/packer.nvim'
 local packer_name = 'wbthomason/packer.nvim'
 local packer_repo = 'https://github.com/' .. packer_name
 
@@ -28,7 +28,6 @@ local function init_packer()
     }
     packer.use {
       packer_name,
-      opt = true,
     }
   end
 end
@@ -49,7 +48,7 @@ function M.bootstrap()
   end
   vim.notify('Installing Packer...', vim.log.levels.INFO)
   vim.notify(vim.fn.system({ 'git', 'clone', '--depth', '1', packer_repo, packer_path }), vim.log.levels.INFO)
-  pcall(function() vim.cmd 'packadd packer.nvim' end)
+  vim.opt_global.runtimepath:append { packer_path }
   local ok, packer = pcall(function() return require 'packer' end)
   if ok and packer then
     init_packer()
@@ -97,8 +96,6 @@ function M.uninstall()
 end
 
 function M.init()
-  pcall(function() vim.cmd 'packadd packer.nvim' end)
-
   init_packer()
 
   vim.api.nvim_create_user_command('PackerBootstrap', M.bootstrap,
