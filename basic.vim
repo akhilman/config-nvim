@@ -84,10 +84,10 @@ nnoremap <A-S-Up> <C-w><S-k>
 nnoremap <A-S-Down> <C-w><S-j>
 nnoremap <A-S-Left> <C-w><S-h>
 nnoremap <A-S-Right> <C-w><S-l>
-nnoremap <silent> <A-C-Up> :resize +10<CR>
-nnoremap <silent> <A-C-Down> :resize -10<CR>
-nnoremap <silent> <A-C-Right> :vertical resize +10<CR>
-nnoremap <silent> <A-C-Left> :vertical resize -10<CR>
+nnoremap <silent> <C-S-Up> :resize +2<CR>
+nnoremap <silent> <C-S-Down> :resize -2<CR>
+nnoremap <silent> <C-S-Right> :vertical resize +5<CR>
+nnoremap <silent> <C-S-Left> :vertical resize -5<CR>
 
 " switch tabs
 noremap <A-1> 1gt
