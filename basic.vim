@@ -110,8 +110,8 @@ set history=500
 set undolevels=1000
 
 " Easier increment/decrement
-nnoremap + <C-a>
-nnoremap - <C-x>
+" nnoremap + <C-a>
+" nnoremap - <C-x>
 
 " autoformatting
 set formatoptions=jcrqln2

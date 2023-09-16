@@ -42,10 +42,10 @@ local function config_treesitter()
     incremental_selection = {
       enable = true,
       keymaps = {
-        init_selection = 'gnn',
-        node_incremental = 'grn',
-        scope_incremental = 'grc',
-        node_decremental = 'grm',
+        init_selection = '<LocalLeader>v',
+        node_incremental = '+',
+        -- scope_incremental = '+',
+        node_decremental = '-',
       },
     },
     indent = {
@@ -57,6 +57,8 @@ local function config_treesitter()
         lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
         keymaps = {
           -- You can use the capture groups defined in textobjects.scm
+          ['aa'] = '@parameter.outer',
+          ['ia'] = '@parameter.inner',
           ['af'] = '@function.outer',
           ['if'] = '@function.inner',
           ['ac'] = '@class.outer',
@@ -67,20 +69,33 @@ local function config_treesitter()
         enable = true,
         set_jumps = true, -- whether to set jumps in the jumplist
         goto_next_start = {
-          [']m'] = '@function.outer',
-          [']]'] = '@class.outer',
+          [']a'] = '@parameter.outer',
+          [']f'] = '@function.outer',
+          [']c'] = '@class.outer',
         },
         goto_next_end = {
-          [']M'] = '@function.outer',
-          [']['] = '@class.outer',
+          [']A'] = '@parameter.outer',
+          [']F'] = '@function.outer',
+          [']C'] = '@class.outer',
         },
         goto_previous_start = {
-          ['[m'] = '@function.outer',
-          ['[['] = '@class.outer',
+          ['[a'] = '@parameter.outer',
+          ['[f'] = '@function.outer',
+          ['[c'] = '@class.outer',
         },
         goto_previous_end = {
-          ['[M'] = '@function.outer',
-          ['[]'] = '@class.outer',
+          ['[A'] = '@parameter.outer',
+          ['[F'] = '@function.outer',
+          ['[C'] = '@class.outer',
+        },
+      },
+      swap = {
+        enable = true,
+        swap_next = {
+          ['<LocalLeader>n'] = '@parameter.inner',
+        },
+        swap_previous = {
+          ['<LocalLeader>p'] = '@parameter.inner',
         },
       },
     },
