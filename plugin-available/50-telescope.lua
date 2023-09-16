@@ -21,6 +21,12 @@ local function config()
   vim.keymap.set('n', '<Leader>fb', telescope_builtin.buffers,
     { desc = 'Find a buffer with Telescope', silent = true })
 
+  -- Location list and marks
+  vim.keymap.set('n', '<Leader>l', telescope_builtin.loclist,
+    { desc = "Show locatioh list in Telescope", silent = true })
+  vim.keymap.set('n', '<Leader>m', telescope_builtin.marks,
+    { desc = "Show marks in Telescope", silent = true })
+
   -- Spell suggestions
   vim.keymap.set('n', 'z=', telescope_builtin.spell_suggest,
     { desc = "Spell suggestions with Telescope", silent = true })
