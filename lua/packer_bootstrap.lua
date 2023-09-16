@@ -67,14 +67,15 @@ function M.update_config()
   local comp_time = vim.fn.getftime(compiled_path) -- -1 if file is not exist
   local outdated = false
 
+  local plugin_dir = vim.fn.glob(vim.fn.stdpath('config') .. '/plugin')
   local plugins = vim.split(
-    vim.fn.glob(
-      vim.fn.stdpath('config') .. '/plugin/**/*.lua'),
+    vim.fn.glob(plugin_dir .. '/*.lua'),
     '\n', { trimempty = true }
   )
+  table.insert(plugins, plugin_dir) -- also check is directory itself modified
+
   for _, f in ipairs(plugins) do
-    local mtime = vim.fn.getftime(f)
-    if mtime > comp_time then
+    if vim.fn.getftime(f) > comp_time then
       outdated = true
     end
   end
