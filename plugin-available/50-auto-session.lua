@@ -20,7 +20,7 @@ local auto_sesson_config = {
 require('packer_bootstrap').use {
   'rmagatti/auto-session',
   config = function()
-    vim.o.sessionoptions = "help,skiprtp,tabpages,winsize"
+    vim.o.sessionoptions = "curdir,help,skiprtp,tabpages,winsize"
     require('auto-session').setup(auto_sesson_config)
   end,
 }
