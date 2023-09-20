@@ -43,6 +43,10 @@ endif
 vnoremap < <gv
 vnoremap > >gv
 
+" Move selected up/down
+vnoremap <C-Up> :m '<-2<CR>gv=gv
+vnoremap <C-Down> :m '>+1<CR>gv=gv
+
 " removing trailing spaces
 autocmd FileType c,cpp,python,ruby,java,lua,vim,cmake,json,javascript,typescript,css,scss,sass,html,svg autocmd BufWritePre <buffer> :%s/\s\+$//e
 
