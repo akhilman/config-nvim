@@ -3,43 +3,43 @@ local function config()
 
   -- Word search
   vim.keymap.set('n', '<Leader>/', telescope_builtin.current_buffer_fuzzy_find,
-    { desc = 'Find in current buffer with Telescope', silent = true })
+    { desc = 'Find in current buffer (Telescope)', silent = true })
   vim.keymap.set('n', '<Leader>fs', telescope_builtin.live_grep,
-    { desc = 'Search for a string and get results live as you type', silent = true })
+    { desc = 'Search for a string and get results live as you type (Telescope)', silent = true })
   vim.keymap.set('n', '<Leader>f*', telescope_builtin.grep_string,
-    { desc = 'Searches for the string under your cursor in your current working directory', silent = true })
+    { desc = 'Search for the string under your cursor (Telescope)', silent = true })
 
   -- File search
   vim.keymap.set('n', '<Leader>ff', telescope_builtin.find_files,
-    { desc = 'Find a file with Telescope', silent = true })
+    { desc = 'Find a file (Telescope)', silent = true })
   vim.keymap.set('n', '<Leader>fr', telescope_builtin.oldfiles,
-    { desc = 'Find a recently opened file with Telescope', silent = true })
+    { desc = 'Show a recently opened files (Telescope)', silent = true })
   vim.keymap.set('n', '<Leader>fg', telescope_builtin.git_files,
-    { desc = 'Find a file in git with Telescope', silent = true })
+    { desc = 'Find a file in git (Telescope)', silent = true })
 
   -- Buffer search
   vim.keymap.set('n', '<Leader>fb', telescope_builtin.buffers,
-    { desc = 'Find a buffer with Telescope', silent = true })
+    { desc = 'Find a buffer (Telescope)', silent = true })
 
   -- Jump list, location list and marks
   vim.keymap.set('n', '<Leader>j', telescope_builtin.jumplist,
-    { desc = "Show jump list in Telescope", silent = true })
+    { desc = "Show jump list (Telescope)", silent = true })
   vim.keymap.set('n', '<Leader>l', telescope_builtin.loclist,
-    { desc = "Show locatioh list in Telescope", silent = true })
+    { desc = "Show location list (Telescope)", silent = true })
   vim.keymap.set('n', '<Leader>m', telescope_builtin.marks,
-    { desc = "Show marks in Telescope", silent = true })
+    { desc = "Show marks (Telescope)", silent = true })
 
   -- Spell suggestions
   vim.keymap.set('n', 'z=', telescope_builtin.spell_suggest,
-    { desc = "Spell suggestions with Telescope", silent = true })
-
-  -- Telescope history
-  vim.keymap.set('n', '<Leader>fh', telescope_builtin.pickers,
-    { desc = "Show recent telescope searches", silent = true })
+    { desc = "Spell suggestions (Telescope)", silent = true })
 
   -- Commands
   vim.keymap.set('n', '<Leader>fc', telescope_builtin.commands,
-    { desc = 'Find a command with Telescope', silent = true })
+    { desc = 'Find a command (Telescope)', silent = true })
+
+  -- Telescope history
+  vim.keymap.set('n', '<Leader>fh', telescope_builtin.pickers,
+    { desc = "Show recent Telescope searches", silent = true })
 end
 
 require('packer_bootstrap').use {
