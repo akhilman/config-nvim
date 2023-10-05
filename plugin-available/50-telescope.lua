@@ -38,7 +38,7 @@ local function config()
     { desc = "Spell suggestions (Telescope)", silent = true })
 
   -- Commands
-  vim.keymap.set('n', '<Leader>fc', telescope_builtin.commands,
+  vim.keymap.set('n', '<Leader>:', telescope_builtin.commands,
     { desc = 'Find a command (Telescope)', silent = true })
 
   -- Telescope history
