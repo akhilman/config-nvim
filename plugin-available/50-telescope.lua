@@ -29,6 +29,10 @@ local function config()
   vim.keymap.set('n', '<Leader>m', telescope_builtin.marks,
     { desc = "Show marks (Telescope)", silent = true })
 
+  -- Regirters
+  vim.keymap.set('n', '<Leader>"', telescope_builtin.registers,
+    { desc = "Show registers (Telescope)", silent = true })
+
   -- Spell suggestions
   vim.keymap.set('n', 'z=', telescope_builtin.spell_suggest,
     { desc = "Spell suggestions (Telescope)", silent = true })
