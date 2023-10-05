@@ -26,7 +26,7 @@ local function config()
     { desc = "Show jump list (Telescope)", silent = true })
   vim.keymap.set('n', '<Leader>l', telescope_builtin.loclist,
     { desc = "Show location list (Telescope)", silent = true })
-  vim.keymap.set('n', '<Leader>m', telescope_builtin.marks,
+  vim.keymap.set('n', '<Leader>`', telescope_builtin.marks,
     { desc = "Show marks (Telescope)", silent = true })
 
   -- Regirters
