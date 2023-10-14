@@ -23,7 +23,7 @@ end
 local function init_packer(packer)
   packer.init {
     compile_path = compiled_path,
-    max_jobs = 8,
+    max_jobs = 4,
   }
   packer.use {
     packer_name,
