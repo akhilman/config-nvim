@@ -118,7 +118,7 @@ set undolevels=1000
 " nnoremap - <C-x>
 
 " autoformatting
-set formatoptions=jcrqln2
+set formatoptions=jcrqln21
 
 " enable mouse
 set mouse=nvh
