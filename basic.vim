@@ -61,7 +61,7 @@ autocmd FileType fish,sh,rust,python,dockerfile,sql,toml,markdown setlocal shift
 autocmd FileType c,cpp,vim,lua,htmldjango,rust,python,json,javascript,typescript,css,scss,sass,html,svg setlocal expandtab
 
 " folding
-set foldmethod=indent
+"set foldmethod=indent
 "autocmd FileType rust,c,cpp,json,javascript,typescript,css,scss,sass,html,svg setlocal foldmethod=syntax
 "autocmd FileType python,yaml setlocal foldmethod=indent
 
