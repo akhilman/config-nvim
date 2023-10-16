@@ -46,6 +46,7 @@ local function config()
         behavior = cmp.ConfirmBehavior.Replace,
         select = true,
       },
+      ['<Esc>'] = cmp.mapping.abort(),
       ['<C-n>'] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
