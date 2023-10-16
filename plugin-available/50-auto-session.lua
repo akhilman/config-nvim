@@ -54,6 +54,6 @@ local function purge_sessions()
 end
 
 if pcall(function() require 'auto-session' end) then
-  vim.api.nvim_create_user_command('PurgeSessions', purge_sessions,
+  vim.api.nvim_create_user_command('SessionPurge', purge_sessions,
     { desc = "Purge orphaned sessions" })
 end
