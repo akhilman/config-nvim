@@ -5,11 +5,11 @@ local function config()
 
   -- Main sources
   local sources = {
-    { name = 'calc', priority = 150 },
-    { name = 'luasnip', priority = 100 },
+    { name = 'calc',     priority = 150 },
+    { name = 'luasnip',  priority = 100 },
     { name = 'nvim_lua', priority = 50 },
-    { name = 'path', priority = 10 },
-    { name = 'buffer', priority = 0 },
+    { name = 'path',     priority = 10 },
+    { name = 'buffer',   priority = 0 },
   }
 
   -- Completion for LSP
@@ -116,9 +116,9 @@ require('packer_bootstrap').use {
     -- See https://github.com/hrsh7th/nvim-cmp/wiki/List-of-sources for more sources
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-cmdline',
-    'hrsh7th/cmp-path',  -- Maybe replace by FelipeLema/cmp-async-path
+    'hrsh7th/cmp-path',     -- Maybe replace by FelipeLema/cmp-async-path
     'hrsh7th/cmp-calc',
-    'hrsh7th/cmp-nvim-lua',  -- Neovim Lua API
+    'hrsh7th/cmp-nvim-lua', -- Neovim Lua API
     -- Snippets
     {
       'saadparwaiz1/cmp_luasnip', -- Snippets source for nvim-cmp
@@ -126,8 +126,8 @@ require('packer_bootstrap').use {
         'L3MON4D3/LuaSnip',       -- Snippets
       }
     },
-    { 'hrsh7th/cmp-nvim-lsp', opt = true },
+    { 'hrsh7th/cmp-nvim-lsp',                opt = true },
     { 'hrsh7th/cmp-nvim-lsp-signature-help', opt = true },
-    { 'rcarriga/cmp-dap', opt = true },
+    { 'rcarriga/cmp-dap',                    opt = true },
   },
 }
