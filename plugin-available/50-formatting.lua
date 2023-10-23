@@ -1,19 +1,20 @@
 -- Formatting
 
+local prettier_formats = {
+  css = true,
+  flow = true,
+  html = true,
+  javascript = true,
+  json = true,
+  json5 = true,
+  less = true,
+  markdown = true,
+  scss = true,
+  typescript = true,
+  yaml = true,
+}
+
 local function format_buffer()
-  local prettier_formats = {
-    css = true,
-    flow = true,
-    html = true,
-    javascript = true,
-    json = true,
-    json5 = true,
-    less = true,
-    markdown = true,
-    scss = true,
-    typescript = true,
-    yaml = true,
-  }
   if vim.lsp.buf.server_ready() then
     vim.lsp.buf.format { async = true }
   elseif prettier_formats[vim.bo.filetype] and vim.fn.executable("prettier") == 1 then
