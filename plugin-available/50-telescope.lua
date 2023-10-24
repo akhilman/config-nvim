@@ -46,7 +46,8 @@ local function config()
     { desc = "Show recent Telescope searches", silent = true })
 end
 
-require('packer_bootstrap').use {
+local use = require('packer_bootstrap').use
+use {
   'nvim-telescope/telescope.nvim',
   config = config,
   requires = {
@@ -54,4 +55,9 @@ require('packer_bootstrap').use {
     'nvim-lua/plenary.nvim',
     -- { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
   },
+}
+use {
+  'nvim-telescope/telescope-ui-select.nvim',
+  config = function() require("telescope").load_extension("ui-select") end,
+  requires = { 'nvim-telescope/telescope.nvim' },
 }
