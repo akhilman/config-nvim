@@ -1,4 +1,8 @@
 local function config()
+  if vim.fn.executable("rg") == 0 then
+    vim.notify("Telescope requires ripgrep to live grep search", vim.log.levels.WARN)
+  end
+
   local telescope_builtin = require 'telescope.builtin'
 
   -- Word search
