@@ -30,5 +30,7 @@ local function format_buffer()
   end
 end
 
-vim.keymap.set('n', '<LocalLeader>f', format_buffer,
+vim.keymap.set("n", "<LocalLeader>f", format_buffer,
   { silent = true, desc = "Format current buffer" })
+vim.api.nvim_create_user_command("Format", format_buffer,
+  { desc = "Format a code or text in the current buffer" })
