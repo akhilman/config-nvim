@@ -27,7 +27,7 @@ if exists("+undofile")
     if has('unix')
       let undoDirPath = $HOME . '/.vim/undo'
     else
-      let undoDirPath = $HOME .'\Vim\vimfiles\undo'
+      let undoDirPath = $HOME .'\vimfiles\undo'
     endif
     if !isdirectory(undoDirPath)
         call mkdir(undoDirPath, 'p')
