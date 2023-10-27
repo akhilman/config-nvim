@@ -126,13 +126,13 @@ local function config()
 
     -- Diagnostics
     vim.keymap.set('n', '<LocalLeader>e', vim.diagnostic.open_float,
-      { desc = 'Show diagnostic errors', silent = true })
+      { desc = 'Show diagnostic errors', silent = true, buffer = bufnr })
     vim.keymap.set('n', '<LocalLeader>q', show_diagnostics,
-      { desc = 'Show diagnostic errors with Telescope', silent = true })
+      { desc = 'Show diagnostic errors with Telescope', silent = true, buffer = bufnr })
     vim.keymap.set('n', '[d', vim.diagnostic.goto_prev,
-      { desc = 'Previous diagnostic error', silent = true })
+      { desc = 'Previous diagnostic error', silent = true, buffer = bufnr })
     vim.keymap.set('n', ']d', vim.diagnostic.goto_next,
-      { desc = 'Next diagnostic error', silent = true })
+      { desc = 'Next diagnostic error', silent = true, buffer = bufnr })
   end
 
   -- LSP setup
