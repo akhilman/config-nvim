@@ -135,6 +135,7 @@ local use = require('packer_bootstrap').use
 use {
   'nvim-treesitter/nvim-treesitter',
   config = config_treesitter,
+  run = ":TSUpdate",
 }
 -- Additional textobjects for treesitter
 use {
