@@ -16,7 +16,7 @@
 --   end
 -- end
 
-local function config_treesitter()
+local function treesitter_config()
   -- Treesitter configuration
   -- Parsers must be installed manually via :TSInstall
   require('nvim-treesitter.configs').setup {
@@ -113,7 +113,13 @@ local function config_treesitter()
   -- )
 end
 
-local function config_indent_object()
+local function treesitter_post_hook()
+  if vim.fn.exists(':TSUpdate') > 0 then
+    vim.cmd('TSUpdate')
+  end
+end
+
+local function indent_object_config()
   require('treesitter_indent_object').setup {}
 
   vim.keymap.set({ "x", "o" }, "ai",
@@ -134,8 +140,8 @@ local use = require('packer_bootstrap').use
 -- Highlight, edit, and navigate code using a fast incremental parsing library
 use {
   'nvim-treesitter/nvim-treesitter',
-  config = config_treesitter,
-  run = ":TSUpdate",
+  config = treesitter_config,
+  run = treesitter_post_hook,
 }
 -- Additional textobjects for treesitter
 use {
@@ -150,7 +156,7 @@ use {
 }
 use {
   'kiyoon/treesitter-indent-object.nvim',
-  config = config_indent_object,
+  config = indent_object_config,
   requires = { 'nvim-treesitter/nvim-treesitter' },
 }
 -- Visualiration of AST for debuging and plugin development
