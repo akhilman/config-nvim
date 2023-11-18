@@ -106,11 +106,6 @@ local function treesitter_config()
     --   enable = true,
     -- },
   }
-
-  -- vim.api.nvim_create_autocmd(
-  --   { "BufReadPost", "FileReadPost" },
-  --   { callback = buffer_setup }
-  -- )
 end
 
 local function treesitter_post_hook()
@@ -143,7 +138,6 @@ use {
   config = treesitter_config,
   run = treesitter_post_hook,
 }
--- Additional textobjects for treesitter
 use {
   'nvim-treesitter/nvim-treesitter-textobjects',
   requires = { 'nvim-treesitter/nvim-treesitter' },
