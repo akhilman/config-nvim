@@ -206,14 +206,8 @@ local function config()
           -- https://rust-analyzer.github.io/manual.html
           ['rust-analyzer'] = {
             -- cargo = { features = nil },
-            checkOnSave = {
-              enabled = true,
-              command = 'clippy',
-              -- features = nil
-            },
-            inlayHints = {
-              enabled = true
-            }
+            checkOnSave = { enabled = true, },
+            check = { command = "clippy", },
           }
         }
       })

@@ -8,20 +8,21 @@ Commands:
 :DeleteSession " deletes a session in the currently set `auto_session_root_dir`.
 :DeleteSession ~/my/custom/path " deleetes a session based on the provided path.
 --]]
-local auto_sesson_config = {
-  auto_restore_enabled = true,
-  auto_save_enabled = true,
-  auto_session_create_enabled = false,
-  bypass_session_save_file_types = {
-    'neo-tree',
-  },
-}
 
 require('packer_bootstrap').use {
-  'rmagatti/auto-session',
+  -- 'rmagatti/auto-session',
+  '~/Projects/auto-session',
   config = function()
     vim.o.sessionoptions = "curdir,help,skiprtp,tabpages,winsize"
-    require('auto-session').setup(auto_sesson_config)
+    require('auto-session').setup {
+      log_level = "info",
+      auto_restore_enabled = true,
+      auto_save_enabled = true,
+      auto_session_create_enabled = false,
+      bypass_session_save_file_types = {
+        'neo-tree',
+      },
+    }
   end,
 }
 
@@ -35,25 +36,25 @@ require('packer_bootstrap').use {
   after = { 'auto-session' },
 }
 
-local function purge_sessions()
-  local auto_session = require 'auto-session'
-  local to_purge = {}
-  for _, session in ipairs(auto_session.get_session_files()) do
-    assert(session.display_name, "Session has no 'display_name' field")
-    if session.display_name:find('^/.*') and vim.fn.isdirectory(session.display_name) == 0 then
-      table.insert(to_purge, session.display_name)
-    end
-  end
-  for _, name in ipairs(to_purge) do
-    vim.notify("Purging session " .. name, vim.log.info)
-    auto_session.DeleteSessionByName(name)
-  end
-  if #to_purge == 0 then
-    vim.notify("Nothing to purge", vim.log.info)
-  end
-end
-
-if pcall(function() require 'auto-session' end) then
-  vim.api.nvim_create_user_command('SessionPurge', purge_sessions,
-    { desc = "Purge orphaned sessions" })
-end
+-- local function purge_sessions()
+--   local auto_session = require 'auto-session'
+--   local to_purge = {}
+--   for _, session in ipairs(auto_session.get_session_files()) do
+--     assert(session.display_name, "Session has no 'display_name' field")
+--     if session.display_name:find('^/.*') and vim.fn.isdirectory(session.display_name) == 0 then
+--       table.insert(to_purge, session.display_name)
+--     end
+--   end
+--   for _, name in ipairs(to_purge) do
+--     vim.notify("Purging session " .. name, vim.log.info)
+--     auto_session.DeleteSessionByName(name)
+--   end
+--   if #to_purge == 0 then
+--     vim.notify("Nothing to purge", vim.log.info)
+--   end
+-- end
+--
+-- if pcall(function() require 'auto-session' end) then
+--   vim.api.nvim_create_user_command('SessionPurge', purge_sessions,
+--     { desc = "Purge orphaned sessions" })
+-- end
